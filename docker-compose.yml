@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  rl-inference:
+    build:
+      context: ./rl-inference-service
+      dockerfile: Dockerfile
+    container_name: rl-inference-service
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_PATH: /app/trained_models/model.zip
+      OBSERVATION_SHAPE_DIM: 10
+      NUM_AGENTS: 1
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+      API_RELOAD: "false"
+    volumes:
+      - ./rl-inference-service/app/trained_models:/app/trained_models
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    networks:
+      - traffic-network
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  java-gateway:
+    build:
+      context: ./java-api-gateway
+      dockerfile: Dockerfile
+    container_name: traffic-api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      rl-inference:
+        condition: service_healthy
+    environment:
+      RL_INFERENCE_SERVICE_URL: http://rl-inference:8000/predict_action
+      RL_INFERENCE_SERVICE_TIMEOUT: "10000"
+    networks:
+      - traffic-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/traffic/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  traffic-network:
+    driver: bridge
+
+volumes:
+  trained_models:
+    driver: local
