@@ -15,7 +15,8 @@ public class TrafficActionResponse {
     private int predictedAction;
 
     @Schema(description = "Human-readable traffic signal state", example = "GREEN")
-    private String signalState;
+//    private String signalState;
+    private TrafficSignalState signalState;
 
     @Schema(description = "Unix timestamp of prediction", example = "1710000000000")
     private long timestamp;

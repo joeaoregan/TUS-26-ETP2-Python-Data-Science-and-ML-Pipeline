@@ -3,6 +3,7 @@ package com.example.gateway.controller;
 import com.example.gateway.dto.ErrorResponse;
 import com.example.gateway.dto.HealthResponse;
 import com.example.gateway.dto.TrafficActionResponse;
+import com.example.gateway.dto.TrafficSignalState;
 import com.example.gateway.service.RlInferenceClient;
 import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 
@@ -66,7 +67,7 @@ public class TrafficController {
 			log.debug("Generated observation data: {}", observationData);
 
 			int predictedAction = rlInferenceClient.predictAction(observationData);
-			String trafficSignalState = mapActionToSignalState(predictedAction);
+			TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
 
 			TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
 					System.currentTimeMillis(), "success");
@@ -129,7 +130,8 @@ public class TrafficController {
 			}
 
 			int predictedAction = rlInferenceClient.predictAction(request.getObservations());
-			String trafficSignalState = mapActionToSignalState(predictedAction);
+//			String trafficSignalState = mapActionToSignalState(predictedAction);
+			TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
 
 			TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
 					System.currentTimeMillis(), "success");
@@ -186,13 +188,13 @@ public class TrafficController {
 		return observations;
 	}
 
-	private String mapActionToSignalState(int action) {
+	private TrafficSignalState  mapActionToSignalState(int action) {
 		return switch (action) {
-		case 0 -> "RED";
-		case 1 -> "YELLOW";
-		case 2 -> "GREEN";
-		case 3 -> "GREEN_EXTENDED";
-		default -> "UNKNOWN";
+        case 0 -> TrafficSignalState.RED;
+        case 1 -> TrafficSignalState.YELLOW;
+        case 2 -> TrafficSignalState.GREEN;
+        case 3 -> TrafficSignalState.GREEN_EXTENDED;
+        default -> TrafficSignalState.UNKNOWN;
 		};
 	}
 
