@@ -7,10 +7,12 @@ import com.example.gateway.service.RlInferenceClient;
 import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -101,7 +103,19 @@ public class TrafficController {
 	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
 	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
 	@PostMapping("/action")
-	public ResponseEntity<?> predictTrafficAction(@RequestBody TrafficActionRequest request) {
+	public ResponseEntity<?> predictTrafficAction(
+			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Custom observation values for prediction", required = true, content = @Content(mediaType = "application/json", examples = {
+					@ExampleObject(name = "Typical morning traffic", value = """
+							{
+							  "observations": [0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95],
+							  "metadata": "morning-peak"
+							}
+							"""), @ExampleObject(name = "Low congestion", value = """
+							{
+							  "observations": [0.05, 0.10, 0.08, 0.12, 0.15, 0.20, 0.18, 0.22, 0.25],
+							  "metadata": "off-peak"
+							}
+							""") })) @RequestBody TrafficActionRequest request) {
 		try {
 			log.info("Received custom traffic action request with {} observations", request.getObservations().size());
 
