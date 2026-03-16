@@ -5,6 +5,7 @@ import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -41,7 +42,14 @@ public class TrafficController {
 	 * @return ResponseEntity with predicted action
 	 */
 	@Operation(summary = "Get predicted traffic signal action", description = "Generates dummy observations and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully")
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
+			    {
+			      "predictedAction": 2,
+			      "signalState": "GREEN",
+			      "timestamp": 1710000000000,
+			      "status": "success"
+			    }
+			""")))
 	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
 	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
 	@GetMapping("/action")
@@ -86,7 +94,14 @@ public class TrafficController {
 	 * @return ResponseEntity with predicted action
 	 */
 	@Operation(summary = "Predict traffic signal action using custom observations", description = "Accepts a list of observation values and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully")
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
+			    {
+			      "predictedAction": 1,
+			      "signalState": "YELLOW",
+			      "timestamp": 1710000000000,
+			      "status": "success"
+			    }
+			""")))
 	@ApiResponse(responseCode = "400", description = "Invalid observation data")
 	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
 	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
@@ -136,7 +151,13 @@ public class TrafficController {
 	 * @return ResponseEntity with health status
 	 */
 	@Operation(summary = "Health check", description = "Checks whether the RL inference service is reachable and responding.")
-	@ApiResponse(responseCode = "200", description = "Service is healthy")
+	@ApiResponse(responseCode = "200", description = "Service is healthy", content = @Content(mediaType = "application/json", schema = @Schema(example = """
+			    {
+			      "status": "healthy",
+			      "inferenceService": "up",
+			      "timestamp": 1710000000000
+			    }
+			""")))
 	@GetMapping("/health")
 	public ResponseEntity<Map<String, Object>> healthCheck() {
 		Map<String, Object> health = new HashMap<>();
@@ -217,7 +238,7 @@ public class TrafficController {
 	public static class TrafficActionRequest {
 		@Schema(description = "List of observation values", example = "[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]")
 		private List<Double> observations;
-		
+
 		@Schema(description = "Optional metadata for debugging or tracking", example = "peak-hour")
 		private String metadata;
 	}
