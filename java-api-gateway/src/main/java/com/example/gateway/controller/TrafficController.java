@@ -6,6 +6,7 @@ import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,6 +26,7 @@ import java.util.Random;
 @RestController
 @RequestMapping("/api/traffic")
 @RequiredArgsConstructor
+@Tag(name = "Traffic Control API", description = "Endpoints for traffic signal prediction and health monitoring")
 public class TrafficController {
 
 	private final RlInferenceClient rlInferenceClient;
@@ -84,6 +86,10 @@ public class TrafficController {
 	 * @return ResponseEntity with predicted action
 	 */
 	@Operation(summary = "Predict traffic signal action using custom observations", description = "Accepts a list of observation values and returns the predicted traffic signal state.")
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully")
+	@ApiResponse(responseCode = "400", description = "Invalid observation data")
+	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
+	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
 	@PostMapping("/action")
 	public ResponseEntity<Map<String, Object>> predictTrafficAction(@RequestBody TrafficActionRequest request) {
 		try {
