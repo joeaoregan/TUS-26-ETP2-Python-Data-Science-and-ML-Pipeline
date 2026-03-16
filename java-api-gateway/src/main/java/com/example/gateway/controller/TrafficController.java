@@ -39,6 +39,9 @@ public class TrafficController {
 	 * @return ResponseEntity with predicted action
 	 */
 	@Operation(summary = "Get predicted traffic signal action", description = "Generates dummy observations and returns the predicted traffic signal state.")
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully")
+	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
+	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
 	@GetMapping("/action")
 	public ResponseEntity<Map<String, Object>> getTrafficAction() {
 		try {
