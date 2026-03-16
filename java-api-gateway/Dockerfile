@@ -9,7 +9,7 @@ COPY src/ src/
 RUN mvn clean package -DskipTests
 
 # Runtime stage
-FROM eclipse-temurin:17-jre-slim
+FROM eclipse-temurin:17-jre-ubi9-minimal
 
 WORKDIR /app
 

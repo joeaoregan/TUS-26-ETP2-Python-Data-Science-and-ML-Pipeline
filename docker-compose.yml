@@ -10,7 +10,7 @@ services:
       - "8000:8000"
     environment:
       MODEL_PATH: /app/trained_models/model.zip
-      OBSERVATION_SHAPE_DIM: 10
+      OBSERVATION_SHAPE_DIM: 9
       NUM_AGENTS: 1
       API_HOST: 0.0.0.0
       API_PORT: 8000

@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
+    curl \
     gcc \
     g++ \
     build-essential \
@@ -25,7 +26,7 @@ EXPOSE 8000
 ENV API_HOST=0.0.0.0
 ENV API_PORT=8000
 ENV MODEL_PATH=/app/trained_models/model.zip
-ENV OBSERVATION_SHAPE_DIM=10
+ENV OBSERVATION_SHAPE_DIM=9
 ENV NUM_AGENTS=1
 
 # Run the application

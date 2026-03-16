@@ -94,7 +94,7 @@ ai-traffic-api/
    # Predict action with custom observations
    curl -X POST http://localhost:8080/api/traffic/action \
      -H "Content-Type: application/json" \
-     -d '{"observations": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'
+     -d '{"observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'
 
    # Check health
    curl http://localhost:8080/api/traffic/health
@@ -157,7 +157,7 @@ Response:
 curl -X POST http://localhost:8080/api/traffic/action \
   -H "Content-Type: application/json" \
   -d '{
-    "observations": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+    "observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
     "metadata": "peak-hour"
   }'
 ```

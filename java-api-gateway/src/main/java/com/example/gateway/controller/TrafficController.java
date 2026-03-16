@@ -4,6 +4,7 @@ import com.example.gateway.service.RlInferenceClient;
 import com.example.gateway.service.RlInferenceClient.RlInferenceException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,9 @@ public class TrafficController {
     private final RlInferenceClient rlInferenceClient;
     private static final Random random = new Random();
 
+    @Value("${rl.inference.observation-dimension:9}")
+    private int observationDimension;
+
     /**
      * Get predicted action for traffic signal control.
      *
@@ -37,7 +41,7 @@ public class TrafficController {
 
             // Generate dummy observation data (10 features)
             // In a real scenario, these would come from actual traffic sensors
-            List<Double> observationData = generateDummyObservations(10);
+            List<Double> observationData = generateDummyObservations(observationDimension);
             log.debug("Generated observation data: {}", observationData);
 
             // Get prediction from RL model
@@ -80,6 +84,13 @@ public class TrafficController {
             // Validate observation data
             if (request.getObservations() == null || request.getObservations().isEmpty()) {
                 return buildErrorResponse("Observations data is required", HttpStatus.BAD_REQUEST);
+            }
+
+            if (request.getObservations().size() != observationDimension) {
+                return buildErrorResponse(
+                        String.format("Expected %d observations but received %d",
+                                observationDimension, request.getObservations().size()),
+                        HttpStatus.BAD_REQUEST);
             }
 
             // Get prediction from RL model

@@ -23,7 +23,7 @@ def find_all_models() -> List[Tuple[str, Path]]:
             continue
             
         # Search for model.zip files
-        for model_file in sweep_dir.rglob("model.zip"):
+        for model_file in sweep_dir.rglob("*.zip"):
             # Create a friendly name from the path
             relative_path = model_file.relative_to(RESULTS_BASE)
             friendly_name = str(relative_path).replace("\\", "/")

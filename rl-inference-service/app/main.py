@@ -1,12 +1,15 @@
 import logging
 import os
+import sys
 from pathlib import Path
-from typing import List
+from typing import List, Optional
 
 import numpy as np
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from gymnasium import spaces
+from pydantic import BaseModel, ConfigDict
 from stable_baselines3 import PPO
+from stable_baselines3.common.save_util import load_from_zip_file
 
 # Configure logging
 logging.basicConfig(
@@ -22,10 +25,12 @@ class Observation(BaseModel):
 
 class PredictionResponse(BaseModel):
     action: int
-    confidence: float = None
+    confidence: Optional[float] = None
 
 
 class HealthResponse(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
+
     status: str
     model_loaded: bool
     model_path: str
@@ -34,6 +39,92 @@ class HealthResponse(BaseModel):
 # Global model variable
 model = None
 model_path = None
+
+
+def register_numpy_compat_aliases():
+    """Register NumPy module aliases expected by pickled model metadata."""
+    try:
+        import numpy._core as numpy_private_core
+        import numpy._core.numeric as numpy_private_numeric
+
+        sys.modules.setdefault("numpy._core", numpy_private_core)
+        sys.modules.setdefault("numpy._core.numeric", numpy_private_numeric)
+        return
+    except ModuleNotFoundError:
+        pass
+
+    import numpy.core as numpy_core
+    import numpy.core.numeric as numpy_core_numeric
+
+    sys.modules.setdefault("numpy._core", numpy_core)
+    sys.modules.setdefault("numpy._core.numeric", numpy_core_numeric)
+
+
+def patch_numpy_bit_generator_ctor():
+    """Support models pickled with NumPy versions that serialize BitGenerator classes."""
+    import numpy.random._pickle as numpy_random_pickle
+
+    original_ctor = numpy_random_pickle.__bit_generator_ctor
+    if getattr(original_ctor, "_ai_traffic_patched", False):
+        return
+
+    def compat_ctor(bit_generator_name='MT19937'):
+        if isinstance(bit_generator_name, type) and issubclass(bit_generator_name, np.random.BitGenerator):
+            return bit_generator_name()
+        return original_ctor(bit_generator_name)
+
+    compat_ctor._ai_traffic_patched = True
+    numpy_random_pickle.__bit_generator_ctor = compat_ctor
+
+
+def build_model_custom_objects(observation_dim: int, action_dim: int):
+    """Provide explicit objects for model metadata that may not deserialize cross-version."""
+    observation_space = spaces.Box(
+        low=0.0,
+        high=1.0,
+        shape=(observation_dim,),
+        dtype=np.float32,
+    )
+    action_space = spaces.Discrete(action_dim)
+
+    def constant_schedule(_progress_remaining):
+        return 0.0
+
+    return {
+        "observation_space": observation_space,
+        "action_space": action_space,
+        "lr_schedule": constant_schedule,
+        "clip_range": constant_schedule,
+    }
+
+
+def infer_model_dimensions(model_path: str, observation_shape_dim: int, num_agents: int):
+    """Infer observation and action dimensions from saved PPO weights when metadata is incompatible."""
+    default_observation_dim = observation_shape_dim * max(num_agents, 1)
+    default_action_dim = 4
+
+    try:
+        _, params, _ = load_from_zip_file(
+            model_path,
+            custom_objects={
+                "observation_space": None,
+                "action_space": None,
+                "lr_schedule": None,
+                "clip_range": None,
+            },
+        )
+    except Exception as exc:
+        logger.warning("Falling back to configured dimensions because model introspection failed: %s", exc)
+        return default_observation_dim, default_action_dim
+
+    policy_params = params.get("policy", {})
+    policy_weight = policy_params.get("mlp_extractor.policy_net.0.weight")
+    action_bias = policy_params.get("action_net.bias")
+
+    inferred_observation_dim = int(policy_weight.shape[1]) if policy_weight is not None else default_observation_dim
+    inferred_action_dim = int(action_bias.shape[0]) if action_bias is not None else default_action_dim
+
+    return inferred_observation_dim, inferred_action_dim
 
 
 def load_model():
@@ -53,7 +144,23 @@ def load_model():
         if not Path(model_path).exists():
             raise FileNotFoundError(f"Model file not found at {model_path}")
         
-        model = PPO.load(model_path)
+        register_numpy_compat_aliases()
+        patch_numpy_bit_generator_ctor()
+        inferred_observation_dim, inferred_action_dim = infer_model_dimensions(
+            model_path,
+            observation_shape_dim,
+            num_agents,
+        )
+        logger.info(
+            "Using model dimensions: observation_dim=%s, action_dim=%s",
+            inferred_observation_dim,
+            inferred_action_dim,
+        )
+        custom_objects = build_model_custom_objects(
+            inferred_observation_dim,
+            inferred_action_dim,
+        )
+        model = PPO.load(model_path, custom_objects=custom_objects)
         logger.info(f"Model loaded successfully from {model_path}")
         return True
     except Exception as e:
@@ -111,6 +218,12 @@ async def predict_action(observation: Observation):
     try:
         # Convert observation data to numpy array
         obs_array = np.array(observation.obs_data, dtype=np.float32)
+        expected_observation_dim = int(model.observation_space.shape[0])
+
+        if obs_array.size != expected_observation_dim:
+            raise ValueError(
+                f"Expected {expected_observation_dim} observation values but received {obs_array.size}"
+            )
         
         logger.info(f"Received observation shape: {obs_array.shape}")
         
