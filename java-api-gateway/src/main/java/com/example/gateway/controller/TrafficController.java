@@ -14,7 +14,6 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,19 +35,19 @@ import java.util.Random;
 @Tag(name = "Traffic Control API", description = "Endpoints for traffic signal prediction and health monitoring")
 public class TrafficController {
 
-	private final RlInferenceClient rlInferenceClient;
-	private static final Random random = new Random();
+    private final RlInferenceClient rlInferenceClient;
+    private static final Random random = new Random();
 
-	@Value("${rl.inference.observation-dimension:9}")
-	private int observationDimension;
+    @Value("${rl.inference.observation-dimension:9}")
+    private int observationDimension;
 
-	/**
-	 * Get predicted action for traffic signal control.
-	 *
-	 * @return ResponseEntity with predicted action
-	 */
-	@Operation(summary = "Get predicted traffic signal action", description = "Generates dummy observations and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
+    /**
+     * Get predicted action for traffic signal control.
+     *
+     * @return ResponseEntity with predicted action
+     */
+    @Operation(summary = "Get predicted traffic signal action", description = "Generates dummy observations and returns the predicted traffic signal state.")
+    @ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
 			    {
 			      "predictedAction": 2,
 			      "signalState": "GREEN",
@@ -56,43 +55,43 @@ public class TrafficController {
 			      "status": "success"
 			    }
 			""")))
-	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
-	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
-	@GetMapping("/action")
-	public ResponseEntity<?> getTrafficAction() {
-		try {
-			log.info("Received request for traffic action prediction");
+    @ApiResponse(responseCode = "503", description = "Inference service unavailable")
+    @ApiResponse(responseCode = "500", description = "Unexpected internal server error")
+    @GetMapping("/action")
+    public ResponseEntity<?> getTrafficAction() {
+        try {
+            log.info("Received request for traffic action prediction");
 
-			List<Double> observationData = generateDummyObservations(observationDimension);
-			log.debug("Generated observation data: {}", observationData);
+            List<Double> observationData = generateDummyObservations(observationDimension);
+            log.debug("Generated observation data: {}", observationData);
 
-			int predictedAction = rlInferenceClient.predictAction(observationData);
-			TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
+            int predictedAction = rlInferenceClient.predictAction(observationData);
+            TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
 
-			TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
-					System.currentTimeMillis(), "success");
+            TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
+                    System.currentTimeMillis(), "success");
 
-			log.info("Successfully generated traffic action: {} ({})", predictedAction, trafficSignalState);
-			return ResponseEntity.ok(response);
+            log.info("Successfully generated traffic action: {} ({})", predictedAction, trafficSignalState);
+            return ResponseEntity.ok(response);
 
-		} catch (RlInferenceException e) {
-			log.error("Failed to get traffic action: {}", e.getMessage());
-			return buildErrorResponse("Inference service error: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+        } catch (RlInferenceException e) {
+            log.error("Failed to get traffic action: {}", e.getMessage());
+            return buildErrorResponse("Inference service error: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
 
-		} catch (Exception e) {
-			log.error("Unexpected error getting traffic action", e);
-			return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+        } catch (Exception e) {
+            log.error("Unexpected error getting traffic action", e);
+            return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	/**
-	 * Get traffic action with custom observation data.
-	 *
-	 * @param request Request containing observation data
-	 * @return ResponseEntity with predicted action
-	 */
-	@Operation(summary = "Predict traffic signal action using custom observations", description = "Accepts a list of observation values and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
+    /**
+     * Get traffic action with custom observation data.
+     *
+     * @param request Request containing observation data
+     * @return ResponseEntity with predicted action
+     */
+    @Operation(summary = "Predict traffic signal action using custom observations", description = "Accepts a list of observation values and returns the predicted traffic signal state.")
+    @ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
 			    {
 			      "predictedAction": 1,
 			      "signalState": "YELLOW",
@@ -100,120 +99,126 @@ public class TrafficController {
 			      "status": "success"
 			    }
 			""")))
-	@ApiResponse(responseCode = "400", description = "Invalid observation data")
-	@ApiResponse(responseCode = "503", description = "Inference service unavailable")
-	@ApiResponse(responseCode = "500", description = "Unexpected internal server error")
-	@PostMapping("/action")
-	public ResponseEntity<?> predictTrafficAction(
-			@io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Custom observation values for prediction", required = true, content = @Content(mediaType = "application/json", examples = {
-					@ExampleObject(name = "Typical morning traffic", value = """
+    @ApiResponse(responseCode = "400", description = "Invalid observation data")
+    @ApiResponse(responseCode = "503", description = "Inference service unavailable")
+    @ApiResponse(responseCode = "500", description = "Unexpected internal server error")
+    @PostMapping("/action")
+    public ResponseEntity<?> predictTrafficAction(
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Custom observation values for prediction", required = true, content = @Content(mediaType = "application/json", examples = {
+        @ExampleObject(name = "Typical morning traffic", value = """
 							{
 							  "observations": [0.12, 0.33, 0.41, 0.55, 0.62, 0.70, 0.81, 0.90, 0.95],
 							  "metadata": "morning-peak"
 							}
-							"""), @ExampleObject(name = "Low congestion", value = """
+							"""),
+        @ExampleObject(name = "Low congestion", value = """
 							{
 							  "observations": [0.05, 0.10, 0.08, 0.12, 0.15, 0.20, 0.18, 0.22, 0.25],
 							  "metadata": "off-peak"
 							}
-							""") })) @RequestBody TrafficActionRequest request) {
-		try {
-			log.info("Received custom traffic action request with {} observations", request.getObservations().size());
+							""")})) @RequestBody TrafficActionRequest request) {
+        try {
+            log.info("Received custom traffic action request with {} observations", request.getObservations().size());
 
-			if (request.getObservations() == null || request.getObservations().isEmpty()) {
-				return buildErrorResponse("Observations data is required", HttpStatus.BAD_REQUEST);
-			}
+            if (request.getObservations() == null || request.getObservations().isEmpty()) {
+                return buildErrorResponse("Observations data is required", HttpStatus.BAD_REQUEST);
+            }
 
-			if (request.getObservations().size() != observationDimension) {
-				return buildErrorResponse(String.format("Expected %d observations but received %d",
-						observationDimension, request.getObservations().size()), HttpStatus.BAD_REQUEST);
-			}
+            if (request.getObservations().size() != observationDimension) {
+                return buildErrorResponse(String.format("Expected %d observations but received %d",
+                        observationDimension, request.getObservations().size()), HttpStatus.BAD_REQUEST);
+            }
 
-			int predictedAction = rlInferenceClient.predictAction(request.getObservations());
-//			String trafficSignalState = mapActionToSignalState(predictedAction);
-			TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
+            int predictedAction = rlInferenceClient.predictAction(request.getObservations());
+            TrafficSignalState trafficSignalState = mapActionToSignalState(predictedAction);
 
-			TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
-					System.currentTimeMillis(), "success");
+            TrafficActionResponse response = new TrafficActionResponse(predictedAction, trafficSignalState,
+                    System.currentTimeMillis(), "success");
 
-			log.info("Successfully predicted traffic action: {} ({})", predictedAction, trafficSignalState);
-			return ResponseEntity.ok(response);
+            log.info("Successfully predicted traffic action: {} ({})", predictedAction, trafficSignalState);
+            return ResponseEntity.ok(response);
 
-		} catch (RlInferenceException e) {
-			log.error("Failed to predict traffic action: {}", e.getMessage());
-			return buildErrorResponse("Inference service error: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+        } catch (RlInferenceException e) {
+            log.error("Failed to predict traffic action: {}", e.getMessage());
+            return buildErrorResponse("Inference service error: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
 
-		} catch (Exception e) {
-			log.error("Unexpected error predicting traffic action", e);
-			return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+        } catch (Exception e) {
+            log.error("Unexpected error predicting traffic action", e);
+            return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	/**
-	 * Health check endpoint.
-	 *
-	 * @return ResponseEntity with health status
-	 */
-	@Operation(summary = "Health check", description = "Checks whether the RL inference service is reachable and responding.")
-	@ApiResponse(responseCode = "200", description = "Service is healthy", content = @Content(mediaType = "application/json", schema = @Schema(example = """
+    /**
+     * Health check endpoint.
+     *
+     * @return ResponseEntity with health status
+     */
+    @Operation(summary = "Health check", description = "Checks whether the RL inference service is reachable and responding.")
+    @ApiResponse(responseCode = "200", description = "Service is healthy", content = @Content(mediaType = "application/json", schema = @Schema(example = """
 			    {
 			      "status": "healthy",
 			      "inferenceService": "up",
 			      "timestamp": 1710000000000
 			    }
 			""")))
-	@GetMapping("/health")
-	public ResponseEntity<?> healthCheck() {
-		try {
-			boolean inferenceServiceHealthy = rlInferenceClient.isServiceHealthy();
+    @GetMapping("/health")
+    public ResponseEntity<?> healthCheck() {
+        try {
+            boolean inferenceServiceHealthy = rlInferenceClient.isServiceHealthy();
 
-			HealthResponse response = new HealthResponse(inferenceServiceHealthy ? "healthy" : "degraded",
-					inferenceServiceHealthy ? "up" : "down", System.currentTimeMillis());
+            HealthResponse response = new HealthResponse(inferenceServiceHealthy ? "healthy" : "degraded",
+                    inferenceServiceHealthy ? "up" : "down", System.currentTimeMillis());
 
-			HttpStatus status = inferenceServiceHealthy ? HttpStatus.OK : HttpStatus.SERVICE_UNAVAILABLE;
-			return new ResponseEntity<>(response, status);
+            HttpStatus status = inferenceServiceHealthy ? HttpStatus.OK : HttpStatus.SERVICE_UNAVAILABLE;
+            return new ResponseEntity<>(response, status);
 
-		} catch (Exception e) {
-			log.warn("Health check failed: {}", e.getMessage());
-			return new ResponseEntity<>(new HealthResponse("unhealthy", "down", System.currentTimeMillis()),
-					HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
+        } catch (Exception e) {
+            log.warn("Health check failed: {}", e.getMessage());
+            return new ResponseEntity<>(new HealthResponse("unhealthy", "down", System.currentTimeMillis()),
+                    HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
-	private List<Double> generateDummyObservations(int size) {
-		List<Double> observations = new java.util.ArrayList<>();
-		for (int i = 0; i < size; i++) {
-			observations.add(random.nextDouble());
-		}
-		return observations;
-	}
+    private List<Double> generateDummyObservations(int size) {
+        List<Double> observations = new java.util.ArrayList<>();
+        for (int i = 0; i < size; i++) {
+            observations.add(random.nextDouble());
+        }
+        return observations;
+    }
 
-	private TrafficSignalState  mapActionToSignalState(int action) {
-		return switch (action) {
-        case 0 -> TrafficSignalState.RED;
-        case 1 -> TrafficSignalState.YELLOW;
-        case 2 -> TrafficSignalState.GREEN;
-        case 3 -> TrafficSignalState.GREEN_EXTENDED;
-        default -> TrafficSignalState.UNKNOWN;
-		};
-	}
+    private TrafficSignalState mapActionToSignalState(int action) {
+        return switch (action) {
+            case 0 ->
+                TrafficSignalState.RED;
+            case 1 ->
+                TrafficSignalState.YELLOW;
+            case 2 ->
+                TrafficSignalState.GREEN;
+            case 3 ->
+                TrafficSignalState.GREEN_EXTENDED;
+            default ->
+                TrafficSignalState.UNKNOWN;
+        };
+    }
 
-	private ResponseEntity<ErrorResponse> buildErrorResponse(String message, HttpStatus status) {
-		return new ResponseEntity<>(new ErrorResponse("error", message, System.currentTimeMillis()), status);
-	}
+    private ResponseEntity<ErrorResponse> buildErrorResponse(String message, HttpStatus status) {
+        return new ResponseEntity<>(new ErrorResponse("error", message, System.currentTimeMillis()), status);
+    }
 
-	/**
-	 * Request model for custom traffic action prediction.
-	 */
-	@Schema(description = "Request body for custom traffic action prediction")
-	@lombok.Data
-	@lombok.NoArgsConstructor
-	@lombok.AllArgsConstructor
-	public static class TrafficActionRequest {
-		@Schema(description = "List of observation values", example = "[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]")
-		private List<Double> observations;
+    /**
+     * Request model for custom traffic action prediction.
+     */
+    @Schema(description = "Request body for custom traffic action prediction")
+    @lombok.Data
+    @lombok.NoArgsConstructor
+    @lombok.AllArgsConstructor
+    public static class TrafficActionRequest {
 
-		@Schema(description = "Optional metadata for debugging or tracking", example = "peak-hour")
-		private String metadata;
-	}
+        @Schema(description = "List of observation values", example = "[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]")
+        private List<Double> observations;
+
+        @Schema(description = "Optional metadata for debugging or tracking", example = "peak-hour")
+        private String metadata;
+    }
 }
