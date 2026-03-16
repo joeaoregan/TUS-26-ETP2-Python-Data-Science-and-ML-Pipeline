@@ -3,7 +3,6 @@ package com.example.gateway.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
@@ -108,7 +107,9 @@ public class RlInferenceClient {
      * Custom exception for RL Inference errors.
      */
     public static class RlInferenceException extends RuntimeException {
-        public RlInferenceException(String message) {
+		private static final long serialVersionUID = 1L;
+
+		public RlInferenceException(String message) {
             super(message);
         }
 

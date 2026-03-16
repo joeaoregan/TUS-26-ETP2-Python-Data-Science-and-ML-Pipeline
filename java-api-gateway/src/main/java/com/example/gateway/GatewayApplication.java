@@ -14,12 +14,12 @@ public class GatewayApplication {
     }
 
     @Bean
-    public RestTemplate restTemplate() {
+    RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
     @Bean
-    public WebClient webClient(WebClient.Builder builder) {
+    WebClient webClient(WebClient.Builder builder) {
         return builder.build();
     }
 }
