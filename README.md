@@ -135,6 +135,8 @@ mvn clean install
 mvn spring-boot:run
 ```
 
+- Includes Swagger/OpenAPI documentation for all traffic control endpoints.
+
 ## API Usage Examples
 
 ### Get Traffic Action (Auto-generated observations)
@@ -311,3 +313,23 @@ For issues or questions:
 2. Test individual services separately
 3. Verify environment variables are set correctly
 4. Check API documentation at `/docs` (Swagger UI - Python service)
+
+
+## API Documentation (Swagger UI)
+
+The Java API Gateway now includes automatically generated API documentation using **springdoc-openapi**.
+
+Once the gateway is running, Swagger UI is available at:
+
+```
+http://localhost:8080/swagger-ui/index.html
+```
+
+This provides:
+- Interactive documentation for all REST endpoints
+- Example requests and responses
+- Schema information for request bodies
+- Live testing directly from the browser
+
+Swagger is generated automatically from annotations in the Java controller classes.  
+Additional endpoint documentation will be added incrementally.
