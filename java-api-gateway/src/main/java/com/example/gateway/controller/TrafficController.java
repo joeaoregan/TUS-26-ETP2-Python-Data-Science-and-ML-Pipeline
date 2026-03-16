@@ -215,10 +215,10 @@ public class TrafficController {
 	@lombok.NoArgsConstructor
 	@lombok.AllArgsConstructor
 	public static class TrafficActionRequest {
-		@Schema(description = "List of observation values")
+		@Schema(description = "List of observation values", example = "[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]")
 		private List<Double> observations;
-
-		@Schema(description = "Optional metadata for debugging or tracking")
+		
+		@Schema(description = "Optional metadata for debugging or tracking", example = "peak-hour")
 		private String metadata;
 	}
 }
