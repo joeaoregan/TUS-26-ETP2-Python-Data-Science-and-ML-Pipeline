@@ -33,27 +33,7 @@ public class OpenApiConfig {
 	OpenAPI trafficControlApi() {
 		return new OpenAPI()
 				.info(new Info().title(apiTitle)
-						.description(
-								"""
-										This API provides traffic signal control capabilities powered by a Reinforcement Learning (RL) inference service.
-
-										## Overview
-										The system simulates or accepts real-time traffic observations and uses an RL model to predict the optimal traffic signal action.
-										These predictions help manage congestion, improve flow efficiency, and support adaptive traffic control strategies.
-
-										## Key Features
-										- **Automatic traffic signal prediction** using RL inference.
-										- **Support for custom observation inputs** for testing and experimentation.
-										- **Health monitoring** to verify the availability of the inference service.
-										- **Structured success and error responses** for consistent API behavior.
-
-										## Endpoints
-										- **GET /api/traffic/action** — Generates dummy observations and returns a predicted traffic signal state.
-										- **POST /api/traffic/action** — Accepts custom observations and returns a model prediction.
-										- **GET /api/traffic/health** — Reports the health status of the RL inference service.
-
-										This API is designed for academic, experimental, and demonstration purposes within a cloud‑native microservices architecture.
-										""")
+						.description(apiDescription)
 						.version(apiVersion).contact(new Contact().name(appAuthors).email(appEmail)))
 				.servers(List.of(new Server().url("http://localhost:8080").description("Local development server")));
 	}
