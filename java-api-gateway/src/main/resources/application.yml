@@ -34,12 +34,14 @@ api:
   authors: "Edgars Peskaitis, Joe O'Regan"
   email: "A00258304@student.tus.ie"
   description: |
-    # Joe O'Regan, Edgars Peskaitis, Adam O Neill Mc Knight, David Claffey
+    <img src="/images/logo.png" width="360" alt="AI Traffic Management System Logo" />
+    ## Joe O'Regan, Edgars Peskaiti
+    ## Adam O Neill Mc Knight, David Claffey
   
     This API provides traffic signal control capabilities powered by a Reinforcement Learning (RL) inference service.
 
     ## Overview
-    The system simulates or accepts real-time traffic observations and uses an RL model to predict the optimal traffic signal action.
+    The system simulates or accepts real-time traffic observations and uses an RL model to predict the optimal traffic signal action. \
     These predictions help manage congestion, improve flow efficiency, and support adaptive traffic control strategies.
 
     ## Key Features
