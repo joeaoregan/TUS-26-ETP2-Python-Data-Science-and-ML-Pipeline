@@ -35,7 +35,7 @@ api:
   email: "A00258304@student.tus.ie"
   description: |
     <img src="/images/logo.png" width="360" alt="AI Traffic Management System Logo" />
-    ## Joe O'Regan, Edgars Peskaiti
+    ## Joe O'Regan, Edgars Peskaitis
     ## Adam O Neill Mc Knight, David Claffey
   
     This API provides traffic signal control capabilities powered by a Reinforcement Learning (RL) inference service.

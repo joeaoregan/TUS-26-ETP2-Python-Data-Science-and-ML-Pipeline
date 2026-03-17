@@ -32,7 +32,7 @@ import java.util.Random;
 @RestController
 @RequestMapping("/api/traffic")
 @RequiredArgsConstructor
-@Tag(name = "Traffic Control API", description = "Endpoints for traffic signal prediction and health monitoring")
+//@Tag(name = "Traffic Control API", description = "Endpoints for traffic signal prediction and health monitoring")
 public class TrafficController {
 
 	private final RlInferenceClient rlInferenceClient;
