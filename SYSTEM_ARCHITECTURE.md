@@ -6,7 +6,8 @@ The AI Traffic Control API is a distributed, microservices-based system designed
 
 ---
 
-## 1. High-Level System Architecture
+<details open>
+  <summary>1. High-Level System Architecture</summary>
 
 ```mermaid
 graph TB
@@ -46,7 +47,10 @@ graph TB
 
 ---
 
-## 2. Request-Response Flow Diagram
+</details>
+
+<details>
+  <summary>2. Request-Response Flow Diagram</summary>
 
 ### **GET /api/traffic/action** (Auto-generated observations)
 
@@ -136,7 +140,10 @@ sequenceDiagram
 
 ---
 
-## 3. System Component Architecture
+</details>
+
+<details>
+  <summary>3. System Component Architecture</summary>
 
 ```mermaid
 graph LR
@@ -196,7 +203,10 @@ graph LR
 
 ---
 
-## 4. Data Flow Through System
+</details>
+
+<details>
+  <summary>4. Data Flow Through System</summary>
 
 ```mermaid
 graph TD
@@ -251,7 +261,10 @@ graph TD
 
 ---
 
-## 5. Deployment Architecture
+</details>
+
+<details>
+  <summary>5. Deployment Architecture</summary>
 
 ```mermaid
 graph TB
@@ -292,7 +305,10 @@ graph TB
 
 ---
 
-## 6. Detailed Internal Flow - Action Prediction
+</details>
+
+<details>
+  <summary>6. Detailed Internal Flow - Action Prediction</summary>
 
 ```mermaid
 graph LR
@@ -351,7 +367,10 @@ graph LR
 
 ---
 
-## 7. Error Handling Flow
+</details>
+
+<details>
+  <summary>7. Error Handling Flow</summary>
 
 ```mermaid
 graph TD
@@ -394,7 +413,10 @@ graph TD
 
 ---
 
-## 8. Inter-Service Communication Protocol
+</details>
+
+<details>
+  <summary>8. Inter-Service Communication Protocol</summary>
 
 ```mermaid
 graph LR
@@ -436,7 +458,10 @@ graph LR
 
 ---
 
-## 9. Model Loading & Caching Strategy
+</details>
+
+<details>
+  <summary>9. Model Loading & Caching Strategy</summary>
 
 ```mermaid
 graph TD
@@ -477,7 +502,10 @@ graph TD
 
 ---
 
-## 10. Complete End-to-End Workflow
+</details>
+
+<details>
+  <summary>10. Complete End-to-End Workflow</summary>
 
 ```mermaid
 graph TB
@@ -743,3 +771,5 @@ Kubernetes Cluster
 
 ---
 
+
+</details>
