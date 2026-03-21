@@ -1,0 +1,64 @@
+# Build artifacts
+target/
+*.class
+*.jar
+*.war
+*.zip
+build/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+*.egg-info/
+.eggs/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Spring Boot
+.gradle
+.idea/
+*.iml
+.DS_Store
+.vscode/
+*.swp
+*.swo
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# IDE
+.classpath
+.project
+.settings/
+.gradle/
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+
+# Environment files (but keep examples)
+.env
+!.env.example
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Node modules (if using npm in future)
+node_modules/
+npm-debug.log
+
+
+.metadata/
+.factorypath
