@@ -1,20 +1,43 @@
-# Technological University of the Shannon - Athlone
-## Engineering Team Project
-### Repo 2/2
-#### Python Data Science and ML Pipeline
+# AI-Driven Predictive Traffic Flow Optimisation System
+## Engineering Team Project | TUS Athlone
 
-### Links: 
+![Java 17](https://img.shields.io/badge/Java-17-blue)
+![Python 3.9](https://img.shields.io/badge/Python-3.9-green)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.2.3-6DB33F?logo=spring-boot&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-0.115.0-009688?logo=fastapi&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?logo=docker&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active_Research-success)
 
-App: [https://ai-traffic-control-api.onrender.com](https://ai-traffic-control-api.onrender.com/)
+> **Project Goal:** Target 15-20% reduction in urban traffic congestion for the Athlone "Orange Loop" using Reinforcement Learning.
 
-OpenAPI Docs: [https://ai-traffic-control-api.onrender.com/swagger-ui/index.html](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+### 🔗 Quick Links
+- **Live Gateway:** [https://ai-traffic-control-api.onrender.com](https://ai-traffic-control-api.onrender.com/)
+- **API Documentation:** [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+- **Inference Service:** Containerized (Docker)
 
-### Team:
+### 👥 Research Team
+- [Adam O Neill Mc Knight](https://github.com/AdamQ45), David Claffey, [Edgars Peskaitis](https://github.com/edgar183), [Joe O'Regan](https://github.com/joeaoregan)
 
-- Adam O Neill Mc Knight
-- David Claffey
-- Edgars Peskaitis
-- Joe O'Regan
+---
+
+## 📈 Performance Targets
+- **Average Travel Time (ATT):** Target -15%
+- **Mean Queue Length (MQL):** Target -20%
+- **Data Integrity:** TLS 1.3 secured telemetry pipeline
+
+---
+
+## 🏗️ System Architecture
+
+This repository implements a **Cloud-Native Microservices Pipeline** designed for the Athlone "Orange Loop" case study. 
+
+- **Traffic Monitoring Gateway (Java/Spring Boot):** Manages secure telemetry ingestion and orchestrates service communication.
+- **RL-Inference Service (Python/FastAPI):** Hosts a trained **PPO (Proximal Policy Optimization)** model to predict optimal signal timings based on real-time traffic density.
+- **Simulation Layer (SUMO):** Integrated high-fidelity environment for testing adaptive signal logic against baseline fixed-time controllers.
+
+This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
+
+---
 
 # AI Traffic Control API Setup Guide
 
@@ -23,28 +46,38 @@ This project provides a complete REST API solution for traffic signal control us
 ## Project Structure
 
 ```
-ai-traffic-api/
-├── rl-inference-service/          # Python FastAPI service
-│   ├── app/
-│   │   ├── main.py               # FastAPI application
-│   │   └── models/               # Directory for trained models
-│   ├── Dockerfile                # Python service Docker image
-│   ├── requirements.txt           # Python dependencies
-│   └── .env.example             # Environment variables template
-├── java-api-gateway/              # Java Spring Boot gateway
+TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
+├── java-api-gateway/                       # Java Spring Boot gateway
 │   ├── src/
 │   │   ├── main/java/com/example/gateway/
-│   │   │   ├── GatewayApplication.java         # Spring Boot app
+│   │   │   ├── GatewayApplication.java     # Spring Boot app
 │   │   │   ├── controller/
-│   │   │   │   └── TrafficController.java      # REST endpoints
+│   │   │   │   └── TrafficController.java  # REST endpoints
 │   │   │   └── service/
-│   │   │       └── RlInferenceClient.java      # RL service client
+│   │   │       └── RlInferenceClient.java  # RL service client
 │   │   └── main/resources/
-│   │       └── application.properties          # Spring config
-│   ├── pom.xml                   # Maven configuration
-│   └── Dockerfile                # Java service Docker image
-├── docker-compose.yml            # Docker Compose orchestration
-└── README.md                      # This file
+│   │       └── application.properties      # Spring config
+│   ├── pom.xml                             # Maven configuration
+│   └── Dockerfile                          # Java service Docker image
+├── rl-inference-service/                   # Python FastAPI service
+│   ├── app/
+│   │   ├── main.py                         # FastAPI application
+│   │   └── models/                         # Directory for trained models
+│   ├── Dockerfile                          # Python service Docker image
+│   ├── requirements.txt                    # Python dependencies
+│   └── .env.example                        # Environment variables template
+├── SUMO/                                   # 
+│   ├── results/
+│   │   ├── Base/
+│   ├── Simulations/
+│   │   ├── Base/
+├── docker-compose.yml                      # Docker Compose orchestration
+└── CHANGELOG.md                            # Change log
+└── FILE_MAINFEST.md                        # 
+└── QUICKSTART.md                           # Quick start guide
+└── README.md                               # This file
+└── SETUP_COMPLETE.md                       # 
+└── SYSTEM_ARCHITECTURE.md                  # 
 ```
 
 <details open>
@@ -70,6 +103,8 @@ ai-traffic-api/
 - Orchestrates both services
 - Manages networking and dependencies
 - Provides health checks and monitoring
+
+The Java Gateway receives raw vehicle counts, transforms them into an observation vector, and forwards them to the Python service for a decision.
 
 </details>
 
