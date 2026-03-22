@@ -48,14 +48,23 @@ public class TrafficController {
 	 */
 	@Tag(name = "Traffic Prediction")
 	@Operation(operationId = "getTrafficAction", summary = "Get predicted traffic signal action", description = "Generates dummy observations and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
-			    {
-			      "predictedAction": 2,
-			      "signalState": "GREEN",
-			      "timestamp": 1710000000000,
-			      "status": "success"
-			    }
-			""")))
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully (or Fallback mode if service is down)", content = @Content(mediaType = "application/json", examples = {
+			@ExampleObject(name = "Success", summary = "Standard AI Prediction", value = """
+					{
+					  "predictedAction": 2,
+					  "signalState": "GREEN",
+					  "timestamp": 1710000000000,
+					  "status": "success"
+					}
+					"""), @ExampleObject(name = "Fallback", summary = "Inference Service Down", value = """
+					{
+					  "predictedAction": 0,
+					  "signalState": "RED",
+					  "timestamp": 1710000000000,
+					  "status": "fallback_mode (inference service down)"
+					}
+					""") }))
+
 	@ApiResponse(responseCode = "503", description = "Inference service unavailable", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Inference service down", value = """
 			{
 			  "status": "error",
@@ -88,23 +97,15 @@ public class TrafficController {
 			return ResponseEntity.ok(response);
 
 		} catch (RlInferenceException e) {
-			log.error("Inference service unavailable, entering FALLBACK mode: {}", e.getMessage());
+			log.error("Inference service unavailable, entering FALLBACK mode");
 
-			// FALLBACK LOGIC: Instead of 503 error, return a safe default (e.g., Action 0 =
-			// RED)
-			int fallbackAction = 0;
+			int fallbackAction = 0; // RED
 			TrafficSignalState fallbackState = mapActionToSignalState(fallbackAction);
 
-			TrafficActionResponse response = new TrafficActionResponse(fallbackAction, fallbackState,
+			TrafficActionResponse fallbackResponse = new TrafficActionResponse(fallbackAction, fallbackState,
 					System.currentTimeMillis(), "fallback_mode (inference service down)");
 
-			// Return 200 OK but with a "fallback" status in the JSON
-			return ResponseEntity.ok(response);
-
-		} catch (Exception e) {
-			// Keep this as 500 because it's a code crash, not just a service being down
-			log.error("Unexpected error", e);
-			return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+			return ResponseEntity.ok(fallbackResponse);
 		}
 	}
 
@@ -116,25 +117,26 @@ public class TrafficController {
 	 */
 	@Tag(name = "Traffic Prediction")
 	@Operation(operationId = "predictTrafficAction", summary = "Predict traffic signal action using custom observations", description = "Accepts a list of observation values and returns the predicted traffic signal state.")
-	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(example = """
-			    {
-			      "predictedAction": 1,
-			      "signalState": "YELLOW",
-			      "timestamp": 1710000000000,
-			      "status": "success"
-			    }
-			""")))
+	@ApiResponse(responseCode = "200", description = "Prediction generated successfully", content = @Content(mediaType = "application/json", schema = @Schema(oneOf = {
+			TrafficActionResponse.class }), examples = { @ExampleObject(name = "Success", value = """
+					{
+					  "predictedAction": 2,
+					  "signalState": "GREEN",
+					  "timestamp": 1710000000000,
+					  "status": "success"
+					}
+					"""), @ExampleObject(name = "Fallback (Inference Down)", value = """
+					{
+					  "predictedAction": 0,
+					  "signalState": "RED",
+					  "timestamp": 1710000000000,
+					  "status": "fallback_mode (inference service down)"
+					}
+					""") }))
 	@ApiResponse(responseCode = "400", description = "Invalid observation data", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Invalid observation count", value = """
 			{
 			  "status": "error",
 			  "message": "Expected 9 observations but received 3",
-			  "timestamp": 1710000000000
-			}
-			""")))
-	@ApiResponse(responseCode = "503", description = "Inference service unavailable", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Inference service down", value = """
-			{
-			  "status": "error",
-			  "message": "Inference service error: timeout",
 			  "timestamp": 1710000000000
 			}
 			""")))
@@ -208,20 +210,20 @@ public class TrafficController {
 	 */
 	@Tag(name = "System Health")
 	@Operation(operationId = "healthCheck", summary = "Health check", description = "Checks whether the RL inference service is reachable and responding.")
-	@ApiResponse(responseCode = "200", description = "Service is healthy", content = @Content(mediaType = "application/json", schema = @Schema(example = """
-			    {
-			      "status": "healthy",
-			      "inferenceService": "up",
-			      "timestamp": 1710000000000
-			    }
-			""")))
-	@ApiResponse(responseCode = "503", description = "Inference service degraded", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Service degraded", value = """
-			{
-			  "status": "degraded",
-			  "inferenceService": "down",
-			  "timestamp": 1710000000000
-			}
-			""")))
+	@ApiResponse(responseCode = "200", description = "Service is healthy", content = @Content(mediaType = "application/json", schema = @Schema(oneOf = {
+			TrafficActionResponse.class }), examples = { @ExampleObject(name = "Success", value = """
+					     {
+					  "status": "healthy",
+					  "inferenceService": "up",
+					  "timestamp": 1710000000000
+					}
+					     """), @ExampleObject(name = "Fallback (Inference Down)", value = """
+					         {
+					  "status": "degraded",
+					  "inferenceService": "down",
+					  "timestamp": 1774149764299
+					}
+					         """) }))
 	@ApiResponse(responseCode = "500", description = "Health check failed", content = @Content(mediaType = "application/json", examples = @ExampleObject(name = "Health check error", value = """
 			{
 			  "status": "unhealthy",
