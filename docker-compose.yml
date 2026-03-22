@@ -40,7 +40,7 @@ services:
       rl-inference:
         condition: service_healthy
     environment:
-      RL_INFERENCE_SERVICE_URL: http://rl-inference:8000/predict_action
+      RL_INFERENCE_URL: http://rl-inference:8000/predict_action
       RL_INFERENCE_SERVICE_TIMEOUT: "10000"
     networks:
       - traffic-network
