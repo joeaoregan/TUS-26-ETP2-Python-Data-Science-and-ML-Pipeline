@@ -7,8 +7,8 @@ COPY pom.xml .
 RUN mvn dependency:go-offline -B 
 
 COPY src ./src
-# Using -o (offline) makes the build faster if dependencies are already cached
-RUN mvn clean package -DskipTests -o
+
+RUN mvn clean package -DskipTests 
 
 # Runtime stage
 FROM eclipse-temurin:17-jre-ubi9-minimal

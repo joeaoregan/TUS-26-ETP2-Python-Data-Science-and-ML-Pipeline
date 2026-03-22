@@ -22,7 +22,7 @@ public class RlInferenceClient {
 
     private final RestTemplate restTemplate;
 
-    @Value("${rl.inference.service.url:http://localhost:8000/predict_action}")
+    @Value("${RL_INFERENCE_URL:http://localhost:8000/predict_action}")
     private String inferenceServiceUrl;
 
     @Value("${rl.inference.service.timeout:10000}")
@@ -37,7 +37,7 @@ public class RlInferenceClient {
      */
     public int predictAction(List<Double> observationData) {
         try {
-            log.info("Sending prediction request with {} observations to {}", 
+            log.info("Sending prediction request with {} observations to {}",
                     observationData.size(), inferenceServiceUrl);
 
             // Create request payload
@@ -60,7 +60,7 @@ public class RlInferenceClient {
             return response.getAction();
 
         } catch (HttpClientErrorException e) {
-            log.error("HTTP error from inference service: {} - {}", 
+            log.error("HTTP error from inference service: {} - {}",
                     e.getStatusCode(), e.getResponseBodyAsString());
             throw new RlInferenceException(
                     String.format("HTTP %d error from inference service: %s",
@@ -68,7 +68,7 @@ public class RlInferenceClient {
                     e
             );
         } catch (ResourceAccessException e) {
-            log.error("Connection error to inference service at {}: {}", 
+            log.error("Connection error to inference service at {}: {}",
                     inferenceServiceUrl, e.getMessage());
             throw new RlInferenceException(
                     String.format("Failed to connect to inference service at %s: %s",
@@ -107,9 +107,10 @@ public class RlInferenceClient {
      * Custom exception for RL Inference errors.
      */
     public static class RlInferenceException extends RuntimeException {
-		private static final long serialVersionUID = 1L;
 
-		public RlInferenceException(String message) {
+        private static final long serialVersionUID = 1L;
+
+        public RlInferenceException(String message) {
             super(message);
         }
 
@@ -125,6 +126,7 @@ public class RlInferenceClient {
     @lombok.NoArgsConstructor
     @lombok.AllArgsConstructor
     public static class PredictionResponse {
+
         private int action;
         private Double confidence;
     }
@@ -136,6 +138,7 @@ public class RlInferenceClient {
     @lombok.NoArgsConstructor
     @lombok.AllArgsConstructor
     public static class HealthResponse {
+
         private String status;
         private boolean modelLoaded;
         private String modelPath;
