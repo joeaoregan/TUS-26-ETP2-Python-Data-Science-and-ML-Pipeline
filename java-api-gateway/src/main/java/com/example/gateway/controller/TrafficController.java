@@ -88,11 +88,22 @@ public class TrafficController {
 			return ResponseEntity.ok(response);
 
 		} catch (RlInferenceException e) {
-			log.error("Failed to get traffic action: {}", e.getMessage());
-			return buildErrorResponse("Inference service error: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+			log.error("Inference service unavailable, entering FALLBACK mode: {}", e.getMessage());
+
+			// FALLBACK LOGIC: Instead of 503 error, return a safe default (e.g., Action 0 =
+			// RED)
+			int fallbackAction = 0;
+			TrafficSignalState fallbackState = mapActionToSignalState(fallbackAction);
+
+			TrafficActionResponse response = new TrafficActionResponse(fallbackAction, fallbackState,
+					System.currentTimeMillis(), "fallback_mode (inference service down)");
+
+			// Return 200 OK but with a "fallback" status in the JSON
+			return ResponseEntity.ok(response);
 
 		} catch (Exception e) {
-			log.error("Unexpected error getting traffic action", e);
+			// Keep this as 500 because it's a code crash, not just a service being down
+			log.error("Unexpected error", e);
 			return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
@@ -170,11 +181,22 @@ public class TrafficController {
 			return ResponseEntity.ok(response);
 
 		} catch (RlInferenceException e) {
-			log.error("Failed to predict traffic action: {}", e.getMessage());
-			return buildErrorResponse("Inference service error: " + e.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+			log.error("Inference service unavailable, entering FALLBACK mode: {}", e.getMessage());
+
+			// FALLBACK LOGIC: Instead of 503 error, return a safe default (e.g., Action 0 =
+			// RED)
+			int fallbackAction = 0;
+			TrafficSignalState fallbackState = mapActionToSignalState(fallbackAction);
+
+			TrafficActionResponse response = new TrafficActionResponse(fallbackAction, fallbackState,
+					System.currentTimeMillis(), "fallback_mode (inference service down)");
+
+			// Return 200 OK but with a "fallback" status in the JSON
+			return ResponseEntity.ok(response);
 
 		} catch (Exception e) {
-			log.error("Unexpected error predicting traffic action", e);
+			// Keep this as 500 because it's a code crash, not just a service being down
+			log.error("Unexpected error", e);
 			return buildErrorResponse("Internal server error: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}

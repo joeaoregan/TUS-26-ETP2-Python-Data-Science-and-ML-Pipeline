@@ -1,0 +1,17 @@
+# Production Overrides for Render
+rl:
+  inference:
+    service:
+      timeout: 2000
+      # This will look for a Render Environment Variable named RL_INFERENCE_URL
+      # If not found, it defaults to the placeholder string
+      url: ${RL_INFERENCE_URL:http://localhost:8000/predict_action}
+
+spring:
+  application:
+    name: traffic-control-gateway-prod
+
+logging:
+  level:
+    root: WARN  # Less verbose logging for production
+    com.example.gateway: INFO
