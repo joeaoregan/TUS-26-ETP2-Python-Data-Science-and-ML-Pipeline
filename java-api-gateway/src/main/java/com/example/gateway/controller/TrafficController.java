@@ -182,7 +182,7 @@ public class TrafficController {
 			log.info("Successfully predicted traffic action: {} ({})", predictedAction, trafficSignalState);
 			return ResponseEntity.ok(response);
 
-		} catch (RlInferenceException e) {
+		} catch (RlInferenceException | org.springframework.web.client.ResourceAccessException e) {
 			log.error("Inference service unavailable, entering FALLBACK mode: {}", e.getMessage());
 
 			// FALLBACK LOGIC: Instead of 503 error, return a safe default (e.g., Action 0 =
