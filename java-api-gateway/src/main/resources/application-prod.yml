@@ -2,7 +2,7 @@
 rl:
   inference:
     service:
-      timeout: 2000
+      timeout: 20000
       # This will look for a Render Environment Variable named RL_INFERENCE_URL
       # If not found, it defaults to the placeholder string
       url: ${RL_INFERENCE_URL:http://localhost:8000/predict_action}
