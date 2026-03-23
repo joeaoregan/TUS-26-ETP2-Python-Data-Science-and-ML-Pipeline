@@ -26,14 +26,30 @@
 				<div class="flex flex-col space-y-3">
 					<a href="https://ai-traffic-control-api.onrender.com/swagger-ui/index.html" target="_blank"
 						class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
-						<span>Swagger UI (Cloud)</span>
+						<span>Gateway Swagger (Cloud)</span>
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
 								d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
 						</svg>
 					</a>
+
+					<a href="https://traffic-inference-service.onrender.com/docs" target="_blank"
+						class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
+						<span>AI Inference Docs (FastAPI)</span>
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+								d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+						</svg>
+					</a>
+
+					<a href="https://traffic-inference-service.onrender.com/health" target="_blank"
+						class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition border-b border-white/10 pb-3">
+						<span>AI Model Status</span>
+						<span class="text-[10px] bg-green-500 px-2 py-0.5 rounded-full font-bold uppercase">Live</span>
+					</a>
+
 					<a href="https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation" target="_blank"
-						class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition border-t border-white/10 pt-3">
+						class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition pt-3">
 						<span class="font-bold">Source Code (GitHub)</span>
 						<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
 							<path
@@ -46,10 +62,27 @@
 			<div class="bg-gray-800 rounded-3xl p-6 shadow-lg text-white">
 				<h3 class="text-sm font-bold uppercase tracking-widest opacity-80 mb-4">Local Development</h3>
 				<div class="flex flex-col space-y-3">
-					<a href="/swagger-ui/index.html" target="_blank"
-						class="flex justify-between items-center bg-white/5 hover:bg-white/10 p-3 rounded-xl transition">
-						<span>Swagger UI (Local)</span>
-						<span class="text-xs bg-gray-700 px-2 py-1 rounded">8080</span>
+					<a href="http://localhost:8080/swagger-ui/index.html" target="_blank"
+						class="flex justify-between items-center bg-white/5 hover:bg-white/10 p-3 rounded-xl transition text-sm">
+						<span>Gateway Swagger (Local)</span>
+						<span class="text-[10px] bg-gray-700 px-2 py-1 rounded font-mono">PORT 8080</span>
+					</a>
+
+					<a href="http://localhost:8000/docs" target="_blank"
+						class="flex justify-between items-center bg-white/5 hover:bg-white/10 p-3 rounded-xl transition text-sm">
+						<span>AI Inference Docs (Local)</span>
+						<span
+							class="text-[10px] bg-indigo-500/30 text-indigo-200 px-2 py-1 rounded font-mono border border-indigo-500/50">PORT
+							8000</span>
+					</a>
+
+					<a href="http://localhost:8000/health" target="_blank"
+						class="flex justify-between items-center bg-white/5 hover:bg-white/10 p-3 rounded-xl transition text-sm opacity-60 hover:opacity-100">
+						<span>Local Model Status</span>
+						<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+								d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+						</svg>
 					</a>
 				</div>
 			</div>
@@ -60,7 +93,8 @@
 				<div class="bg-white rounded-3xl p-6 border border-gray-200 shadow-sm text-center">
 					<h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-2">Core Specs</h2>
 					<ul class="space-y-4 text-sm text-gray-600 text-left">
-						<li class="flex items-start"><span class="mr-3 text-indigo-500">🚗</span> To do: Add Core Specs.</li>						
+						<li class="flex items-start"><span class="mr-3 text-indigo-500">🚗</span> To do: Add Core Specs.
+						</li>
 					</ul>
 				</div>
 
@@ -76,7 +110,7 @@
 							<p class="text-[10px] font-black text-center text-gray-400 uppercase tracking-widest">
 								AI Traffic Control API Demo</p>
 						</div>
-						
+
 						<h2 class="text-xl font-black text-gray-800 mb-4 border-b pb-2 text-center">SUMO Demonstration
 						</h2>
 						<div>
@@ -93,14 +127,16 @@
 			</div>
 
 			<div class="lg:col-span-2 space-y-6">
-				<div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden min-h-[600px] flex flex-col">
+				<div
+					class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden min-h-[600px] flex flex-col">
 					<p>To do</p>
 				</div>
 			</div>
 		</div>
 
 		<footer class="text-center pt-8 pb-12 mt-4 border-t border-gray-200">
-			<p class="text-sm text-gray-400 font-medium tracking-tight uppercase">&copy; 2026 Joe O'Regan &bull; Edgars Peskaitis &bull; David Claffey &bull; Adam O Neill Mc Knight &bull; TUS Engineering Team Project</p>
+			<p class="text-sm text-gray-400 font-medium tracking-tight uppercase">&copy; 2026 Joe O'Regan &bull; Edgars
+				Peskaitis &bull; David Claffey &bull; Adam O Neill Mc Knight &bull; TUS Engineering Team Project</p>
 		</footer>
 	</div>
 	<script src="app.js"></script>
