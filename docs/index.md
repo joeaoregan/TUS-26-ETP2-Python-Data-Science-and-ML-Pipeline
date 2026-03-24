@@ -59,7 +59,10 @@ This repository implements a **Cloud-Native Microservices Pipeline** designed fo
 
 This system is specifically modeled to address the saturation flow rates and signal-timing patterns of the Athlone 'Orange Loop' corridor, providing a scalable template for Smart City traffic management in regional Irish hubs.
 
+*For more details see [System Architecture](SYSTEM_ARCHITECTURE.md) page.*
+
 ---
+
 
 ## 🚗 AI Traffic Control API Setup Guide
 
@@ -271,35 +274,33 @@ Response:
 ## 🔐 Environment Variables
 
 ### Python Service (RL Inference)
-- `MODEL_PATH`: Path to trained model file (default: `/app/trained_models/model.zip`)
-- `OBSERVATION_SHAPE_DIM`: Observation vector dimension (default: `10`)
-- `NUM_AGENTS`: Number of agents (default: `1`)
-- `API_HOST`: API host address (default: `0.0.0.0`)
-- `API_PORT`: API port number (default: `8000`)
-- `API_RELOAD`: Enable auto-reload on code changes (default: `false`)
+
+| Environment Variable    | Description                        | Default                         |
+|-------------------------|------------------------------------|---------------------------------|
+| `MODEL_PATH`            | Path to trained model file         | `/app/trained_models/model.zip` |
+| `OBSERVATION_SHAPE_DIM` | Observation vector dimension       | `10`                            |
+| `NUM_AGENTS`            | Number of agents                   | `1`                             |
+| `API_HOST`              | API host address                   | `0.0.0.0`                       |
+| `API_PORT`              | API port number                    | `8000`                          |
+| `API_RELOAD`            | Enable auto-reload on code changes | `false`                         |
 
 ### Java Gateway
-- `RL_INFERENCE_SERVICE_URL`: RL Inference Service URL (default: `http://localhost:8000/predict_action`)
-- `RL_INFERENCE_SERVICE_TIMEOUT`: Request timeout in ms (default: `10000`)
 
+| Environment Variable           | Description              | Default                                |
+|--------------------------------|--------------------------|----------------------------------------|
+| `RL_INFERENCE_SERVICE_URL`     | RL Inference Service URL | `http://localhost:8000/predict_action` |
+| `RL_INFERENCE_SERVICE_TIMEOUT` | Request timeout in ms    | `10000`                                |
 
 ## 🐳 Docker Compose Configuration
 
 The `docker-compose.yml` file includes:
 
-- **RL Inference Service:**
-  - Python 3.9 slim image
-  - Volume for trained models
-  - Health checks enabled
-  - Port 8000 exposed
-
-- **Java Gateway:**
-  - Multi-stage build for optimized image
-  - Depends on RL Inference Service
-  - Health checks enabled
-  - Port 8080 exposed
-
-- **Network:** Bridge network for inter-service communication
+| **RL Inference Service** | **Java Gateway** | **Network** |
+|--------------------------|------------------|-------------|
+| Python 3.9 slim image | Multi-stage build for optimized image | Port 8080 exposed |
+| Volume for trained models | Depends on RL Inference Service |  |
+| Health checks enabled | Health checks enabled |  |
+| Port 8000 exposed | Port 8080 exposed |  |
 
 
 ## 📊 Monitoring and Logging
@@ -356,29 +357,20 @@ To use different trained models:
 
 ## 🐛 Troubleshooting</summary>
 
-### Service won't start
-- Check Docker logs: `docker-compose logs`
-- Verify model file exists and is correct format
-- Check port availability (8000, 8080)
-
-### Prediction fails with timeout
-- Increase `RL_INFERENCE_SERVICE_TIMEOUT`
-- Check if Python service is running: `docker-compose ps`
-- Verify network connectivity: `docker-compose exec java-gateway ping rl-inference`
-
-### Model loading fails
-- Verify model path in environment variables
-- Ensure model.zip is a valid stable-baselines3 PPO model
-- Check file permissions
-
+| **Service won't start** | **Prediction fails with timeout** | **Model loading fails** |
+|-----------|--------|-----------|
+| Check Docker logs: `docker-compose logs` | Increase `RL_INFERENCE_SERVICE_TIMEOUT` | Verify model path in environment variables |
+| Verify model file exists and is correct format | Check if Python service is running: `docker-compose ps` | Ensure model.zip is a valid stable-baselines3 PPO model |
+| Check port availability (8000, 8080) | Verify network connectivity: `docker-compose exec java-gateway ping rl-inference` | Check file permissions |
 
 ## 🌍 Production Deployment
 
 For production:
-1. Use Docker Compose with production-grade orchestration (Kubernetes)
-2. Add load balancing for multiple instances
-3. Configure persistent volumes for logs
-4. Set up monitoring and alerting
-5. Use environment-specific configuration files
-6. Implement API rate limiting and authentication
-7. Set up backup strategies for trained models
+
+1. Use **Docker Compose** with production-grade orchestration (Kubernetes)
+2. Add **load balancing** for multiple instances
+3. Configure **persistent volumes** for logs
+4. Set up **monitoring** and **alerting**
+5. Use environment-specific **configuration files**
+6. Implement **API rate limiting** and **authentication**
+7. Set up **backup strategies** for trained models
