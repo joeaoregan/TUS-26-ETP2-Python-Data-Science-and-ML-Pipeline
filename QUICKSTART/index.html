@@ -1475,35 +1475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../4_setup/12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../4_setup/13_support/" class="md-nav__link">
+      <a href="../4_setup/12_support/" class="md-nav__link">
         
   
   
@@ -1511,34 +1483,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../4_setup/14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1741,25 +1685,26 @@
 <h1 id="quick-start-guide-ai-traffic-control-api">Quick Start Guide - AI Traffic Control API</h1>
 <h2 id="5-minute-setup">5-Minute Setup</h2>
 <h3 id="1-select-your-trained-model">1. Select Your Trained Model</h3>
-<pre><code class="language-bash">python select_model.py
-</code></pre>
-<p>This will show you all available trained models and help you copy one to the API.</p>
+<p><div class="highlight"><pre><span></span><code>python<span class="w"> </span>select_model.py
+</code></pre></div>
+This will show you all available trained models and help you copy one to the API.</p>
 <p><strong>Available sweeps:</strong> pressure, queue, diff-waiting-time<br />
 <strong>Locations:</strong> <code>C:\Users\gemer\Sumo\my-network\Results\sweeps*\</code></p>
 <h3 id="2-start-the-services">2. Start the Services</h3>
-<pre><code class="language-bash"># Windows
+<div class="highlight"><pre><span></span><code><span class="c1"># Windows</span>
 start.bat
 
-# Linux/Mac
+<span class="c1"># Linux/Mac</span>
 ./start.sh
-</code></pre>
+</code></pre></div>
 <h3 id="3-test-the-api">3. Test the API</h3>
-<pre><code class="language-bash"># Get a traffic action
-curl http://localhost:8080/api/traffic/action
+<div class="highlight"><pre><span></span><code><span class="c1"># Get a traffic action</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
 
-# Or run the comprehensive test
-python test_api.py
-</code></pre>
+<span class="c1"># Or run the comprehensive test</span>
+python<span class="w"> </span>test_api.py
+</code></pre></div>
+<hr />
 <h2 id="api-endpoints">API Endpoints</h2>
 <h3 id="python-fastapi-service-port-8000">Python FastAPI Service (Port 8000)</h3>
 <ul>
@@ -1774,48 +1719,51 @@ python test_api.py
 <li><code>GET /api/traffic/action</code> - Get traffic action (auto-generated observations)</li>
 <li><code>POST /api/traffic/action</code> - Predict action with custom observations</li>
 </ul>
+<hr />
 <h2 id="example-requests">Example Requests</h2>
 <h3 id="get-traffic-action">Get Traffic Action</h3>
-<pre><code class="language-bash">curl http://localhost:8080/api/traffic/action
-</code></pre>
-<p><strong>Response:</strong></p>
-<pre><code class="language-json">{
-  &quot;predictedAction&quot;: 2,
-  &quot;signalState&quot;: &quot;GREEN&quot;,
-  &quot;timestamp&quot;: 1710521600000,
-  &quot;status&quot;: &quot;success&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/traffic/action
+</code></pre></div>
+<p><strong>Response:</strong>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GREEN&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1710521600000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="p">}</span>
+</code></pre></div></p>
 <h3 id="custom-observations">Custom Observations</h3>
-<pre><code class="language-bash">curl -X POST http://localhost:8080/api/traffic/action \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{
-    &quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-  }'
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
 <h3 id="health-check">Health Check</h3>
-<pre><code class="language-bash">curl http://localhost:8080/api/traffic/health
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/traffic/health
+</code></pre></div>
+<hr />
 <h2 id="architecture">Architecture</h2>
-<pre><code>Flow: HTTP Request → Java Gateway (8080) → Python FastAPI (8000) → RL Model
-</code></pre>
+<div class="highlight"><pre><span></span><code>Flow: HTTP Request → Java Gateway (8080) → Python FastAPI (8000) → RL Model
+</code></pre></div>
 <p><strong>Components:</strong>
 1. <strong>Java Spring Boot Gateway</strong> - REST API entry point
 2. <strong>Python FastAPI Service</strong> - RL model inference
 3. <strong>Trained PPO Model</strong> - Action prediction</p>
 <h2 id="docker-commands">Docker Commands</h2>
-<pre><code class="language-bash"># Start services
-docker-compose up --build
+<div class="highlight"><pre><span></span><code><span class="c1"># Start services</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
 
-# View logs
-docker-compose logs -f
+<span class="c1"># View logs</span>
+docker-compose<span class="w"> </span>logs<span class="w"> </span>-f
 
-# Stop services
-docker-compose down
+<span class="c1"># Stop services</span>
+docker-compose<span class="w"> </span>down
 
-# Check service status
-docker-compose ps
-</code></pre>
+<span class="c1"># Check service status</span>
+docker-compose<span class="w"> </span>ps
+</code></pre></div>
+<hr />
 <h2 id="troubleshooting">Troubleshooting</h2>
 <h3 id="services-wont-start">Services won't start</h3>
 <ol>
@@ -1835,6 +1783,7 @@ docker-compose ps
 <li>Verify model is loaded: <code>curl http://localhost:8000/model_info</code></li>
 <li>Test health: <code>curl http://localhost:8080/api/traffic/health</code></li>
 </ol>
+<hr />
 <h2 id="next-steps">Next Steps</h2>
 <ol>
 <li><strong>Integrate with SUMO:</strong> Modify SUMO simulation to call the API</li>
@@ -1842,6 +1791,7 @@ docker-compose ps
 <li><strong>Production Deployment:</strong> Use Kubernetes or cloud platforms</li>
 <li><strong>Monitoring:</strong> Add logging and metrics collection</li>
 </ol>
+<hr />
 <h2 id="files-overview">Files Overview</h2>
 <table>
 <thead>
@@ -1881,8 +1831,21 @@ docker-compose ps
 </tr>
 </tbody>
 </table>
+<hr />
 <h2 id="documentation">Documentation</h2>
-<p>For detailed documentation, see <a href="../1_home/INDEX/">INDEX.md</a> or README.md</p>
+<p>Install mkdocs:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs
+</code></pre></div>
+<p>To build MkDocs:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>build
+</code></pre></div>
+<p>To run documenation locally <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>
+</code></pre></div>
+<p>To deploy documentation to GitHub pages, after updating (Commit first).</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>gh-deploy
+</code></pre></div>
+<p><em>For detailed documentation, see <a href="../1_home/INDEX/">INDEX.md</a> or <a href="../">README.md</a></em></p>
 
 
 

@@ -1178,35 +1178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="4_setup/12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="4_setup/13_support/" class="md-nav__link">
+      <a href="4_setup/12_support/" class="md-nav__link">
         
   
   
@@ -1214,34 +1186,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="4_setup/14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1497,7 +1441,7 @@
 <h1 id="ai-traffic-control-api-setup-guide">AI Traffic Control API Setup Guide</h1>
 <p>This project provides a complete REST API solution for traffic signal control using trained RL models.</p>
 <h2 id="project-structure">Project Structure</h2>
-<pre><code>TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
+<div class="highlight"><pre><span></span><code>TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 ├── java-api-gateway/                       # Java Spring Boot gateway
 │   ├── src/
 │   │   ├── main/java/com/example/gateway/
@@ -1529,7 +1473,7 @@
 └── README.md                               # This file
 └── SETUP_COMPLETE.md                       # 
 └── SYSTEM_ARCHITECTURE.md                  # 
-</code></pre>
+</code></pre></div>
 <details open>
   <summary>Components</summary>
 
@@ -1576,76 +1520,68 @@ The Java Gateway receives raw vehicle counts, transforms them into an observatio
 ##### Option 1: Using Docker Compose (Recommended)
 
 1. **Copy your trained model:**
-   ```bash
-   # Copy trained model to the models directory
-   # Example: Copy from C:\Users\gemer\Sumo\my-network\Results\sweeps\<sweep_dir>\<seed>\<variant>\model.zip
-   mkdir -p rl-inference-service/app/trained_models
-   copy "C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip" "rl-inference-service\app\trained_models\model.zip"
-   ```
+   <div class="highlight"><pre><span></span><code><span class="c1"># Copy trained model to the models directory</span>
+<span class="c1"># Example: Copy from C:\Users\gemer\Sumo\my-network\Results\sweeps\&lt;sweep_dir&gt;\&lt;seed&gt;\&lt;variant&gt;\model.zip</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>rl-inference-service/app/trained_models
+copy<span class="w"> </span><span class="s2">&quot;C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
+</code></pre></div>
 
 2. **Set environment variables (optional):**
-   ```bash
-   # Create .env file for RL Inference Service
-   echo MODEL_PATH=/app/trained_models/model.zip > rl-inference-service/.env
-   echo OBSERVATION_SHAPE_DIM=10 >> rl-inference-service/.env
-   echo NUM_AGENTS=1 >> rl-inference-service/.env
-   ```
+   <div class="highlight"><pre><span></span><code><span class="c1"># Create .env file for RL Inference Service</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>/app/trained_models/model.zip<span class="w"> </span>&gt;<span class="w"> </span>rl-inference-service/.env
+<span class="nb">echo</span><span class="w"> </span><span class="nv">OBSERVATION_SHAPE_DIM</span><span class="o">=</span><span class="m">10</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>rl-inference-service/.env
+<span class="nb">echo</span><span class="w"> </span><span class="nv">NUM_AGENTS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>rl-inference-service/.env
+</code></pre></div>
 
 3. **Build and start services:**
-   ```bash
-   docker-compose up --build
-   ```
+   <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
 
 4. **Test the API:**
-   ```bash
-   # Get traffic action (auto-generated observations)
-   curl http://localhost:8080/api/traffic/action
+   <div class="highlight"><pre><span></span><code><span class="c1"># Get traffic action (auto-generated observations)</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
 
-   # Predict action with custom observations
-   curl -X POST http://localhost:8080/api/traffic/action \
-     -H "Content-Type: application/json" \
-     -d '{"observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'
+<span class="c1"># Predict action with custom observations</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}&#39;</span>
 
-   # Check health
-   curl http://localhost:8080/api/traffic/health
-   ```
+<span class="c1"># Check health</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/health
+</code></pre></div>
 
 ##### Option 2: Local Development
 
 **Python Service:**
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>rl-inference-service
 
-<pre><code class="language-bash">cd rl-inference-service
+<span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># Linux/Mac</span>
 
-# Create virtual environment
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 
-# Install dependencies
-pip install -r requirements.txt
+<span class="c1"># Set environment variables</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>path<span class="se">\t</span>o<span class="se">\y</span>our<span class="se">\m</span>odel.zip<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>path/to/your/model.zip<span class="w">  </span><span class="c1"># Linux/Mac</span>
 
-# Set environment variables
-set MODEL_PATH=path\to\your\model.zip  # Windows
-export MODEL_PATH=path/to/your/model.zip  # Linux/Mac
-
-# Run service
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-</code></pre>
-
+<span class="c1"># Run service</span>
+python<span class="w"> </span>-m<span class="w"> </span>uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--reload
+</code></pre></div>
 
 **Java Gateway:**
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>java-api-gateway
 
-<pre><code class="language-bash">cd java-api-gateway
+<span class="c1"># Set environment variable</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">RL_INFERENCE_SERVICE_URL</span><span class="o">=</span>http://localhost:8000/predict_action<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">RL_INFERENCE_SERVICE_URL</span><span class="o">=</span>http://localhost:8000/predict_action<span class="w">  </span><span class="c1"># Linux/Mac</span>
 
-# Set environment variable
-set RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Windows
-export RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Linux/Mac
-
-# Build and run
-mvn clean install
-mvn spring-boot:run
-</code></pre>
-
+<span class="c1"># Build and run</span>
+mvn<span class="w"> </span>clean<span class="w"> </span>install
+mvn<span class="w"> </span>spring-boot:run
+</code></pre></div>
 
 - Includes Swagger/OpenAPI documentation for all traffic control endpoints.
 
@@ -1655,59 +1591,47 @@ mvn spring-boot:run
   <summary>API Usage Examples</summary>
 
 #### Get Traffic Action (Auto-generated observations)
-
-<pre><code class="language-bash">curl -X GET http://localhost:8080/api/traffic/action
-</code></pre>
-
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8080/api/traffic/action
+</code></pre></div>
 
 Response:
-
-<pre><code class="language-json">{
-  &quot;predictedAction&quot;: 2,
-  &quot;signalState&quot;: &quot;GREEN&quot;,
-  &quot;timestamp&quot;: 1684756800000,
-  &quot;status&quot;: &quot;success&quot;
-}
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GREEN&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1684756800000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 #### Predict Action with Custom Observations
-
-<pre><code class="language-bash">curl -X POST http://localhost:8080/api/traffic/action \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{
-    &quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-    &quot;metadata&quot;: &quot;peak-hour&quot;
-  }'
-</code></pre>
-
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],</span>
+<span class="s1">    &quot;metadata&quot;: &quot;peak-hour&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
 
 Response:
-
-<pre><code class="language-json">{
-  &quot;predictedAction&quot;: 1,
-  &quot;signalState&quot;: &quot;YELLOW&quot;,
-  &quot;timestamp&quot;: 1684756800000,
-  &quot;status&quot;: &quot;success&quot;
-}
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YELLOW&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1684756800000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 
 #### Health Check
-
-<pre><code class="language-bash">curl http://localhost:8080/api/traffic/health
-</code></pre>
-
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/traffic/health
+</code></pre></div>
 
 Response:
-
-<pre><code class="language-json">{
-  &quot;status&quot;: &quot;healthy&quot;,
-  &quot;inferenceService&quot;: &quot;up&quot;,
-  &quot;timestamp&quot;: 1684756800000
-}
-</code></pre>
-
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;inferenceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;up&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1684756800000</span>
+<span class="p">}</span>
+</code></pre></div>
 
 </details>
 
@@ -1759,11 +1683,9 @@ Both services include:
 - Docker logging drivers with rotation
 
 Monitor logs:
-
-<pre><code class="language-bash">docker-compose logs -f rl-inference
-docker-compose logs -f java-gateway
-</code></pre>
-
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>rl-inference
+docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>java-gateway
+</code></pre></div>
 
 </details>
 
@@ -1773,24 +1695,21 @@ docker-compose logs -f java-gateway
 To use different trained models:
 
 1. **Locate your model:**
-   ```
-   C:\Users\gemer\Sumo\my-network\Results\sweeps_*\<sweep_name>\seed_*\<variant>\model.zip
+   <div class="highlight"><pre><span></span><code>C:\Users\gemer\Sumo\my-network\Results\sweeps_*\&lt;sweep_name&gt;\seed_*\&lt;variant&gt;\model.zip
 
-   Examples:
-   - Results\sweeps\pressure\seed_42\A\model.zip
-   - Results\sweeps\queue\seed_123\B\model.zip
-   - Results\sweeps_2\diff-waiting-time\seed_7\C\model.zip
-   ```
+Examples:
+- Results\sweeps\pressure\seed_42\A\model.zip
+- Results\sweeps\queue\seed_123\B\model.zip
+- Results\sweeps_2\diff-waiting-time\seed_7\C\model.zip
+</code></pre></div>
 
 2. **Copy to models directory:**
-   ```bash
-   copy "<source_path>\model.zip" "rl-inference-service\app\trained_models\model.zip"
-   ```
+   <div class="highlight"><pre><span></span><code>copy<span class="w"> </span><span class="s2">&quot;&lt;source_path&gt;\model.zip&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
+</code></pre></div>
 
 3. **Rebuild and restart:**
-   ```bash
-   docker-compose up --build
-   ```
+   <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
 
 </details>
 
@@ -1872,10 +1791,8 @@ The Java API Gateway now includes automatically generated API documentation usin
 
 Once the gateway is running, Swagger UI is available at:
 
-
-<pre><code>http://localhost:8080/swagger-ui/index.html
-</code></pre>
-
+<div class="highlight"><pre><span></span><code>http://localhost:8080/swagger-ui/index.html
+</code></pre></div>
 
 Swagger is generated automatically from annotations in the Java controller classes.  
 Additional endpoint documentation will be added incrementally.

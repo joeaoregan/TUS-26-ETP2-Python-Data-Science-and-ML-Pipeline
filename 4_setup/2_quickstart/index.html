@@ -1269,35 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13_support/" class="md-nav__link">
+      <a href="../12_support/" class="md-nav__link">
         
   
   
@@ -1305,34 +1277,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1534,9 +1478,9 @@
 
 <h1 id="quick-start-5-minutes">🚀 Quick Start (5 Minutes)</h1>
 <h2 id="step-1-select-your-model">Step 1: Select Your Model</h2>
-<pre><code class="language-bash">python select_model.py
-</code></pre>
-<p>This interactive tool will help you:
+<p><div class="highlight"><pre><span></span><code>python<span class="w"> </span>select_model.py
+</code></pre></div>
+This interactive tool will help you:
 - Browse all trained models in <code>Results/sweeps*</code>
 - Select the best model
 - Copy it to the API service</p>
@@ -1546,19 +1490,19 @@
 - <strong>Seeds:</strong> seed_42, seed_123, seed_7, etc.
 - <strong>Variants:</strong> A, B, C</p>
 <h2 id="step-2-start-services">Step 2: Start Services</h2>
-<pre><code class="language-bash"># Windows
+<div class="highlight"><pre><span></span><code><span class="c1"># Windows</span>
 start.bat
 
-# Linux/Mac
+<span class="c1"># Linux/Mac</span>
 ./start.sh
-</code></pre>
+</code></pre></div>
 <h2 id="step-3-test-the-api">Step 3: Test the API</h2>
-<pre><code class="language-bash"># Get a prediction with auto-generated observations
-curl http://localhost:8080/api/traffic/action
+<div class="highlight"><pre><span></span><code><span class="c1"># Get a prediction with auto-generated observations</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
 
-# Or run comprehensive tests
-python test_api.py
-</code></pre>
+<span class="c1"># Or run comprehensive tests</span>
+python<span class="w"> </span>test_api.py
+</code></pre></div>
 
 
 

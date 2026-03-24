@@ -1184,35 +1184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../4_setup/12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../4_setup/13_support/" class="md-nav__link">
+      <a href="../4_setup/12_support/" class="md-nav__link">
         
   
   
@@ -1220,34 +1192,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../4_setup/14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1609,23 +1553,22 @@
 <h2 id="java-api-gateway">Java API Gateway</h2>
 <p>The Java API Gateway now includes automatically generated API documentation using <strong>springdoc-openapi</strong>.</p>
 <p>Once the gateway is running, Swagger UI is available at:</p>
-<pre><code>http://localhost:8080/swagger-ui/index.html
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:8080/swagger-ui/index.html
+</code></pre></div>
 <p>The API docs for the Java API Gateway have been <a href="https://ai-traffic-control-api.onrender.com/swagger-ui/index.html">deployed to Render</a>:</p>
-<pre><code>https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
-</code></pre>
+<div class="highlight"><pre><span></span><code>https://ai-traffic-control-api.onrender.com/swagger-ui/index.html
+</code></pre></div>
 <p>Swagger is generated automatically from annotations in the Java controller classes.<br />
 Additional endpoint documentation will be added incrementally.</p>
 <hr />
 <h2 id="python-inference-service">Python Inference Service</h2>
 <p>The Python FastAPI service automatically generates interactive API documentation using <strong>Swagger UI</strong>.</p>
 <p>Once the inference service is running, Swagger UI is available at:</p>
-<pre><code>http://localhost:8000/docs
-</code></pre>
+<div class="highlight"><pre><span></span><code>http://localhost:8000/docs
+</code></pre></div>
 <p>The API docs for the Python Inference Service have been <a href="https://traffic-inference-service.onrender.com/docs">deployed to Render</a>:</p>
-<pre><code>https://traffic-inference-service.onrender.com/docs
-
-</code></pre>
+<div class="highlight"><pre><span></span><code>https://traffic-inference-service.onrender.com/docs
+</code></pre></div>
 <hr />
 <h2 id="what-swagger-provides">What Swagger Provides</h2>
 <ul>
@@ -1658,27 +1601,27 @@ Additional endpoint documentation will be added incrementally.</p>
 <li><strong>HTTP status codes</strong> — Document error responses with <code>HTTPException</code> and status codes</li>
 </ul>
 <h3 id="example">Example</h3>
-<pre><code class="language-python">@app.get(&quot;/health&quot;, response_model=HealthResponse, tags=[&quot;System Health&quot;])
-async def health_check():
-    &quot;&quot;&quot;Health check endpoint.&quot;&quot;&quot;
-    return HealthResponse(
-        status=&quot;healthy&quot;,
-        model_loaded=model is not None,
-        model_path=model_path or &quot;not set&quot;
-    )
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">HealthResponse</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;System Health&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health_check</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Health check endpoint.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">HealthResponse</span><span class="p">(</span>
+        <span class="n">status</span><span class="o">=</span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+        <span class="n">model_loaded</span><span class="o">=</span><span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">model_path</span><span class="o">=</span><span class="n">model_path</span> <span class="ow">or</span> <span class="s2">&quot;not set&quot;</span>
+    <span class="p">)</span>
 
-@app.post(&quot;/predict_action&quot;, response_model=PredictionResponse, tags=[&quot;Traffic Inference&quot;])
-async def predict_action(observation: Observation):
-    &quot;&quot;&quot;
-    Predict action for given observation.
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict_action&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">PredictionResponse</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Traffic Inference&quot;</span><span class="p">])</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">predict_action</span><span class="p">(</span><span class="n">observation</span><span class="p">:</span> <span class="n">Observation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Predict action for given observation.</span>
 
-    Args:
-        observation: Observation data containing obs_data as a list of floats
+<span class="sd">    Args:</span>
+<span class="sd">        observation: Observation data containing obs_data as a list of floats</span>
 
-    Returns:
-        PredictionResponse with predicted action
-    &quot;&quot;&quot;
-</code></pre>
+<span class="sd">    Returns:</span>
+<span class="sd">        PredictionResponse with predicted action</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div>
 <p>The docstrings, type hints, and response models automatically generate interactive Swagger documentation without any extra annotation overhead.</p>
 <hr />
 <h2 id="where-to-add-documentation">Where to Add Documentation</h2>

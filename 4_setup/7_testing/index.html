@@ -1130,6 +1130,67 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#documenation-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documenation Testing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Documenation Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-build-documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Build Documentation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-preview-locally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Preview Locally
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-check-for-common-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Check for Common Issues
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Deploy to GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1258,35 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13_support/" class="md-nav__link">
+      <a href="../12_support/" class="md-nav__link">
         
   
   
@@ -1294,34 +1327,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1523,8 +1528,8 @@
 
 <h1 id="testing">🧪 Testing</h1>
 <h2 id="test-with-included-client">Test With Included Client</h2>
-<pre><code class="language-bash">python test_api.py
-</code></pre>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>test_api.py
+</code></pre></div>
 <p>Tests include:</p>
 <ul>
 <li>Health checks</li>
@@ -1534,20 +1539,65 @@
 <li>Model information retrieval</li>
 </ul>
 <h2 id="manual-test">Manual Test</h2>
-<pre><code class="language-bash"># Test auto-generated action
-curl http://localhost:8080/api/traffic/action
+<div class="highlight"><pre><span></span><code><span class="c1"># Test auto-generated action</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
 
-# Test custom observations
-curl -X POST http://localhost:8080/api/traffic/action \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'
+<span class="c1"># Test custom observations</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}&#39;</span>
 
-# Check API health
-curl http://localhost:8080/api/traffic/health
+<span class="c1"># Check API health</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/health
 
-# Check Python model
-curl http://localhost:8000/health
-</code></pre>
+<span class="c1"># Check Python model</span>
+curl<span class="w"> </span>http://localhost:8000/health
+</code></pre></div>
+<h2 id="documenation-testing">Documenation Testing</h2>
+<p>Before deploying documentation changes to GitHub Pages, verify the MkDocs build and local preview.</p>
+<h3 id="1-build-documentation">1. Build Documentation</h3>
+<p>Generate the static site to catch any errors:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>build
+</code></pre></div>
+<p>This creates a site/ directory with the compiled HTML. </p>
+<p>Check for:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> No build errors or warnings in the console</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> All links resolve correctly</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Code blocks render properly</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Images load correctly</li>
+</ul>
+<h3 id="2-preview-locally">2. Preview Locally</h3>
+<p>Serve documentation locally and visually inspect all pages:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>serve
+</code></pre></div>
+<p>Navigate to http://127.0.0.1:8000/ and test:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Navigation menu loads correctly</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> All internal links work</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Search functionality (if enabled)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Code examples display properly</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Tables render correctly</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Mobile responsiveness (resize browser window)</li>
+</ul>
+<h3 id="3-check-for-common-issues">3. Check for Common Issues</h3>
+<p>Before deploying, verify:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> No broken links (external or internal)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> File paths are relative (not absolute)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Image paths point to correct locations</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Code syntax is valid</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Markdown formatting is correct</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> All new pages are added to mkdocs.yml navigation</li>
+</ul>
+<h3 id="4-deploy-to-github-pages">4. Deploy to GitHub Pages</h3>
+<p>Once testing is complete and changes are committed:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>add<span class="w"> </span>.
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Update documentation&quot;</span>
+python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>gh-deploy
+</code></pre></div>
+<p>The documentation will be live at: <a href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/">https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/</a></p>
+<p><em><strong>Note:</strong> It may take 1-2 minutes for GitHub Pages to update after deployment.</em></p>
 
 
 

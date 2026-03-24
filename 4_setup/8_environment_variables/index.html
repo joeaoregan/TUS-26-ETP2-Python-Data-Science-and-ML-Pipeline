@@ -1258,35 +1258,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13_support/" class="md-nav__link">
+      <a href="../12_support/" class="md-nav__link">
         
   
   
@@ -1294,34 +1266,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1523,16 +1467,16 @@
 
 <h1 id="environment-variables">🔐 Environment Variables</h1>
 <h2 id="python-service">Python Service</h2>
-<pre><code>MODEL_PATH=./app/trained_models/model.zip    # Model location
-OBSERVATION_SHAPE_DIM=10                      # Input dimension
-NUM_AGENTS=1                                  # Number of agents
+<div class="highlight"><pre><span></span><code>MODEL_PATH=./app/trained_models/model.zip    # Model location
+OBSERVATION_SHAPE_DIM=10                     # Input dimension
+NUM_AGENTS=1                                 # Number of agents
 API_HOST=0.0.0.0                             # Bind address
 API_PORT=8000                                # Service port
-</code></pre>
+</code></pre></div>
 <h2 id="java-gateway">Java Gateway</h2>
-<pre><code>RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action
+<div class="highlight"><pre><span></span><code>RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action
 RL_INFERENCE_SERVICE_TIMEOUT=10000  # milliseconds
-</code></pre>
+</code></pre></div>
 
 
 

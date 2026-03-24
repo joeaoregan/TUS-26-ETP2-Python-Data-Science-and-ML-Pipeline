@@ -1178,35 +1178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13_support/" class="md-nav__link">
+      <a href="../12_support/" class="md-nav__link">
         
   
   
@@ -1214,34 +1186,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1445,7 +1389,7 @@
 <h2 id="what-was-created">✨ What Was Created</h2>
 <p>Complete REST API infrastructure for serving your trained RL models with full Docker integration.</p>
 <h3 id="directory-structure">📁 Directory Structure</h3>
-<pre><code>ai-traffic-api/
+<div class="highlight"><pre><span></span><code>ai-traffic-api/
 ├── rl-inference-service/
 │   ├── app/
 │   │   ├── main.py                         # FastAPI application with model loading
@@ -1474,13 +1418,13 @@
 ├── QUICKSTART.md                           # 5-minute setup guide
 ├── README.md                               # Full documentation
 └── .gitignore                              # Git ignore rules
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="quick-start-5-minutes">🚀 Quick Start (5 Minutes)</h2>
 <h3 id="step-1-select-your-model">Step 1: Select Your Model</h3>
-<pre><code class="language-bash">python select_model.py
-</code></pre>
-<p>This interactive tool will help you:
+<p><div class="highlight"><pre><span></span><code>python<span class="w"> </span>select_model.py
+</code></pre></div>
+This interactive tool will help you:
 - Browse all trained models in <code>Results/sweeps*</code>
 - Select the best model
 - Copy it to the API service</p>
@@ -1490,22 +1434,22 @@
 - <strong>Seeds:</strong> seed_42, seed_123, seed_7, etc.
 - <strong>Variants:</strong> A, B, C</p>
 <h3 id="step-2-start-services">Step 2: Start Services</h3>
-<pre><code class="language-bash"># Windows
+<div class="highlight"><pre><span></span><code><span class="c1"># Windows</span>
 start.bat
 
-# Linux/Mac
+<span class="c1"># Linux/Mac</span>
 ./start.sh
-</code></pre>
+</code></pre></div>
 <h3 id="step-3-test-the-api">Step 3: Test the API</h3>
-<pre><code class="language-bash"># Get a prediction with auto-generated observations
-curl http://localhost:8080/api/traffic/action
+<div class="highlight"><pre><span></span><code><span class="c1"># Get a prediction with auto-generated observations</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
 
-# Or run comprehensive tests
-python test_api.py
-</code></pre>
+<span class="c1"># Or run comprehensive tests</span>
+python<span class="w"> </span>test_api.py
+</code></pre></div>
 <hr />
 <h2 id="architecture-overview">📊 Architecture Overview</h2>
-<pre><code>┌─────────────────────────────────────────────────────────────┐
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────────┐
 │                  Client/External System                │
 └──────────────────────────┬──────────────────────────────────┘
                          │ 
@@ -1531,7 +1475,7 @@ python test_api.py
                 │  Trained RL Model (PPO)           │
                 │  From: Results/sweeps_*/model.zip │
                 └──────────────────────────────────────┘
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="key-features">🔧 Key Features</h2>
 <h3 id="python-fastapi-service">Python FastAPI Service</h3>
@@ -1558,31 +1502,31 @@ python test_api.py
 <hr />
 <h2 id="api-endpoints">📡 API Endpoints</h2>
 <h3 id="python-service-port-8000">Python Service (Port 8000)</h3>
-<pre><code>GET  /health              - Service health status
+<div class="highlight"><pre><span></span><code>GET  /health              - Service health status
 POST /predict_action      - Predict traffic action
 GET  /model_info          - Get model details
 GET  /docs                - Swagger UI documentation
-</code></pre>
+</code></pre></div>
 <h3 id="java-gateway-port-8080">Java Gateway (Port 8080)</h3>
-<pre><code>GET  /api/traffic/health  - Service health status
+<div class="highlight"><pre><span></span><code>GET  /api/traffic/health  - Service health status
 GET  /api/traffic/action  - Get traffic action (auto-generated obs)
 POST /api/traffic/action  - Predict with custom observations
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="using-different-models">💾 Using Different Models</h2>
 <h3 id="option-1-interactive-selector">Option 1: Interactive Selector</h3>
-<pre><code class="language-bash">python select_model.py
-</code></pre>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>select_model.py
+</code></pre></div>
 <h3 id="option-2-manual-copy">Option 2: Manual Copy</h3>
-<pre><code class="language-bash"># Copy your chosen model
-copy &quot;C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip&quot; \
-     &quot;rl-inference-service\app\trained_models\model.zip&quot;
+<div class="highlight"><pre><span></span><code><span class="c1"># Copy your chosen model</span>
+copy<span class="w"> </span><span class="s2">&quot;C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
 
-# Rebuild and start
-docker-compose up --build
-</code></pre>
+<span class="c1"># Rebuild and start</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
 <h3 id="available-models">Available Models</h3>
-<pre><code>Results/
+<div class="highlight"><pre><span></span><code>Results/
 ├── sweeps/
 │   └── pressure/
 │       ├── seed_42/  → A, B, C models
@@ -1591,12 +1535,12 @@ docker-compose up --build
 ├── sweeps_2/ through sweeps_9/
 │   └── (similar structure)
 └── (other directories: queue, diff-waiting-time, etc.)
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="testing">🧪 Testing</h2>
 <h3 id="test-with-included-client">Test With Included Client</h3>
-<pre><code class="language-bash">python test_api.py
-</code></pre>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>test_api.py
+</code></pre></div>
 <p>Tests include:</p>
 <ul>
 <li>Health checks</li>
@@ -1606,52 +1550,52 @@ docker-compose up --build
 <li>Model information retrieval</li>
 </ul>
 <h3 id="manual-test">Manual Test</h3>
-<pre><code class="language-bash"># Test auto-generated action
-curl http://localhost:8080/api/traffic/action
+<div class="highlight"><pre><span></span><code><span class="c1"># Test auto-generated action</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
 
-# Test custom observations
-curl -X POST http://localhost:8080/api/traffic/action \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{&quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'
+<span class="c1"># Test custom observations</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}&#39;</span>
 
-# Check API health
-curl http://localhost:8080/api/traffic/health
+<span class="c1"># Check API health</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/health
 
-# Check Python model
-curl http://localhost:8000/health
-</code></pre>
+<span class="c1"># Check Python model</span>
+curl<span class="w"> </span>http://localhost:8000/health
+</code></pre></div>
 <hr />
 <h2 id="environment-variables">🔐 Environment Variables</h2>
 <h3 id="python-service">Python Service</h3>
-<pre><code>MODEL_PATH=./app/trained_models/model.zip    # Model location
+<div class="highlight"><pre><span></span><code>MODEL_PATH=./app/trained_models/model.zip    # Model location
 OBSERVATION_SHAPE_DIM=10                      # Input dimension
 NUM_AGENTS=1                                  # Number of agents
 API_HOST=0.0.0.0                             # Bind address
 API_PORT=8000                                # Service port
-</code></pre>
+</code></pre></div>
 <h3 id="java-gateway">Java Gateway</h3>
-<pre><code>RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action
+<div class="highlight"><pre><span></span><code>RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action
 RL_INFERENCE_SERVICE_TIMEOUT=10000  # milliseconds
-</code></pre>
+</code></pre></div>
 <hr />
 <h2 id="development-vs-production">🛠 Development vs Production</h2>
 <h3 id="development-local">Development (Local)</h3>
-<pre><code class="language-bash"># Run services individually
-cd rl-inference-service
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-python -m uvicorn app.main:app --reload
+<div class="highlight"><pre><span></span><code><span class="c1"># Run services individually</span>
+<span class="nb">cd</span><span class="w"> </span>rl-inference-service
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+python<span class="w"> </span>-m<span class="w"> </span>uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--reload
 
-# In another terminal:
-cd java-api-gateway
-mvn spring-boot:run
-</code></pre>
+<span class="c1"># In another terminal:</span>
+<span class="nb">cd</span><span class="w"> </span>java-api-gateway
+mvn<span class="w"> </span>spring-boot:run
+</code></pre></div>
 <h3 id="production-docker">Production (Docker)</h3>
-<pre><code class="language-bash">docker-compose up --build -d
-docker-compose logs -f
-docker-compose ps
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build<span class="w"> </span>-d
+docker-compose<span class="w"> </span>logs<span class="w"> </span>-f
+docker-compose<span class="w"> </span>ps
+</code></pre></div>
 <hr />
 <h2 id="documentation-files">📚 Documentation Files</h2>
 <table>

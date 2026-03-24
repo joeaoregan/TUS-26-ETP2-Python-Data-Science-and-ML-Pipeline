@@ -1142,6 +1142,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Documentation Files
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1158,6 +1176,108 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#documentation-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation Structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Scripts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MkDocs
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MkDocs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-for-production" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build for Production
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deploy-to-github-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deploy to GitHub Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#view-online" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        View online
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1199,35 +1319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13_support/" class="md-nav__link">
+      <a href="../12_support/" class="md-nav__link">
         
   
   
@@ -1235,34 +1327,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1463,6 +1527,49 @@
 
 
 <h1 id="documentation-files">📚 Documentation Files</h1>
+<p>This project uses <strong>MkDocs</strong> with Material theme to generate comprehensive documentation hosted on GitHub Pages.</p>
+<h2 id="documentation-structure">Documentation Structure</h2>
+<p>All documentation is organised in the <code>docs/</code> folder:</p>
+<p>docs/ MkDocs documentation directory, and README.md</p>
+<div class="highlight"><pre><span></span><code>│   CHANGELOG.md
+│   DOCUMENTATION.md
+│   FILE_MANIFEST.md
+│   QUICKSTART.md
+│   README.md
+│   SUPPORT.md
+│   SYSTEM_ARCHITECTURE.md
+│
+├───1_home
+│       10_ts.md
+│       11_prod.md
+│       3_setup.md
+│       4_api.md
+│       5_env.md
+│       6_docker.md
+│       7_log.md
+│       8_model.md
+│       9_performance.md
+│       INDEX.md
+│
+└───4_setup
+        10_documentation_files.md
+        11_next_steps.md
+        12_troubleshooting.md
+        13_support.md
+        14_notes.md
+        1_created.md
+        2_quickstart.md
+        3_architecture.md
+        4_features.md
+        5_api_endpoints.md
+        6_different_models.md
+        7_testing.md
+        8_environment_variables.md
+        9_dev_vs_prod.md
+        index.md
+        SETUP_COMPLETE.md
+</code></pre></div>
+<h2 id="key-scripts">Key Scripts</h2>
 <table>
 <thead>
 <tr>
@@ -1471,14 +1578,6 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><a href="../../QUICKSTART/">QUICKSTART.md</a></td>
-<td>5-minute setup guide</td>
-</tr>
-<tr>
-<td><a href="../../1_home/INDEX/">INDEX.md</a></td>
-<td>Complete documentation</td>
-</tr>
 <tr>
 <td><a href="https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation/blob/main/select_model.py">select_model.py</a></td>
 <td>Model selection tool</td>
@@ -1489,6 +1588,25 @@
 </tr>
 </tbody>
 </table>
+<h2 id="mkdocs">MkDocs</h2>
+<p>Install mkdocs:</p>
+<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>mkdocs
+</code></pre></div>
+<h3 id="local-development">Local Development</h3>
+<p>Preview documentation locally at <a href="http://127.0.0.1:8000/">http://127.0.0.1:8000/</a>:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>serve<span class="w"> </span>
+</code></pre></div>
+<h3 id="build-for-production">Build for Production</h3>
+<p>To build MkDocs:</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>build
+</code></pre></div>
+<h3 id="deploy-to-github-pages">Deploy to GitHub Pages</h3>
+<p>Deploy built documentation to GitHub Pages.</p>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>mkdocs<span class="w"> </span>gh-deploy
+</code></pre></div>
+<p><em><strong>Note</strong>: Ensure all changes are committed before deploying. The <code>gh-deploy</code> command pushes to the <code>gh-pages</code> branch.</em></p>
+<h3 id="view-online">View online</h3>
+<p>Live Documentation <a href="https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/">https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/</a></p>
 
 
 

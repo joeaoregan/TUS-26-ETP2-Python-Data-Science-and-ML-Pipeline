@@ -1360,35 +1360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4_setup/12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../4_setup/13_support/" class="md-nav__link">
+      <a href="../../4_setup/12_support/" class="md-nav__link">
         
   
   
@@ -1396,34 +1368,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../4_setup/14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1627,7 +1571,7 @@
 
 <p>This project provides a complete REST API solution for traffic signal control using trained RL models.</p>
 <h2 id="project-structure">Project Structure</h2>
-<pre><code>TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
+<div class="highlight"><pre><span></span><code>TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
 ├── java-api-gateway/                       # Java Spring Boot gateway
 │   ├── src/
 │   │   ├── main/java/com/example/gateway/
@@ -1659,7 +1603,7 @@
 └── README.md                               # This file
 └── SETUP_COMPLETE.md                       # 
 └── SYSTEM_ARCHITECTURE.md                  # 
-</code></pre>
+</code></pre></div>
 <h2 id="components">Components</h2>
 <h3 id="1-python-fastapi-service-rl-inference-service">1. Python FastAPI Service (RL Inference Service)</h3>
 <ul>
@@ -1700,69 +1644,70 @@
 <ol>
 <li>
 <p><strong>Copy your trained model:</strong>
-   <code>bash
-   # Copy trained model to the models directory
-   # Example: Copy from C:\Users\gemer\Sumo\my-network\Results\sweeps\&lt;sweep_dir&gt;\&lt;seed&gt;\&lt;variant&gt;\model.zip
-   mkdir -p rl-inference-service/app/trained_models
-   copy "C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip" "rl-inference-service\app\trained_models\model.zip"</code></p>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Copy trained model to the models directory</span>
+<span class="c1"># Example: Copy from C:\Users\gemer\Sumo\my-network\Results\sweeps\&lt;sweep_dir&gt;\&lt;seed&gt;\&lt;variant&gt;\model.zip</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>rl-inference-service/app/trained_models
+copy<span class="w"> </span><span class="s2">&quot;C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Set environment variables (optional):</strong>
-   <code>bash
-   # Create .env file for RL Inference Service
-   echo MODEL_PATH=/app/trained_models/model.zip &gt; rl-inference-service/.env
-   echo OBSERVATION_SHAPE_DIM=10 &gt;&gt; rl-inference-service/.env
-   echo NUM_AGENTS=1 &gt;&gt; rl-inference-service/.env</code></p>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Create .env file for RL Inference Service</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>/app/trained_models/model.zip<span class="w"> </span>&gt;<span class="w"> </span>rl-inference-service/.env
+<span class="nb">echo</span><span class="w"> </span><span class="nv">OBSERVATION_SHAPE_DIM</span><span class="o">=</span><span class="m">10</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>rl-inference-service/.env
+<span class="nb">echo</span><span class="w"> </span><span class="nv">NUM_AGENTS</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>rl-inference-service/.env
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Build and start services:</strong>
-   <code>bash
-   docker-compose up --build</code></p>
+   <div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div></p>
 </li>
 <li>
 <p><strong>Test the API:</strong>
-   ```bash
-   # Get traffic action (auto-generated observations)
-   curl http://localhost:8080/api/traffic/action</p>
+   <div class="highlight"><pre><span></span><code><span class="c1"># Get traffic action (auto-generated observations)</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/action
+
+<span class="c1"># Predict action with custom observations</span>
+curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}&#39;</span>
+
+<span class="c1"># Check health</span>
+curl<span class="w"> </span>http://localhost:8080/api/traffic/health
+</code></pre></div></p>
 </li>
 </ol>
-<p># Predict action with custom observations
-   curl -X POST http://localhost:8080/api/traffic/action \
-     -H "Content-Type: application/json" \
-     -d '{"observations": [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]}'</p>
-<p># Check health
-   curl http://localhost:8080/api/traffic/health
-   ```</p>
 <h4 id="option-2-local-development">Option 2: Local Development</h4>
-<p><strong>Python Service:</strong></p>
-<pre><code class="language-bash">cd rl-inference-service
+<p><strong>Python Service:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>rl-inference-service
 
-# Create virtual environment
-python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # Linux/Mac
+<span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>venv
+venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">source</span><span class="w"> </span>venv/bin/activate<span class="w">  </span><span class="c1"># Linux/Mac</span>
 
-# Install dependencies
-pip install -r requirements.txt
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
 
-# Set environment variables
-set MODEL_PATH=path\to\your\model.zip  # Windows
-export MODEL_PATH=path/to/your/model.zip  # Linux/Mac
+<span class="c1"># Set environment variables</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>path<span class="se">\t</span>o<span class="se">\y</span>our<span class="se">\m</span>odel.zip<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">MODEL_PATH</span><span class="o">=</span>path/to/your/model.zip<span class="w">  </span><span class="c1"># Linux/Mac</span>
 
-# Run service
-python -m uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
-</code></pre>
-<p><strong>Java Gateway:</strong></p>
-<pre><code class="language-bash">cd java-api-gateway
+<span class="c1"># Run service</span>
+python<span class="w"> </span>-m<span class="w"> </span>uvicorn<span class="w"> </span>app.main:app<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--reload
+</code></pre></div></p>
+<p><strong>Java Gateway:</strong>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>java-api-gateway
 
-# Set environment variable
-set RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Windows
-export RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action  # Linux/Mac
+<span class="c1"># Set environment variable</span>
+<span class="nb">set</span><span class="w"> </span><span class="nv">RL_INFERENCE_SERVICE_URL</span><span class="o">=</span>http://localhost:8000/predict_action<span class="w">  </span><span class="c1"># Windows</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">RL_INFERENCE_SERVICE_URL</span><span class="o">=</span>http://localhost:8000/predict_action<span class="w">  </span><span class="c1"># Linux/Mac</span>
 
-# Build and run
-mvn clean install
-mvn spring-boot:run
-</code></pre>
+<span class="c1"># Build and run</span>
+mvn<span class="w"> </span>clean<span class="w"> </span>install
+mvn<span class="w"> </span>spring-boot:run
+</code></pre></div></p>
 <p><em>Includes <a href="../../DOCUMENTATION/">Swagger/OpenAPI documentation</a> for all traffic control endpoints.</em></p>
 
 

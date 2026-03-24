@@ -9,7 +9,7 @@
       
       
       
-        <link rel="prev" href="../4_setup/14_notes/">
+        <link rel="prev" href="../4_setup/12_support/">
       
       
         <link rel="next" href="../DOCUMENTATION/">
@@ -1184,35 +1184,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../4_setup/12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../4_setup/13_support/" class="md-nav__link">
+      <a href="../4_setup/12_support/" class="md-nav__link">
         
   
   
@@ -1220,34 +1192,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../4_setup/14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -2021,17 +1965,18 @@
 <h3 id="configuration">Configuration</h3>
 <ul>
 <li>📄 <code>requirements.txt</code> - Python dependencies</li>
-<li>fastapi==0.110.0</li>
-<li>uvicorn==0.28.0</li>
-<li>stable-baselines3==2.2.1</li>
-<li>torch==2.2.1</li>
-<li>numpy==1.26.4</li>
-<li>pydantic==2.6.4</li>
-<li>python-dotenv==1.0.1</li>
-<li>shimmy==0.2.1</li>
-<li>jinja2==3.1.3</li>
-<li>aiofiles==24.1.0</li>
 </ul>
+<div class="highlight"><pre><span></span><code><span class="n">fastapi</span><span class="o">==</span><span class="mf">0.110.0</span>
+<span class="n">uvicorn</span><span class="o">==</span><span class="mf">0.28.0</span>
+<span class="n">stable</span><span class="o">-</span><span class="n">baselines3</span><span class="o">==</span><span class="mf">2.2.1</span>
+<span class="n">torch</span><span class="o">==</span><span class="mf">2.2.1</span>
+<span class="n">numpy</span><span class="o">==</span><span class="mf">1.26.4</span>
+<span class="n">pydantic</span><span class="o">==</span><span class="mf">2.6.4</span>
+<span class="n">python</span><span class="o">-</span><span class="n">dotenv</span><span class="o">==</span><span class="mf">1.0.1</span>
+<span class="n">shimmy</span><span class="o">==</span><span class="mf">0.2.1</span>
+<span class="n">jinja2</span><span class="o">==</span><span class="mf">3.1.3</span>
+<span class="n">aiofiles</span><span class="o">==</span><span class="mf">24.1.0</span>
+</code></pre></div>
 <h3 id="deployment">Deployment</h3>
 <ul>
 <li>📄 <code>Dockerfile</code> - Python 3.9-slim container</li>
@@ -2169,7 +2114,7 @@
 </table>
 <h2 id="integration-with-existing-project">Integration with Existing Project</h2>
 <h3 id="location-in-project">Location in Project</h3>
-<pre><code>my-network/
+<div class="highlight"><pre><span></span><code>my-network/
 ├── ai-traffic-api/                 ← NEW API files here
 ├── Results/
 │   ├── sweeps/                     ← Existing trained models
@@ -2177,9 +2122,9 @@
 │   └── (other directories)
 ├── train_ppo_agent.py              ← Can call API
 └── ... (other files)
-</code></pre>
+</code></pre></div>
 <h3 id="data-flow-integration">Data Flow Integration</h3>
-<pre><code>train_ppo_agent.py
+<div class="highlight"><pre><span></span><code>train_ppo_agent.py
     ↓
 Can now use:
     ↓
@@ -2193,7 +2138,7 @@ Docker services running:
     ↓
 External system or SUMO can call:
     http://localhost:8080/api/traffic/action
-</code></pre>
+</code></pre></div>
 <h2 id="environment-setup">Environment Setup</h2>
 <h3 id="prerequisites-installed">Prerequisites Installed</h3>
 <ul>
@@ -2203,7 +2148,7 @@ External system or SUMO can call:
 <li>Maven (optional, for building Java locally)</li>
 </ul>
 <h3 id="directories-created">Directories Created</h3>
-<pre><code>ai-traffic-api/
+<div class="highlight"><pre><span></span><code>ai-traffic-api/
 ├── rl-inference-service/
 │   ├── app/
 │   │   └── models/         (will contain model.zip)
@@ -2213,7 +2158,7 @@ External system or SUMO can call:
     │   ├── java/...
     │   └── resources/
     └── (config files)
-</code></pre>
+</code></pre></div>
 <h3 id="volumesmounts-docker">Volumes/Mounts (Docker)</h3>
 <ul>
 <li>Python models: <code>./rl-inference-service/app/trained_models:/app/trained_models</code></li>
@@ -2221,30 +2166,30 @@ External system or SUMO can call:
 </ul>
 <h2 id="how-to-use-each-component">How to Use Each Component</h2>
 <h3 id="select_modelpy">select_model.py</h3>
-<pre><code class="language-bash">python select_model.py
-# Shows all available models from Results/sweeps*
-# Allows interactive selection
-# Copies chosen model to rl-inference-service/app/trained_models/
-</code></pre>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>select_model.py
+<span class="c1"># Shows all available models from Results/sweeps*</span>
+<span class="c1"># Allows interactive selection</span>
+<span class="c1"># Copies chosen model to rl-inference-service/app/trained_models/</span>
+</code></pre></div>
 <h3 id="test_apipy">test_api.py</h3>
-<pre><code class="language-bash">python test_api.py
-# Requires services to be running (via docker-compose up)
-# Tests all API endpoints
-# Includes load testing capability
-</code></pre>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>test_api.py
+<span class="c1"># Requires services to be running (via docker-compose up)</span>
+<span class="c1"># Tests all API endpoints</span>
+<span class="c1"># Includes load testing capability</span>
+</code></pre></div>
 <h3 id="startbat-startsh">start.bat / start.sh</h3>
-<pre><code class="language-bash">start.bat  # Windows
-./start.sh # Linux/Mac
-# Builds and starts Docker services
-# Displays service URLs
-</code></pre>
+<div class="highlight"><pre><span></span><code>start.bat<span class="w">  </span><span class="c1"># Windows</span>
+./start.sh<span class="w"> </span><span class="c1"># Linux/Mac</span>
+<span class="c1"># Builds and starts Docker services</span>
+<span class="c1"># Displays service URLs</span>
+</code></pre></div>
 <h3 id="docker-composeyml">docker-compose.yml</h3>
-<pre><code class="language-yaml"># Services defined:
-# - rl-inference (Python, port 8000)
-# - java-gateway (Java, port 8080)
-# Networking: traffic-network bridge
-# Health checks: Enabled
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c1"># Services defined:</span>
+<span class="c1"># - rl-inference (Python, port 8000)</span>
+<span class="c1"># - java-gateway (Java, port 8080)</span>
+<span class="c1"># Networking: traffic-network bridge</span>
+<span class="c1"># Health checks: Enabled</span>
+</code></pre></div>
 <h2 id="quick-reference">Quick Reference</h2>
 <h3 id="starting-fresh">Starting Fresh</h3>
 <ol>
@@ -2254,18 +2199,18 @@ External system or SUMO can call:
 <li><code>curl http://localhost:8080/api/traffic/action</code> - Make predictions</li>
 </ol>
 <h3 id="stopping-services">Stopping Services</h3>
-<pre><code class="language-bash">docker-compose down
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
+</code></pre></div>
 <h3 id="viewing-logs">Viewing Logs</h3>
-<pre><code class="language-bash">docker-compose logs rl-inference    # Python service
-docker-compose logs java-gateway    # Java service
-docker-compose logs -f              # All services, follow mode
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>logs<span class="w"> </span>rl-inference<span class="w">    </span><span class="c1"># Python service</span>
+docker-compose<span class="w"> </span>logs<span class="w"> </span>java-gateway<span class="w">    </span><span class="c1"># Java service</span>
+docker-compose<span class="w"> </span>logs<span class="w"> </span>-f<span class="w">              </span><span class="c1"># All services, follow mode</span>
+</code></pre></div>
 <h3 id="restarting-with-new-model">Restarting with New Model</h3>
-<pre><code class="language-bash">docker-compose down
-python select_model.py              # Choose new model
-docker-compose up --build
-</code></pre>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>down
+python<span class="w"> </span>select_model.py<span class="w">              </span><span class="c1"># Choose new model</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
 <h2 id="notes">Notes</h2>
 <ul>
 <li>All services use Docker for consistent deployment</li>
@@ -2277,12 +2222,14 @@ docker-compose up --build
 <li>Configurable via environment variables for flexibility</li>
 </ul>
 <h2 id="success-indicators">Success Indicators</h2>
-<p>✅ If setup is complete:
-- <code>ai-traffic-api/</code> directory exists with all files
-- Can run <code>python select_model.py</code> successfully
-- Can run <code>start.bat</code>/<code>start.sh</code> without errors
-- API responds at <code>http://localhost:8080/api/traffic/action</code>
-- Services show "healthy" in <code>docker-compose ps</code></p>
+<p>✅ If setup is complete:</p>
+<ul>
+<li><code>ai-traffic-api/</code> directory exists with all files</li>
+<li>Can run <code>python select_model.py</code> successfully</li>
+<li>Can run <code>start.bat</code>/<code>start.sh</code> without errors</li>
+<li>API responds at <code>http://localhost:8080/api/traffic/action</code></li>
+<li>Services show "healthy" in <code>docker-compose ps</code></li>
+</ul>
 <hr />
 <p><strong>Generated:</strong> March 2026
 <strong>Last Updated:</strong> 24/03/2026

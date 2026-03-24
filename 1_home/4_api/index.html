@@ -1265,35 +1265,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4_setup/12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../4_setup/13_support/" class="md-nav__link">
+      <a href="../../4_setup/12_support/" class="md-nav__link">
         
   
   
@@ -1301,34 +1273,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../4_setup/14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1531,44 +1475,44 @@
   <h1>📡 API Usage Examples</h1>
 
 <h3 id="get-traffic-action-auto-generated-observations">🎯 Get Traffic Action (Auto-generated observations)</h3>
-<pre><code class="language-bash">curl -X GET http://localhost:8080/api/traffic/action
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>GET<span class="w"> </span>http://localhost:8080/api/traffic/action
+</code></pre></div>
 <p>Response:</p>
-<pre><code class="language-json">{
-  &quot;predictedAction&quot;: 2,
-  &quot;signalState&quot;: &quot;GREEN&quot;,
-  &quot;timestamp&quot;: 1684756800000,
-  &quot;status&quot;: &quot;success&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GREEN&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1684756800000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h3 id="predict-action-with-custom-observations">🔮 Predict Action with Custom Observations</h3>
-<pre><code class="language-bash">curl -X POST http://localhost:8080/api/traffic/action \
-  -H &quot;Content-Type: application/json&quot; \
-  -d '{
-    &quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-    &quot;metadata&quot;: &quot;peak-hour&quot;
-  }'
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://localhost:8080/api/traffic/action<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{</span>
+<span class="s1">    &quot;observations&quot;: [0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],</span>
+<span class="s1">    &quot;metadata&quot;: &quot;peak-hour&quot;</span>
+<span class="s1">  }&#39;</span>
+</code></pre></div>
 <p>Response:</p>
-<pre><code class="language-json">{
-  &quot;predictedAction&quot;: 1,
-  &quot;signalState&quot;: &quot;YELLOW&quot;,
-  &quot;timestamp&quot;: 1684756800000,
-  &quot;status&quot;: &quot;success&quot;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;predictedAction&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;signalState&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;YELLOW&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1684756800000</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;success&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
 <hr />
 <h3 id="health-check">💚 Health Check</h3>
-<pre><code class="language-bash">curl http://localhost:8080/api/traffic/health
-</code></pre>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>http://localhost:8080/api/traffic/health
+</code></pre></div>
 <p>Response:</p>
-<pre><code class="language-json">{
-  &quot;status&quot;: &quot;healthy&quot;,
-  &quot;inferenceService&quot;: &quot;up&quot;,
-  &quot;timestamp&quot;: 1684756800000
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;healthy&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;inferenceService&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;up&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1684756800000</span>
+<span class="p">}</span>
+</code></pre></div>
 
 
 

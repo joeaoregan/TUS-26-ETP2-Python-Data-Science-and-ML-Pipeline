@@ -1192,35 +1192,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../4_setup/12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../4_setup/13_support/" class="md-nav__link">
+      <a href="../../4_setup/12_support/" class="md-nav__link">
         
   
   
@@ -1228,34 +1200,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../4_setup/14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1461,23 +1405,23 @@
 <ol>
 <li><strong>Locate your model:</strong></li>
 </ol>
-<p>```
-   C:\Users\gemer\Sumo\my-network\Results\sweeps_<em>\<sweep_name>\seed_</em>\<variant>\model.zip</p>
-<p>Examples:
-   - Results\sweeps\pressure\seed_42\A\model.zip
-   - Results\sweeps\queue\seed_123\B\model.zip
-   - Results\sweeps_2\diff-waiting-time\seed_7\C\model.zip
-   ```</p>
+<div class="highlight"><pre><span></span><code>C:\Users\gemer\Sumo\my-network\Results\sweeps_*\&lt;sweep_name&gt;\seed_*\&lt;variant&gt;\model.zip
+
+Examples:
+- Results\sweeps\pressure\seed_42\A\model.zip
+- Results\sweeps\queue\seed_123\B\model.zip
+- Results\sweeps_2\diff-waiting-time\seed_7\C\model.zip
+</code></pre></div>
 <ol>
 <li><strong>Copy to models directory:</strong></li>
 </ol>
-<p><code>bash
-   copy "&lt;source_path&gt;\model.zip" "rl-inference-service\app\trained_models\model.zip"</code></p>
+<div class="highlight"><pre><span></span><code>copy<span class="w"> </span><span class="s2">&quot;&lt;source_path&gt;\model.zip&quot;</span><span class="w"> </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
+</code></pre></div>
 <ol>
 <li><strong>Rebuild and restart:</strong></li>
 </ol>
-<p><code>bash
-   docker-compose up --build</code></p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
 
 
 

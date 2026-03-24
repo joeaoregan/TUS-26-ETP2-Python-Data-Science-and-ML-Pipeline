@@ -1269,35 +1269,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../13_support/" class="md-nav__link">
+      <a href="../12_support/" class="md-nav__link">
         
   
   
@@ -1305,34 +1277,6 @@
     
   
     Support
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_notes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
   
 
     
@@ -1534,18 +1478,18 @@
 
 <h1 id="using-different-models">💾 Using Different Models</h1>
 <h2 id="option-1-interactive-selector">Option 1: Interactive Selector</h2>
-<pre><code class="language-bash">python select_model.py
-</code></pre>
+<div class="highlight"><pre><span></span><code>python<span class="w"> </span>select_model.py
+</code></pre></div>
 <h2 id="option-2-manual-copy">Option 2: Manual Copy</h2>
-<pre><code class="language-bash"># Copy your chosen model
-copy &quot;C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip&quot; \
-     &quot;rl-inference-service\app\trained_models\model.zip&quot;
+<div class="highlight"><pre><span></span><code><span class="c1"># Copy your chosen model</span>
+copy<span class="w"> </span><span class="s2">&quot;C:\Users\gemer\Sumo\my-network\Results\sweeps\pressure\seed_42\A\model.zip&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">     </span><span class="s2">&quot;rl-inference-service\app\trained_models\model.zip&quot;</span>
 
-# Rebuild and start
-docker-compose up --build
-</code></pre>
+<span class="c1"># Rebuild and start</span>
+docker-compose<span class="w"> </span>up<span class="w"> </span>--build
+</code></pre></div>
 <h2 id="available-models">Available Models</h2>
-<pre><code>Results/
+<div class="highlight"><pre><span></span><code>Results/
 ├── sweeps/
 │   └── pressure/
 │       ├── seed_42/  → A, B, C models
@@ -1554,7 +1498,7 @@ docker-compose up --build
 ├── sweeps_2/ through sweeps_9/
 │   └── (similar structure)
 └── (other directories: queue, diff-waiting-time, etc.)
-</code></pre>
+</code></pre></div>
 
 
 

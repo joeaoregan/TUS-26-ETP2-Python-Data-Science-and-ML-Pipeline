@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../12_troubleshooting/">
+        <link rel="prev" href="../11_next_steps/">
       
       
-        <link rel="next" href="../14_notes/">
+        <link rel="next" href="../../FILE_MANIFEST/">
       
       
         
@@ -64,7 +64,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#support" class="md-skip">
+        <a href="#troubleshooting" class="md-skip">
           Skip to content
         </a>
       
@@ -1186,34 +1186,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../12_troubleshooting/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Troubleshooting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -1223,8 +1195,24 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Support
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -1243,34 +1231,95 @@
 
       </a>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../14_notes/" class="md-nav__link">
         
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Notes
-  
 
-    
-  </span>
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-
-      </a>
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🐛 Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🐛 Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#services-wont-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Services won't start
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-loading-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model loading fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#predictions-return-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Predictions return errors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📞 Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 Notes
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1462,14 +1511,57 @@
 
 
 
-<h1 id="support">📞 Support</h1>
+  <h1>Support</h1>
+
+<h2 id="troubleshooting">🐛 Troubleshooting</h2>
+<h3 id="services-wont-start">Services won't start</h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Check Docker is installed: <code>docker --version</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Verify ports 8000, 8080 are available</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Check logs: <code>docker-compose logs</code></li>
+</ul>
+<h3 id="model-loading-fails">Model loading fails</h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Ensure model file exists: <code>rl-inference-service/app/trained_models/model.zip</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Rerun selector: <code>python select_model.py</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Check Python logs: <code>docker-compose logs rl-inference</code></li>
+</ul>
+<h3 id="predictions-return-errors">Predictions return errors</h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Verify service health: <code>curl http://localhost:8080/api/traffic/health</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Check observation dimensions (should be 10 floats)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> View logs: <code>docker-compose logs</code></li>
+</ul>
+<hr />
+<h2 id="issues">📞 Issues</h2>
 <p>For issues:</p>
-<ol>
-<li>Check service logs: <code>docker-compose logs service_name</code></li>
-<li>Verify services are running: <code>docker-compose ps</code></li>
-<li>Test individual services: <code>curl http://localhost:8000/health</code></li>
-<li>Review <a href="../../1_home/INDEX/">INDEX.md</a> (README.md) for detailed troubleshooting</li>
-</ol>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Check service logs: <code>docker-compose logs service_name</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Verify services are running: <code>docker-compose ps</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Test individual services: <code>curl http://localhost:8000/health</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Review <a href="../../1_home/INDEX/">INDEX.md</a> (README.md) for detailed troubleshooting</li>
+</ul>
+<hr />
+<h2 id="notes">📝 Notes</h2>
+<ul>
+<li>Models are in <code>C:\Users\gemer\Sumo\my-network\Results\sweeps*</code></li>
+<li>Default observation dimension: 10 features</li>
+<li>Actions are mapped to traffic signal states (RED, YELLOW, GREEN, GREEN_EXTENDED)</li>
+<li>Services communicate via Docker network (when containerized)</li>
+<li>All data is JSON-based for easy integration</li>
+</ul>
+<hr />
+<p><strong>Created:</strong> March 2026  </p>
+<p><strong>Technology Stack:</strong> </p>
+<ul>
+<li>Python 3.9+</li>
+<li>FastAPI</li>
+<li>Java 17+</li>
+<li>Spring Boot 3.2</li>
+<li>Docker</li>
+<li>Docker Compose  </li>
+</ul>
+<p><strong>Status:</strong> Ready to use! ✓</p>
 
 
 
