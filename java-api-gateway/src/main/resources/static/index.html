@@ -219,7 +219,6 @@
 					</div>
 				</div>
 
-
 				<div class="mt-8 bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
 					<div class="p-6 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
 						<div>
@@ -272,6 +271,64 @@
 						</div>
 					</div>
 				</div>
+
+				<div class="mt-8 bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+					<div class="p-6 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
+						<div>
+							<h2 class="text-xl font-black text-gray-800">Model Metadata Inspection</h2>
+							<p class="text-sm text-gray-500">Internal AI Configuration (GET /model_info)</p>
+						</div>
+						<div
+							class="px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-[10px] font-black uppercase tracking-tighter border border-indigo-200">
+							Internal Manifest
+						</div>
+					</div>
+
+					<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div class="space-y-3">
+							<div class="flex items-center justify-between">
+								<span
+									class="text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 px-2 py-1 rounded">JSON
+									Response</span>
+								<span class="text-[10px] font-mono text-gray-400">Endpoint: /model_info</span>
+							</div>
+							<pre
+								class="bg-gray-900 text-indigo-300 p-4 rounded-2xl text-xs font-mono shadow-inner overflow-x-auto">
+{
+  "model_type": "PPO",
+  "policy_type": "MultiInputPolicy",
+  "observation_space": "Box(0.0, 1.0, (9,), float32)",
+  "action_space": "Discrete(2)",
+  "version": "SB3 v2.2.1"
+}</pre>
+						</div>
+
+						<div class="flex flex-col justify-center space-y-4 px-2">
+							<div class="flex items-start gap-3">
+								<div
+									class="mt-1 w-4 h-4 rounded bg-indigo-500 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">
+									1</div>
+								<p class="text-xs text-gray-600"><strong>Architecture:</strong> Confirms the use of
+									Proximal Policy Optimization (PPO).</p>
+							</div>
+							<div class="flex items-start gap-3">
+								<div
+									class="mt-1 w-4 h-4 rounded bg-indigo-500 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">
+									2</div>
+								<p class="text-xs text-gray-600"><strong>Data Shape:</strong> Validates the (9,) input
+									dimension matches the Gateway's payload.</p>
+							</div>
+							<div class="flex items-start gap-3">
+								<div
+									class="mt-1 w-4 h-4 rounded bg-indigo-500 flex-shrink-0 flex items-center justify-center text-[10px] font-bold text-white">
+									3</div>
+								<p class="text-xs text-gray-600"><strong>Consistency:</strong> Ensures the loaded model
+									file matches the expected project version.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
 
