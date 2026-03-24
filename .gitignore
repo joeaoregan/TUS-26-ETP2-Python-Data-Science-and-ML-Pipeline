@@ -65,3 +65,6 @@ npm-debug.log
 
 # Virtual environment
 venv/
+
+# mkdocs
+site/

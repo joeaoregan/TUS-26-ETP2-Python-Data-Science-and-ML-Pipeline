@@ -6,8 +6,7 @@ The AI Traffic Control API is a distributed, microservices-based system designed
 
 ---
 
-<details open>
-  <summary>1. High-Level System Architecture</summary>
+## 1. High-Level System Architecture
 
 ```mermaid
 graph TB
@@ -47,10 +46,7 @@ graph TB
 
 ---
 
-</details>
-
-<details>
-  <summary>2. Request-Response Flow Diagram</summary>
+## 2. Request-Response Flow Diagram
 
 ### **GET /api/traffic/action** (Auto-generated observations)
 
@@ -140,10 +136,8 @@ sequenceDiagram
 
 ---
 
-</details>
 
-<details>
-  <summary>3. System Component Architecture</summary>
+## 3. System Component Architecture
 
 ```mermaid
 graph LR
@@ -203,10 +197,8 @@ graph LR
 
 ---
 
-</details>
 
-<details>
-  <summary>4. Data Flow Through System</summary>
+## 4. Data Flow Through System
 
 ```mermaid
 graph TD
@@ -261,10 +253,8 @@ graph TD
 
 ---
 
-</details>
 
-<details>
-  <summary>5. Deployment Architecture</summary>
+## 5. Deployment Architecture
 
 ```mermaid
 graph TB
@@ -305,10 +295,8 @@ graph TB
 
 ---
 
-</details>
 
-<details>
-  <summary>6. Detailed Internal Flow - Action Prediction</summary>
+## 6. Detailed Internal Flow - Action Prediction
 
 ```mermaid
 graph LR
@@ -367,10 +355,8 @@ graph LR
 
 ---
 
-</details>
 
-<details>
-  <summary>7. Error Handling Flow</summary>
+## 7. Error Handling Flow
 
 ```mermaid
 graph TD
@@ -413,10 +399,8 @@ graph TD
 
 ---
 
-</details>
 
-<details>
-  <summary>8. Inter-Service Communication Protocol</summary>
+## 8. Inter-Service Communication Protocol
 
 ```mermaid
 graph LR
@@ -458,10 +442,8 @@ graph LR
 
 ---
 
-</details>
 
-<details>
-  <summary>9. Model Loading & Caching Strategy</summary>
+## 9. Model Loading & Caching Strategy
 
 ```mermaid
 graph TD
@@ -502,10 +484,8 @@ graph TD
 
 ---
 
-</details>
 
-<details>
-  <summary>10. Complete End-to-End Workflow</summary>
+## 10. Complete End-to-End Workflow
 
 ```mermaid
 graph TB
@@ -562,7 +542,7 @@ graph TB
 
 ---
 
-## Architecture Decision Rationale
+## 11. Architecture Decision Rationale
 
 | Component | Choice | Rationale |
 |-----------|--------|-----------|
@@ -575,7 +555,7 @@ graph TB
 
 ---
 
-## Performance Characteristics
+## 12. Performance Characteristics
 
 ### **Latency Breakdown** (typical)
 
@@ -623,7 +603,8 @@ Total Request Time: ~100-200ms
 
 ---
 
-## Scalability Considerations
+
+## 13. Scalability Considerations
 
 ### **Horizontal Scaling**
 
@@ -669,7 +650,7 @@ graph TB
 
 ---
 
-## Security Architecture
+## 14. Security Architecture
 
 ```mermaid
 graph TB
@@ -698,7 +679,7 @@ graph TB
 
 ---
 
-## Monitoring & Observability Points
+## 15. Monitoring & Observability Points
 
 ```mermaid
 graph LR
@@ -742,7 +723,7 @@ graph LR
 
 ---
 
-## Deployment Patterns
+## 16. Deployment Patterns
 
 ### **Development**
 ```
@@ -770,6 +751,3 @@ Kubernetes Cluster
 ```
 
 ---
-
-
-</details>

@@ -5,12 +5,12 @@ theme:
   name: material
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.sections
     - toc.integrate
 
 nav:
   - Home: index.md
-  - README: README.md
   - System Architecture: SYSTEM_ARCHITECTURE.md
   - Quick Start: QUICKSTART.md
   - Setup Complete: SETUP_COMPLETE.md
