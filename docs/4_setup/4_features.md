@@ -1,25 +1,28 @@
 # 🔧 Key Features
 
 ## Python FastAPI Service
-✓ Loads trained PPO models  
-✓ RESTful action prediction  
-✓ Health monitoring  
-✓ Comprehensive error handling  
-✓ Interactive API documentation (Swagger UI)  
-✓ Configurable via environment variables  
+
+- [x] Loads trained PPO models  
+- [x] RESTful action prediction  
+- [x] Health monitoring  
+- [x] Comprehensive error handling  
+- [x] Interactive API documentation (Swagger UI)  
+- [x] Configurable via environment variables  
 
 ## Java API Gateway
-✓ REST API endpoints for traffic control  
-✓ Communicates with Python service  
-✓ Health checks and monitoring  
-✓ Robust error handling  
-✓ Service dependency management  
-✓ Load testing capabilities  
+
+- [x] REST API endpoints for traffic control  
+- [x] Communicates with Python service  
+- [x] Health checks and monitoring  
+- [x] Robust error handling  
+- [x] Service dependency management  
+- [x] Load testing capabilities  
 
 ## Docker Integration
-✓ Multi-stage builds for optimization  
-✓ Service orchestration with Docker Compose  
-✓ Health checks and automatic restart  
-✓ Persistent volumes for models  
-✓ Network isolation  
-✓ Logging and monitoring  
+
+- [x] Multi-stage builds for optimization  
+- [x] Service orchestration with Docker Compose  
+- [x] Health checks and automatic restart  
+- [x] Persistent volumes for models  
+- [x] Network isolation  
+- [x] Logging and monitoring  
