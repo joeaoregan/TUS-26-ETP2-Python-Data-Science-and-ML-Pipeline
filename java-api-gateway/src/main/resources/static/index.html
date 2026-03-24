@@ -260,8 +260,10 @@
 							<pre
 								class="bg-gray-900 text-emerald-400 p-4 rounded-2xl text-xs font-mono shadow-inner overflow-x-auto">
 {
-  "action": 0,
-  "confidence": null
+    "predictedAction": 0,
+    "signalState": "RED",
+    "timestamp": 1774325271443,
+    "status": "success"
 }</pre>
 							<p class="text-[11px] text-gray-500 italic px-2">RL Agent's predicted signal phase (e.g., 0
 								= North/South Green).</p>
@@ -386,6 +388,56 @@
 }</pre>
 							<p class="text-[11px] text-gray-500 italic px-2">Validation of the 9-dimensional observation
 								space.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="mt-8 bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden flex flex-col">
+					<div class="p-6 border-b border-gray-100 bg-gray-50/50 flex justify-between items-center">
+						<div>
+							<h2 class="text-xl font-black text-gray-800">Gateway Resilience (Circuit Breaker)</h2>
+							<p class="text-sm text-gray-500">How the System handles a 503 Service Unavailable from
+								Python</p>
+						</div>
+						<div
+							class="px-3 py-1 bg-red-100 text-red-700 rounded-full text-[10px] font-black uppercase tracking-tighter border border-red-200 animate-pulse">
+							Circuit Open
+						</div>
+					</div>
+
+					<div class="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-red-50/30">
+						<div class="space-y-3">
+							<div class="flex items-center justify-between">
+								<span
+									class="text-[10px] font-bold uppercase tracking-widest text-red-600 bg-red-100 px-2 py-1 rounded">Upstream
+									Error</span>
+								<span class="text-[10px] font-mono text-gray-400">HTTP 503</span>
+							</div>
+							<div
+								class="bg-gray-900 text-red-400 p-5 rounded-2xl text-xs font-mono shadow-inner border-l-4 border-red-500">
+								<p class="mb-1">// Python Service Offline</p>
+								<p>ConnectException: Connection refused</p>
+								<p class="text-[10px] text-gray-500 mt-2 italic">Gateway attempt to reach port 8000
+									failed.</p>
+							</div>
+						</div>
+
+						<div class="space-y-3">
+							<div class="flex items-center justify-between">
+								<span
+									class="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-100 px-2 py-1 rounded">Graceful
+									Fallback</span>
+								<span class="text-[10px] font-mono text-gray-400">Status: 200 OK</span>
+							</div>
+							<pre
+								class="bg-gray-900 text-orange-400 p-5 rounded-2xl text-xs font-mono shadow-inner border-l-4 border-orange-500">
+{
+  "status": "degraded",
+  "inferenceService": "down",
+  "timestamp": 1774323746533
+}</pre>
+							<p class="text-[11px] text-gray-600 italic px-2">The Gateway intercepts the error and
+								returns a safe "Degraded" DTO.</p>
 						</div>
 					</div>
 				</div>
