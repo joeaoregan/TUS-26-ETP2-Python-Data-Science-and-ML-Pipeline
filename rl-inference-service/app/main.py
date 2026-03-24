@@ -6,6 +6,7 @@ from typing import List, Optional
 
 import numpy as np
 from fastapi import FastAPI, HTTPException
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from gymnasium import spaces
 from pydantic import BaseModel, ConfigDict
@@ -177,6 +178,9 @@ app = FastAPI(
 )
 
 
+# mount static folder
+app.mount("/static", StaticFiles(directory="static"), name="static")
+
 @app.on_event("startup")
 async def startup_event():
     """Load model on startup."""
@@ -288,22 +292,38 @@ async def get_model_info():
 async def read_root():
     return """
     <!DOCTYPE html>
-    <html>
-        <head>
-            <title>AI Inference Service</title>
-            <script src="https://cdn.tailwindcss.com"></script>
-        </head>
-        
-        <body class="bg-slate-900 text-white flex items-center justify-center min-h-screen">
-            <div class="text-center p-8 bg-slate-800 rounded-3xl shadow-2xl border border-slate-700">
-                <h1 class="text-3xl font-bold mb-2">AI Traffic Inference Engine</h1>
-                <p class="text-slate-400 mb-6 font-mono text-sm">Status: Operational | Model: PPO v1</p>
-                <div class="flex flex-col gap-3">
-                    <a href="/docs" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition">View API Documentation</a>
-                    <a href="/health" class="text-slate-400 hover:text-white text-sm transition">System Health Check</a>
-                </div>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>AI Inference Service</title>
+        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-6">
+        <div class="max-w-md w-full bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-10 text-center">
+            <img src="/static/logo.png" alt="Inference Engine Logo" class="mx-auto mb-8 max-w-[200px] h-auto opacity-90">
+            
+            <h1 class="text-2xl font-black tracking-tight mb-2">AI Inference Engine</h1>
+            <p class="text-indigo-400 font-mono text-xs uppercase tracking-widest mb-8 text-semibold">
+                Status: Operational &bull; Region: Frankfurt
+            </p>
+
+            <div class="space-y-3">
+                <a href="/docs" class="block w-full bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-indigo-500/20">
+                    View API Documentation
+                </a>
+                <a href="/health" class="block w-full bg-slate-700 hover:bg-slate-600 py-4 rounded-2xl font-bold transition-all">
+                    System Health Check
+                </a>
             </div>
-        </body>
+
+            <footer class="mt-10 pt-6 border-t border-slate-700">
+                <p class="text-[10px] text-slate-500 uppercase font-medium tracking-tighter">
+                    2026 Joe O'Regan • Edgars Peskaitis • David Claffey • Adam O Neill Mc Knight &bull; TUS Engineering Team Project
+                </p>
+            </footer>
+        </div>
+    </body>
     </html>
     """
 
