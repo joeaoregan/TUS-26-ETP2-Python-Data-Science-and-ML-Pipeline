@@ -218,6 +218,7 @@ mvn spring-boot:run
 
 - Includes Swagger/OpenAPI documentation for all traffic control endpoints.
 
+---
 
 ## 📡 API Usage Examples
 
@@ -270,6 +271,7 @@ Response:
 }
 ```
 
+---
 
 ## 🔐 Environment Variables
 
@@ -291,6 +293,9 @@ Response:
 | `RL_INFERENCE_SERVICE_URL`     | RL Inference Service URL | `http://localhost:8000/predict_action` |
 | `RL_INFERENCE_SERVICE_TIMEOUT` | Request timeout in ms    | `10000`                                |
 
+---
+
+
 ## 🐳 Docker Compose Configuration
 
 The `docker-compose.yml` file includes:
@@ -301,6 +306,8 @@ The `docker-compose.yml` file includes:
 | Volume for trained models | Depends on RL Inference Service |  |
 | Health checks enabled | Health checks enabled |  |
 | Port 8000 exposed | Port 8080 exposed |  |
+
+----
 
 
 ## 📊 Monitoring and Logging
@@ -316,6 +323,8 @@ Monitor logs:
 docker-compose logs -f rl-inference
 docker-compose logs -f java-gateway
 ```
+
+---
 
 
 ## 🔄 Using Different Models
@@ -342,6 +351,9 @@ To use different trained models:
    docker-compose up --build
    ```
 
+---
+
+
 ## ⚡ Performance Tuning
 
 ### For High-Throughput Scenarios
@@ -354,6 +366,8 @@ To use different trained models:
 - Use local model paths instead of network mounts
 - Optimize observation preprocessing in Java gateway
 
+---
+
 
 ## 🐛 Troubleshooting</summary>
 
@@ -362,6 +376,9 @@ To use different trained models:
 | Check Docker logs: `docker-compose logs` | Increase `RL_INFERENCE_SERVICE_TIMEOUT` | Verify model path in environment variables |
 | Verify model file exists and is correct format | Check if Python service is running: `docker-compose ps` | Ensure model.zip is a valid stable-baselines3 PPO model |
 | Check port availability (8000, 8080) | Verify network connectivity: `docker-compose exec java-gateway ping rl-inference` | Check file permissions |
+
+---
+
 
 ## 🌍 Production Deployment
 

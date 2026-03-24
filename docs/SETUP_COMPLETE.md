@@ -9,12 +9,12 @@ Complete REST API infrastructure for serving your trained RL models with full Do
 ai-traffic-api/
 ├── rl-inference-service/
 │   ├── app/
-│   │   ├── main.py                 # FastAPI application with model loading
-│   │   ├── models/                 # Directory for trained models (create structure)
-│   │   └── __init__.py             # Package init
-│   ├── Dockerfile                  # Python service container
-│   ├── requirements.txt            # Python dependencies
-│   └── .env.example                # Environment variables template
+│   │   ├── main.py                         # FastAPI application with model loading
+│   │   ├── models/                         # Directory for trained models (create structure)
+│   │   └── __init__.py                     # Package init
+│   ├── Dockerfile                          # Python service container
+│   ├── requirements.txt                    # Python dependencies
+│   └── .env.example                        # Environment variables template
 ├── java-api-gateway/
 │   ├── src/main/
 │   │   ├── java/com/example/gateway/
@@ -25,17 +25,19 @@ ai-traffic-api/
 │   │   │       └── RlInferenceClient.java  # Python service client
 │   │   └── resources/
 │   │       └── application.properties      # Spring configuration
-│   ├── pom.xml                     # Maven configuration
-│   └── Dockerfile                  # Java service container
-├── docker-compose.yml              # Multi-service orchestration
-├── select_model.py                 # Interactive model selector
-├── test_api.py                     # API test client
-├── start.bat                       # Windows startup script
-├── start.sh                        # Linux/Mac startup script
-├── QUICKSTART.md                   # 5-minute setup guide
-├── README.md                       # Full documentation
-└── .gitignore                      # Git ignore rules
+│   ├── pom.xml                             # Maven configuration
+│   └── Dockerfile                          # Java service container
+├── docker-compose.yml                      # Multi-service orchestration
+├── select_model.py                         # Interactive model selector
+├── test_api.py                             # API test client
+├── start.bat                               # Windows startup script
+├── start.sh                                # Linux/Mac startup script
+├── QUICKSTART.md                           # 5-minute setup guide
+├── README.md                               # Full documentation
+└── .gitignore                              # Git ignore rules
 ```
+
+---
 
 ## 🚀 Quick Start (5 Minutes)
 
@@ -72,6 +74,8 @@ curl http://localhost:8080/api/traffic/action
 python test_api.py
 ```
 
+---
+
 ## 📊 Architecture Overview
 
 ```
@@ -103,6 +107,8 @@ python test_api.py
                 └───────────────────────────────────┘
 ```
 
+---
+
 ## 🔧 Key Features
 
 ### Python FastAPI Service
@@ -129,6 +135,8 @@ python test_api.py
 ✓ Network isolation  
 ✓ Logging and monitoring  
 
+---
+
 ## 📡 API Endpoints
 
 ### Python Service (Port 8000)
@@ -145,6 +153,8 @@ GET  /api/traffic/health  - Service health status
 GET  /api/traffic/action  - Get traffic action (auto-generated obs)
 POST /api/traffic/action  - Predict with custom observations
 ```
+
+---
 
 ## 💾 Using Different Models
 
@@ -176,6 +186,8 @@ Results/
 └── (other directories: queue, diff-waiting-time, etc.)
 ```
 
+---
+
 ## 🧪 Testing
 
 ### Test With Included Client
@@ -191,6 +203,7 @@ Tests include:
 - Model information retrieval
 
 ### Manual Test
+
 ```bash
 # Test auto-generated action
 curl http://localhost:8080/api/traffic/action
@@ -206,6 +219,8 @@ curl http://localhost:8080/api/traffic/health
 # Check Python model
 curl http://localhost:8000/health
 ```
+
+---
 
 ## 🔐 Environment Variables
 
@@ -223,6 +238,8 @@ API_PORT=8000                                # Service port
 RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action
 RL_INFERENCE_SERVICE_TIMEOUT=10000  # milliseconds
 ```
+
+---
 
 ## 🛠 Development vs Production
 
@@ -247,6 +264,8 @@ docker-compose logs -f
 docker-compose ps
 ```
 
+---
+
 ## 📚 Documentation Files
 
 | File | Purpose |
@@ -256,13 +275,17 @@ docker-compose ps
 | [select_model.py](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation/blob/main/select_model.py) | Model selection tool |
 | [test_api.py](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation/blob/main/test_api.py) | API test suite |
 
+---
+
 ## ✅ Next Steps
 
-1. **Select a model: ** `python select_model.py`
+1. **Select a model:** `python select_model.py`
 2. **Start services:** `start.bat` (Windows) or `./start.sh` (Linux/Mac)
 3. **Test API:** `python test_api.py` or `curl http://localhost:8080/api/traffic/action`
 4. **Integrate with SUMO:** Modify your train_ppo_agent.py to use the API
 5. **Deploy:** Use docker-compose for production
+
+---
 
 ## 🐛 Troubleshooting
 
@@ -281,6 +304,8 @@ docker-compose ps
 - Check observation dimensions (should be 10 floats)
 - View logs: `docker-compose logs`
 
+---
+
 ## 📞 Support
 
 For issues:
@@ -288,6 +313,8 @@ For issues:
 2. Verify services are running: `docker-compose ps`
 3. Test individual services: `curl http://localhost:8000/health`
 4. Review [INDEX.md](INDEX.md) (README.md) for detailed troubleshooting
+
+---
 
 ## 📝 Notes
 
@@ -299,6 +326,6 @@ For issues:
 
 ---
 
-**Created:** March 2025  
+**Created:** March 2026  
 **Technology Stack:** Python 3.9+, FastAPI, Java 17+, Spring Boot 3.2, Docker, Docker Compose  
 **Status:** Ready to use! ✓
