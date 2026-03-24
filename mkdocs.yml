@@ -10,7 +10,17 @@ theme:
     - toc.integrate
 
 nav:
-  - Home: INDEX.md
+  - Home: 
+    - 1_home/INDEX.md
+    - 🚗 API Setup Guide: 1_home/3_setup.md
+    - 📡 API Usage Examples: 1_home/4_api.md
+    - 🔐 Environment Variables: 1_home/5_env.md
+    - 🐳 Docker Compose Configuration: 1_home/6_docker.md
+    - 📊 Monitoring and Logging: 1_home/7_log.md
+    - 🔄 Using Different Models: 1_home/8_model.md
+    - ⚡ Performance Tuning: 1_home/9_performance.md
+    - 🐛 Troubleshooting: 1_home/10_ts.md
+    - 🌍 Production Deployment: 1_home/11_prod.md
   - System Architecture: SYSTEM_ARCHITECTURE.md
   - Quick Start: QUICKSTART.md
   - Setup Complete:
