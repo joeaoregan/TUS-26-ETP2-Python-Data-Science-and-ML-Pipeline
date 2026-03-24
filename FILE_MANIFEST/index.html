@@ -2024,9 +2024,13 @@
 <li>fastapi==0.110.0</li>
 <li>uvicorn==0.28.0</li>
 <li>stable-baselines3==2.2.1</li>
+<li>torch==2.2.1</li>
 <li>numpy==1.26.4</li>
 <li>pydantic==2.6.4</li>
 <li>python-dotenv==1.0.1</li>
+<li>shimmy==0.2.1</li>
+<li>jinja2==3.1.3</li>
+<li>aiofiles==24.1.0</li>
 </ul>
 <h3 id="deployment">Deployment</h3>
 <ul>
@@ -2111,7 +2115,11 @@
 </ul>
 <h3 id="documentation-files">Documentation Files</h3>
 <ul>
-<li>4 markdown files (README.md, QUICKSTART.md, SETUP_COMPLETE.md, FILE_MANIFEST.md)</li>
+<li><strong>5 markdown documentation files</strong> covering setup, architecture, API usage, and troubleshooting</li>
+<li><strong>mkdocs.yml</strong> configuration file for site structure and theme settings</li>
+<li><strong>MkDocs site</strong> with full project documentation (https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)</li>
+<li><strong>Interactive API docs</strong> via Swagger UI for both Java Gateway and Python Inference Service</li>
+<li><strong>README.md</strong> with quick links and project overview</li>
 </ul>
 <h3 id="scripts">Scripts</h3>
 <ul>
@@ -2122,40 +2130,40 @@
 <thead>
 <tr>
 <th>Component</th>
-<th>Files</th>
-<th>Total Size</th>
+<th style="text-align: right;">Files</th>
+<th style="text-align: right;">Total Size</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Documentation</td>
-<td>4</td>
-<td>~25 KB</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">~25 KB</td>
 </tr>
 <tr>
 <td>Python Service</td>
-<td>3</td>
-<td>~12 KB</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">~12 KB</td>
 </tr>
 <tr>
 <td>Java Service</td>
-<td>3</td>
-<td>~18 KB</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">~18 KB</td>
 </tr>
 <tr>
 <td>Configuration</td>
-<td>6</td>
-<td>~5 KB</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">~5 KB</td>
 </tr>
 <tr>
 <td>Scripts</td>
-<td>4</td>
-<td>~15 KB</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">~15 KB</td>
 </tr>
 <tr>
 <td><strong>Total</strong></td>
-<td><strong>20+</strong></td>
-<td><strong>~75 KB</strong></td>
+<td style="text-align: right;"><strong>20+</strong></td>
+<td style="text-align: right;"><strong>~75 KB</strong></td>
 </tr>
 </tbody>
 </table>
@@ -2276,8 +2284,8 @@ docker-compose up --build
 - API responds at <code>http://localhost:8080/api/traffic/action</code>
 - Services show "healthy" in <code>docker-compose ps</code></p>
 <hr />
-<p><strong>Generated:</strong> March 2025
-<strong>Last Updated:</strong> [Current Date]
+<p><strong>Generated:</strong> March 2026
+<strong>Last Updated:</strong> 24/03/2026
 <strong>Status:</strong> Setup Complete ✓</p>
 
 
