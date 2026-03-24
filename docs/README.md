@@ -19,8 +19,8 @@
 ### 🔗 Quick Links
 
 #### 📚 Documentation
-- **[System Architecture](docs/SYSTEM_ARCHITECTURE.md)** — Detailed system design
-- **[Quick Start Guide](docs/QUICKSTART.md)** — Get up and running quickly
+- **[System Architecture](SYSTEM_ARCHITECTURE.md)** — Detailed system design
+- **[Quick Start Guide](QUICKSTART.md)** — Get up and running quickly
 - **[Full Documentation](https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)** — Complete mkdocs site
 
 #### 🌐 Live Services

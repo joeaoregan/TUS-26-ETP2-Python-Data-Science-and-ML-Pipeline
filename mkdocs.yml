@@ -13,7 +13,22 @@ nav:
   - Home: INDEX.md
   - System Architecture: SYSTEM_ARCHITECTURE.md
   - Quick Start: QUICKSTART.md
-  - Setup Complete: SETUP_COMPLETE.md
+  - Setup Complete:
+    - 4_setup/index.md
+    - What Was Created: 4_setup/1_created.md
+    - Quick Start (5 Minutes): 4_setup/2_quickstart.md
+    - Architecture Overview: 4_setup/3_architecture.md
+    - Key Features: 4_setup/4_features.md
+    - API Endpoints: 4_setup/5_api_endpoints.md
+    - Using Different Models: 4_setup/6_different_models.md
+    - Testing: 4_setup/7_testing.md
+    - Environment Variables: 4_setup/8_environment_variables.md
+    - Development vs Production: 4_setup/9_dev_vs_prod.md
+    - Documentation Files: 4_setup/10_documentation_files.md
+    - Next Steps: 4_setup/11_next_steps.md
+    - Troubleshooting: 4_setup/12_troubleshooting.md
+    - Support: 4_setup/13_support.md
+    - Notes: 4_setup/14_notes.md  
   - File Manifest: FILE_MANIFEST.md
   - API Docs: DOCUMENTATION.md
   - Changelog: CHANGELOG.md

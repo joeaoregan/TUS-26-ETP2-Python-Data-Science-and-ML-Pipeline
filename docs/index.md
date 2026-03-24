@@ -61,6 +61,8 @@ This system is specifically modeled to address the saturation flow rates and sig
 
 *For more details see [System Architecture](SYSTEM_ARCHITECTURE.md) page.*
 
+[System Architecture]{#}(SYSTEM_ARCHITECTURE)
+
 ---
 
 

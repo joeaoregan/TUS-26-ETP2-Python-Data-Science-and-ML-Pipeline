@@ -1,6 +1,6 @@
 # AI Traffic Control API - Setup Complete! ✓
 
-## What Was Created
+## ✨ What Was Created
 
 Complete REST API infrastructure for serving your trained RL models with full Docker integration.
 
@@ -80,31 +80,31 @@ python test_api.py
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                     Client/External System                  │
+│                  Client/External System                │
 └──────────────────────────┬──────────────────────────────────┘
-                           │ 
-                           └─→ HTTP on port 8080
+                         │ 
+                         └─→ HTTP on port 8080
                               │
-                ┌─────────────▼──────────────────┐
-                │  Java Spring Boot Gateway      │  Port 8080
-                │  - REST API endpoints          │
-                │  - Observation handling        │
-                │  - Error management           │
-                └──────────────┬──────────────────┘
+                ┌─────────────▼────────────────────────┐
+                │  Java Spring Boot Gateway         │  Port 8080
+                │  - REST API endpoints             │
+                │  - Observation handling           │
+                │  - Error management               │
+                └───────────────┬──────────────────────┘
                                │
                                └─→ HTTP on port 8000
-                                  │
-                ┌─────────────────▼─────────────────┐
-                │  Python FastAPI Service          │  Port 8000
+                                 │
+                ┌─────────────────▼────────────────────┐
+                │  Python FastAPI Service           │  Port 8000
                 │  - Model loading & management     │
-                │  - Action prediction             │
-                │  - Health monitoring             │
-                └──────────────┬────────────────────┘
-                               │
-                ┌──────────────▼────────────────────┐
+                │  - Action prediction              │
+                │  - Health monitoring              │
+                └──────────────┬───────────────────────┘
+                              │
+                ┌──────────────▼───────────────────────┐
                 │  Trained RL Model (PPO)           │
                 │  From: Results/sweeps_*/model.zip │
-                └───────────────────────────────────┘
+                └──────────────────────────────────────┘
 ```
 
 ---
@@ -196,6 +196,7 @@ python test_api.py
 ```
 
 Tests include:
+
 - Health checks
 - Basic functionality
 - Custom observation predictions
