@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Inference Engine | System Status</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 min-h-screen p-4 md:p-8 font-sans text-slate-100 flex items-center justify-center">
+    <div class="max-w-4xl w-full space-y-8">
+
+        <header class="bg-slate-800 rounded-3xl shadow-2xl p-8 text-center border border-slate-700">
+            <img src="/static/logo.png" alt="Traffic Control Logo" class="mx-auto mb-6 max-w-xs opacity-90">
+            <h1 class="text-3xl font-black tracking-tight">AI Inference Engine</h1>
+            <p class="text-indigo-400 mt-2 text-sm font-mono uppercase tracking-widest">Data Plane &bull; PPO Model v1.0
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-indigo-600 rounded-3xl p-6 shadow-lg text-white">
+                <h3 class="text-xs font-bold uppercase tracking-widest opacity-80 mb-4 text-center">Inference Engine
+                    (Local Docs)</h3>
+                <div class="flex flex-col space-y-3">
+                    <a href="/docs"
+                        class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
+                        <span>FastAPI Swagger (This Service)</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </a>
+                    <a href="/health"
+                        class="flex justify-between items-center bg-white/10 hover:bg-white/20 p-3 rounded-xl transition">
+                        <span>Engine Health Status</span>
+                        <span
+                            class="text-[10px] bg-green-400 text-green-900 px-2 py-0.5 rounded-full font-bold">ACTIVE</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="bg-slate-800 rounded-3xl p-6 shadow-lg text-white border border-slate-700">
+                <h3 class="text-xs font-bold uppercase tracking-widest opacity-80 mb-4 text-center">System Gateway
+                    (Control Plane)</h3>
+                <div class="flex flex-col space-y-3">
+                    <a href="https://ai-traffic-control-api.onrender.com/"
+                        class="flex justify-between items-center bg-white/5 hover:bg-white/10 p-3 rounded-xl transition">
+                        <span>Go to Management Dashboard</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://ai-traffic-control-api.onrender.com/swagger-ui/index.html"
+                        class="flex justify-between items-center bg-white/5 hover:bg-white/10 p-3 rounded-xl transition">
+                        <span>Gateway Swagger UI</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <footer class="text-center pt-8 border-t border-slate-800 text-slate-500">
+            <p class="text-[10px] font-medium tracking-tight uppercase">&copy; 2026 Joe O'Regan &bull; Edgars Peskaitis &bull; David Claffey &bull; Adam O Neill Mc Knight &bull; TUS Engineering Team Project</p>
+        </footer>
+    </div>
+</body>
+
+</html>

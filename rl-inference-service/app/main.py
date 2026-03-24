@@ -5,8 +5,9 @@ from pathlib import Path
 from typing import List, Optional
 
 import numpy as np
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 from gymnasium import spaces
 from pydantic import BaseModel, ConfigDict
@@ -180,6 +181,7 @@ app = FastAPI(
 
 # mount static folder
 app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 @app.on_event("startup")
 async def startup_event():
@@ -289,43 +291,8 @@ async def get_model_info():
     
 
 @app.get("/", response_class=HTMLResponse)
-async def read_root():
-    return """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>AI Inference Service</title>
-        <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
-        <script src="https://cdn.tailwindcss.com"></script>
-    </head>
-    <body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-6">
-        <div class="max-w-md w-full bg-slate-800 rounded-3xl shadow-2xl border border-slate-700 p-10 text-center">
-            <img src="/static/logo.png" alt="Inference Engine Logo" class="mx-auto mb-8 max-w-[200px] h-auto opacity-90">
-            
-            <h1 class="text-2xl font-black tracking-tight mb-2">AI Inference Engine</h1>
-            <p class="text-indigo-400 font-mono text-xs uppercase tracking-widest mb-8 text-semibold">
-                Status: Operational &bull; Region: Frankfurt
-            </p>
-
-            <div class="space-y-3">
-                <a href="/docs" class="block w-full bg-indigo-600 hover:bg-indigo-500 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-indigo-500/20">
-                    View API Documentation
-                </a>
-                <a href="/health" class="block w-full bg-slate-700 hover:bg-slate-600 py-4 rounded-2xl font-bold transition-all">
-                    System Health Check
-                </a>
-            </div>
-
-            <footer class="mt-10 pt-6 border-t border-slate-700">
-                <p class="text-[10px] text-slate-500 uppercase font-medium tracking-tighter">
-                    2026 Joe O'Regan • Edgars Peskaitis • David Claffey • Adam O Neill Mc Knight &bull; TUS Engineering Team Project
-                </p>
-            </footer>
-        </div>
-    </body>
-    </html>
-    """
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 if __name__ == "__main__":
     import uvicorn
