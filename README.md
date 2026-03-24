@@ -16,12 +16,19 @@
 > **Project Goal:** Target 15-20% reduction in urban traffic congestion for the Athlone "Orange Loop" using Reinforcement Learning.
 
 ### 🔗 Quick Links
-- **Live Gateway:** [https://ai-traffic-control-api.onrender.com](https://ai-traffic-control-api.onrender.com/)
-- **API Documentation:** [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
-- **Inference Service:** Containerized (Docker)
+
+#### 🌐 API Gateway: 
+
+- **Live on Render:** [https://ai-traffic-control-api.onrender.com](https://ai-traffic-control-api.onrender.com/)
+- **Swagger UI Documentation:** [Swagger UI](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+
+#### 🤖 Inference Service:
+
+- **Live on Render:** [https://traffic-inference-service.onrender.com](https://traffic-inference-service.onrender.com)
+- **Swagger UI Documentation:** [https://traffic-inference-service.onrender.com/docs](https://traffic-inference-service.onrender.com/docs)
 
 ### 👥 Research Team
-- [Adam O Neill Mc Knight](https://github.com/AdamQ45), David Claffey, [Edgars Peskaitis](https://github.com/edgar183), [Joe O'Regan](https://github.com/joeaoregan)
+- [Adam O Neill Mc Knight](https://github.com/AdamQ45), [David Claffey](https://github.com/dclaff), [Edgars Peskaitis](https://github.com/edgar183), [Joe O'Regan](https://github.com/joeaoregan)
 
 ---
 
