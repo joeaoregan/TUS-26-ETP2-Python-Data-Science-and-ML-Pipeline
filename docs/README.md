@@ -96,6 +96,7 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
   <summary>Components</summary>
 
 #### 1. Python FastAPI Service (RL Inference Service)
+
 - **Port:** 8000
 - **Purpose:** Loads and serves trained PPO models for action prediction
 - **Key Endpoints:**
@@ -104,6 +105,7 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
   - `GET /model_info` - Model information
 
 #### 2. Java Spring Boot API Gateway
+
 - **Port:** 8080
 - **Purpose:** REST API gateway that communicates with the Python service
 - **Key Endpoints:**
@@ -112,6 +114,7 @@ TUS-26-ETP2-Python-Data-Science-and-ML-Pipeline/
   - `POST /api/traffic/action` - Predict action with custom observations
 
 #### 3. Docker Compose
+
 - Orchestrates both services
 - Manages networking and dependencies
 - Provides health checks and monitoring
