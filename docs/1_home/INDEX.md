@@ -18,24 +18,19 @@
 
 ### 🔗 Quick Links
 
-#### 🌐 API Gateway: 
-
-- [API Gateway App](https://ai-traffic-control-api.onrender.com/)
-- [Swagger UI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
-
-#### 🤖 Inference Service:
-
-- [Inference Service App](https://traffic-inference-service.onrender.com)
-- [Swagger UI Docs](https://traffic-inference-service.onrender.com/docs)
+| 🌐 API Gateway | 🤖 Inference Service |
+|-------------|-------------------|
+| [App](https://ai-traffic-control-api.onrender.com/)                                  | [App](https://traffic-inference-service.onrender.com)                  |
+| [Swagger UI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html) | [Swagger UI Docs](https://traffic-inference-service.onrender.com/docs) |
 
 ---
 
 ### 👥 Research Team
 
-> - [Joe O'Regan](https://github.com/joeaoregan)
-> - [Adam O Neill Mc Knight](https://github.com/AdamQ45)
-> - [David Claffey](https://github.com/dclaff)
-> - [Edgars Peskaitis](https://github.com/edgar183)
+- [Joe O'Regan](https://github.com/joeaoregan)
+- [Adam O Neill Mc Knight](https://github.com/AdamQ45)
+- [David Claffey](https://github.com/dclaff)
+- [Edgars Peskaitis](https://github.com/edgar183)
 
 ---
 
