@@ -29,9 +29,13 @@
   - fastapi==0.110.0
   - uvicorn==0.28.0
   - stable-baselines3==2.2.1
+  - torch==2.2.1
   - numpy==1.26.4
   - pydantic==2.6.4
   - python-dotenv==1.0.1
+  - shimmy==0.2.1
+  - jinja2==3.1.3
+  - aiofiles==24.1.0
 
 ### Deployment
 - 📄 `Dockerfile` - Python 3.9-slim container
@@ -105,21 +109,25 @@
 - Properties: 2 files (application.properties, .env.example)
 
 ### Documentation Files
-- 4 markdown files (README.md, QUICKSTART.md, SETUP_COMPLETE.md, FILE_MANIFEST.md)
+- **5 markdown documentation files** covering setup, architecture, API usage, and troubleshooting
+- **mkdocs.yml** configuration file for site structure and theme settings
+- **MkDocs site** with full project documentation (https://joeaoregan.github.io/TUS-26-ETP-AI-Traffic-Optimisation/)
+- **Interactive API docs** via Swagger UI for both Java Gateway and Python Inference Service
+- **README.md** with quick links and project overview
 
 ### Scripts
 - 3 scripts (start.bat, start.sh, select_model.py, test_api.py)
 
 ## File Sizes (Approximate)
 
-| Component | Files | Total Size |
-|-----------|-------|-----------|
-| Documentation | 4 | ~25 KB |
-| Python Service | 3 | ~12 KB |
-| Java Service | 3 | ~18 KB |
-| Configuration | 6 | ~5 KB |
-| Scripts | 4 | ~15 KB |
-| **Total** | **20+** | **~75 KB** |
+| Component      | Files   | Total Size |
+|----------------|--------:|-----------:|
+| Documentation  | 4       | ~25 KB     |
+| Python Service | 3       | ~12 KB     |
+| Java Service   | 3       | ~18 KB     |
+| Configuration  | 6       | ~5 KB      |
+| Scripts        | 4       | ~15 KB     |
+| **Total**      | **20+** | **~75 KB** |
 
 ## Integration with Existing Project
 
@@ -262,6 +270,6 @@ docker-compose up --build
 
 ---
 
-**Generated:** March 2025
-**Last Updated:** [Current Date]
+**Generated:** March 2026
+**Last Updated:** 24/03/2026
 **Status:** Setup Complete ✓
