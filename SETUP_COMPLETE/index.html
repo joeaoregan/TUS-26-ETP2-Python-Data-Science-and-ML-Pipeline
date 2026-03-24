@@ -1174,12 +1174,12 @@
 <pre><code>ai-traffic-api/
 ├── rl-inference-service/
 │   ├── app/
-│   │   ├── main.py                 # FastAPI application with model loading
-│   │   ├── models/                 # Directory for trained models (create structure)
-│   │   └── __init__.py             # Package init
-│   ├── Dockerfile                  # Python service container
-│   ├── requirements.txt            # Python dependencies
-│   └── .env.example                # Environment variables template
+│   │   ├── main.py                         # FastAPI application with model loading
+│   │   ├── models/                         # Directory for trained models (create structure)
+│   │   └── __init__.py                     # Package init
+│   ├── Dockerfile                          # Python service container
+│   ├── requirements.txt                    # Python dependencies
+│   └── .env.example                        # Environment variables template
 ├── java-api-gateway/
 │   ├── src/main/
 │   │   ├── java/com/example/gateway/
@@ -1190,17 +1190,18 @@
 │   │   │       └── RlInferenceClient.java  # Python service client
 │   │   └── resources/
 │   │       └── application.properties      # Spring configuration
-│   ├── pom.xml                     # Maven configuration
-│   └── Dockerfile                  # Java service container
-├── docker-compose.yml              # Multi-service orchestration
-├── select_model.py                 # Interactive model selector
-├── test_api.py                     # API test client
-├── start.bat                       # Windows startup script
-├── start.sh                        # Linux/Mac startup script
-├── QUICKSTART.md                   # 5-minute setup guide
-├── README.md                       # Full documentation
-└── .gitignore                      # Git ignore rules
+│   ├── pom.xml                             # Maven configuration
+│   └── Dockerfile                          # Java service container
+├── docker-compose.yml                      # Multi-service orchestration
+├── select_model.py                         # Interactive model selector
+├── test_api.py                             # API test client
+├── start.bat                               # Windows startup script
+├── start.sh                                # Linux/Mac startup script
+├── QUICKSTART.md                           # 5-minute setup guide
+├── README.md                               # Full documentation
+└── .gitignore                              # Git ignore rules
 </code></pre>
+<hr />
 <h2 id="quick-start-5-minutes">🚀 Quick Start (5 Minutes)</h2>
 <h3 id="step-1-select-your-model">Step 1: Select Your Model</h3>
 <pre><code class="language-bash">python select_model.py
@@ -1228,6 +1229,7 @@ curl http://localhost:8080/api/traffic/action
 # Or run comprehensive tests
 python test_api.py
 </code></pre>
+<hr />
 <h2 id="architecture-overview">📊 Architecture Overview</h2>
 <pre><code>┌─────────────────────────────────────────────────────────────┐
 │                     Client/External System                  │
@@ -1256,6 +1258,7 @@ python test_api.py
                 │  From: Results/sweeps_*/model.zip │
                 └───────────────────────────────────┘
 </code></pre>
+<hr />
 <h2 id="key-features">🔧 Key Features</h2>
 <h3 id="python-fastapi-service">Python FastAPI Service</h3>
 <p>✓ Loads trained PPO models<br />
@@ -1278,6 +1281,7 @@ python test_api.py
 ✓ Persistent volumes for models<br />
 ✓ Network isolation<br />
 ✓ Logging and monitoring  </p>
+<hr />
 <h2 id="api-endpoints">📡 API Endpoints</h2>
 <h3 id="python-service-port-8000">Python Service (Port 8000)</h3>
 <pre><code>GET  /health              - Service health status
@@ -1290,6 +1294,7 @@ GET  /docs                - Swagger UI documentation
 GET  /api/traffic/action  - Get traffic action (auto-generated obs)
 POST /api/traffic/action  - Predict with custom observations
 </code></pre>
+<hr />
 <h2 id="using-different-models">💾 Using Different Models</h2>
 <h3 id="option-1-interactive-selector">Option 1: Interactive Selector</h3>
 <pre><code class="language-bash">python select_model.py
@@ -1313,6 +1318,7 @@ docker-compose up --build
 │   └── (similar structure)
 └── (other directories: queue, diff-waiting-time, etc.)
 </code></pre>
+<hr />
 <h2 id="testing">🧪 Testing</h2>
 <h3 id="test-with-included-client">Test With Included Client</h3>
 <pre><code class="language-bash">python test_api.py
@@ -1338,6 +1344,7 @@ curl http://localhost:8080/api/traffic/health
 # Check Python model
 curl http://localhost:8000/health
 </code></pre>
+<hr />
 <h2 id="environment-variables">🔐 Environment Variables</h2>
 <h3 id="python-service">Python Service</h3>
 <pre><code>MODEL_PATH=./app/trained_models/model.zip    # Model location
@@ -1350,6 +1357,7 @@ API_PORT=8000                                # Service port
 <pre><code>RL_INFERENCE_SERVICE_URL=http://localhost:8000/predict_action
 RL_INFERENCE_SERVICE_TIMEOUT=10000  # milliseconds
 </code></pre>
+<hr />
 <h2 id="development-vs-production">🛠 Development vs Production</h2>
 <h3 id="development-local">Development (Local)</h3>
 <pre><code class="language-bash"># Run services individually
@@ -1368,6 +1376,7 @@ mvn spring-boot:run
 docker-compose logs -f
 docker-compose ps
 </code></pre>
+<hr />
 <h2 id="documentation-files">📚 Documentation Files</h2>
 <table>
 <thead>
@@ -1395,14 +1404,16 @@ docker-compose ps
 </tr>
 </tbody>
 </table>
+<hr />
 <h2 id="next-steps">✅ Next Steps</h2>
 <ol>
-<li>**Select a model: ** <code>python select_model.py</code></li>
+<li><strong>Select a model:</strong> <code>python select_model.py</code></li>
 <li><strong>Start services:</strong> <code>start.bat</code> (Windows) or <code>./start.sh</code> (Linux/Mac)</li>
 <li><strong>Test API:</strong> <code>python test_api.py</code> or <code>curl http://localhost:8080/api/traffic/action</code></li>
 <li><strong>Integrate with SUMO:</strong> Modify your train_ppo_agent.py to use the API</li>
 <li><strong>Deploy:</strong> Use docker-compose for production</li>
 </ol>
+<hr />
 <h2 id="troubleshooting">🐛 Troubleshooting</h2>
 <h3 id="services-wont-start">Services won't start</h3>
 <ul>
@@ -1422,12 +1433,14 @@ docker-compose ps
 <li>Check observation dimensions (should be 10 floats)</li>
 <li>View logs: <code>docker-compose logs</code></li>
 </ul>
+<hr />
 <h2 id="support">📞 Support</h2>
 <p>For issues:
 1. Check service logs: <code>docker-compose logs service_name</code>
 2. Verify services are running: <code>docker-compose ps</code>
 3. Test individual services: <code>curl http://localhost:8000/health</code>
 4. Review <a href="../INDEX/">INDEX.md</a> (README.md) for detailed troubleshooting</p>
+<hr />
 <h2 id="notes">📝 Notes</h2>
 <ul>
 <li>Models are in <code>C:\Users\gemer\Sumo\my-network\Results\sweeps*</code></li>
@@ -1437,7 +1450,7 @@ docker-compose ps
 <li>All data is JSON-based for easy integration</li>
 </ul>
 <hr />
-<p><strong>Created:</strong> March 2025<br />
+<p><strong>Created:</strong> March 2026<br />
 <strong>Technology Stack:</strong> Python 3.9+, FastAPI, Java 17+, Spring Boot 3.2, Docker, Docker Compose<br />
 <strong>Status:</strong> Ready to use! ✓</p>
 

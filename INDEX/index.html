@@ -1324,6 +1324,7 @@ mvn spring-boot:run
 <ul>
 <li>Includes Swagger/OpenAPI documentation for all traffic control endpoints.</li>
 </ul>
+<hr />
 <h2 id="api-usage-examples">📡 API Usage Examples</h2>
 <h3 id="get-traffic-action-auto-generated-observations">🎯 Get Traffic Action (Auto-generated observations)</h3>
 <pre><code class="language-bash">curl -X GET http://localhost:8080/api/traffic/action
@@ -1362,6 +1363,7 @@ mvn spring-boot:run
   &quot;timestamp&quot;: 1684756800000
 }
 </code></pre>
+<hr />
 <h2 id="environment-variables">🔐 Environment Variables</h2>
 <h3 id="python-service-rl-inference">Python Service (RL Inference)</h3>
 <table>
@@ -1406,10 +1408,6 @@ mvn spring-boot:run
 </tbody>
 </table>
 <h3 id="java-gateway">Java Gateway</h3>
-<ul>
-<li><code>RL_INFERENCE_SERVICE_URL</code>: RL Inference Service URL (default: <code>http://localhost:8000/predict_action</code>)</li>
-<li><code>RL_INFERENCE_SERVICE_TIMEOUT</code>: Request timeout in ms (default: <code>10000</code>)</li>
-</ul>
 <table>
 <thead>
 <tr>
@@ -1431,6 +1429,7 @@ mvn spring-boot:run
 </tr>
 </tbody>
 </table>
+<hr />
 <h2 id="docker-compose-configuration">🐳 Docker Compose Configuration</h2>
 <p>The <code>docker-compose.yml</code> file includes:</p>
 <table>
@@ -1464,6 +1463,7 @@ mvn spring-boot:run
 </tr>
 </tbody>
 </table>
+<hr />
 <h2 id="monitoring-and-logging">📊 Monitoring and Logging</h2>
 <p>Both services include:
 - Structured logging configuration
@@ -1474,6 +1474,7 @@ mvn spring-boot:run
 <pre><code class="language-bash">docker-compose logs -f rl-inference
 docker-compose logs -f java-gateway
 </code></pre>
+<hr />
 <h2 id="using-different-models">🔄 Using Different Models</h2>
 <p>To use different trained models:</p>
 <ol>
@@ -1498,6 +1499,7 @@ docker-compose logs -f java-gateway
    docker-compose up --build</code></p>
 </li>
 </ol>
+<hr />
 <h2 id="performance-tuning">⚡ Performance Tuning</h2>
 <h3 id="for-high-throughput-scenarios">For High-Throughput Scenarios</h3>
 <ul>
@@ -1511,6 +1513,7 @@ docker-compose logs -f java-gateway
 <li>Use local model paths instead of network mounts</li>
 <li>Optimize observation preprocessing in Java gateway</li>
 </ul>
+<hr />
 <h2 id="troubleshooting">🐛 Troubleshooting</summary></h2>
 <table>
 <thead>
@@ -1538,6 +1541,7 @@ docker-compose logs -f java-gateway
 </tr>
 </tbody>
 </table>
+<hr />
 <h2 id="production-deployment">🌍 Production Deployment</h2>
 <p>For production:</p>
 <ol>
