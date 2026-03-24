@@ -585,34 +585,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="🔗 Quick Links">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#api-gateway-docs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        API Gateway Docs
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#inference-service-docs" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Inference Service Docs
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -817,8 +789,10 @@
 
 <h1 id="api-documentation">📖 API Documentation</h1>
 <h2 id="quick-links">🔗 Quick Links</h2>
-<h3 id="api-gateway-docs"><a href="https://ai-traffic-control-api.onrender.com/swagger-ui/index.html">API Gateway Docs</a></h3>
-<h3 id="inference-service-docs"><a href="https://traffic-inference-service.onrender.com/docs">Inference Service Docs</a></h3>
+<ul>
+<li><a href="https://ai-traffic-control-api.onrender.com/swagger-ui/index.html">API Gateway Docs</a></li>
+<li><a href="https://traffic-inference-service.onrender.com/docs">Inference Service Docs</a></li>
+</ul>
 <hr />
 <h2 id="java-api-gateway">Java API Gateway</h2>
 <p>The Java API Gateway now includes automatically generated API documentation using <strong>springdoc-openapi</strong>.</p>
@@ -853,11 +827,13 @@ Additional endpoint documentation will be added incrementally.</p>
 <hr />
 <h2 id="how-it-works">How It Works</h2>
 <h3 id="java-api-gateway_1">Java API Gateway</h3>
-<p>Swagger documentation is generated automatically from annotations in the Java codebase:
-- @Operation — endpoint summary and description
-- @ApiResponse — documented response codes and examples
-- @Schema — request/response model documentation
-- @Tag — groups related endpoints in the UI</p>
+<p>Swagger documentation is generated automatically from annotations in the Java codebase:</p>
+<ul>
+<li>@Operation — endpoint summary and description</li>
+<li>@ApiResponse — documented response codes and examples</li>
+<li>@Schema — request/response model documentation</li>
+<li>@Tag — groups related endpoints in the UI</li>
+</ul>
 <hr />
 <h3 id="python-inference-service_1">Python Inference Service</h3>
 <p>Swagger documentation is generated automatically from annotations and type hints in the FastAPI codebase:</p>
@@ -894,7 +870,7 @@ async def predict_action(observation: Observation):
 <p>The docstrings, type hints, and response models automatically generate interactive Swagger documentation without any extra annotation overhead.</p>
 <hr />
 <h2 id="where-to-add-documentation">Where to Add Documentation</h2>
-<p>All API documentation lives directly in the controller and model classes. \ 
+<p>All API documentation lives directly in the controller and model classes. <br />
 This keeps the documentation close to the code and ensures Swagger stays up‑to‑date.</p>
 
 
