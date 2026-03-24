@@ -10,7 +10,7 @@ theme:
     - toc.integrate
 
 nav:
-  - Home: index.md
+  - Home: INDEX.md
   - System Architecture: SYSTEM_ARCHITECTURE.md
   - Quick Start: QUICKSTART.md
   - Setup Complete: SETUP_COMPLETE.md

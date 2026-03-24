@@ -4,8 +4,8 @@
 
 ## 🔗 Quick Links
 
-### [API Gateway Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
-### [Inference Service Docs](https://traffic-inference-service.onrender.com/docs)
+- [API Gateway Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+- [Inference Service Docs](https://traffic-inference-service.onrender.com/docs)
 
 ---
 
@@ -65,6 +65,7 @@ https://traffic-inference-service.onrender.com/docs
 ### Java API Gateway
 
 Swagger documentation is generated automatically from annotations in the Java codebase:
+
 - @Operation — endpoint summary and description
 - @ApiResponse — documented response codes and examples
 - @Schema — request/response model documentation
@@ -114,5 +115,5 @@ The docstrings, type hints, and response models automatically generate interacti
 
 ## Where to Add Documentation
 
-All API documentation lives directly in the controller and model classes. \ 
+All API documentation lives directly in the controller and model classes.   
 This keeps the documentation close to the code and ensures Swagger stays up‑to‑date.

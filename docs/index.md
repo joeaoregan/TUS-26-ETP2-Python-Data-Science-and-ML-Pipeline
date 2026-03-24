@@ -20,19 +20,19 @@
 
 #### 🌐 API Gateway: 
 
-##### [API Gateway App](https://ai-traffic-control-api.onrender.com/)
-##### [Swagger UI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
+- [API Gateway App](https://ai-traffic-control-api.onrender.com/)
+- [Swagger UI Docs](https://ai-traffic-control-api.onrender.com/swagger-ui/index.html)
 
 #### 🤖 Inference Service:
 
-##### [Inference Service App](https://traffic-inference-service.onrender.com)
-##### [Swagger UI Docs](https://traffic-inference-service.onrender.com/docs)
+- [Inference Service App](https://traffic-inference-service.onrender.com)
+- [Swagger UI Docs](https://traffic-inference-service.onrender.com/docs)
 
 ---
 
 ### 📚 Documentation
 
-- **[Home](index.md)** — Main project overview and quick start
+- **[Home](INDEX.md)** — Main project overview and quick start
 - **[System Architecture](SYSTEM_ARCHITECTURE.md)** — Detailed system design
 - **[Quick Start Guide](QUICKSTART.md)** — Get up and running quickly
 - **[Setup Complete](SETUP_COMPLETE.md)** — Post-setup verification

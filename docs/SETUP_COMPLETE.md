@@ -252,7 +252,7 @@ docker-compose ps
 | File | Purpose |
 |------|---------|
 | [QUICKSTART.md](QUICKSTART.md) | 5-minute setup guide |
-| [index.md](index.md) | Complete documentation |
+| [INDEX.md](INDEX.md) | Complete documentation |
 | [select_model.py](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation/blob/main/select_model.py) | Model selection tool |
 | [test_api.py](https://github.com/joeaoregan/TUS-26-ETP-AI-Traffic-Optimisation/blob/main/test_api.py) | API test suite |
 
@@ -287,7 +287,7 @@ For issues:
 1. Check service logs: `docker-compose logs service_name`
 2. Verify services are running: `docker-compose ps`
 3. Test individual services: `curl http://localhost:8000/health`
-4. Review [index.md](index.md) (README.md) for detailed troubleshooting
+4. Review [INDEX.md](INDEX.md) (README.md) for detailed troubleshooting
 
 ## 📝 Notes
 

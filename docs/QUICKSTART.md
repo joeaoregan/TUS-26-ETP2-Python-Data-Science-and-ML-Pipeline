@@ -138,5 +138,5 @@ docker-compose ps
 
 ## Documentation
 
-For detailed documentation, see [index.md](index.md) or README.md
+For detailed documentation, see [INDEX.md](INDEX.md) or README.md
  
