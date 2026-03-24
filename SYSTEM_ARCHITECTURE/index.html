@@ -1,0 +1,1559 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../QUICKSTART/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>System Architecture - AI Traffic Optimisation System</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#system-architecture-ai-traffic-control-api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Traffic Optimisation System
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              System Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Traffic Optimisation System" class="md-nav__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AI Traffic Optimisation System
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../README.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    README
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    System Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../QUICKSTART/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SETUP_COMPLETE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup Complete
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FILE_MANIFEST/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    File Manifest
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Live Services
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Live Services
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ai-traffic-control-api.onrender.com" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://traffic-inference-service.onrender.com" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Swagger UI
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Swagger UI
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://ai-traffic-control-api.onrender.com/swagger-ui/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Gateway
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="https://traffic-inference-service.onrender.com/docs" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inference Service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Overview
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="system-architecture-ai-traffic-control-api">System Architecture - AI Traffic Control API</h1>
+<h2 id="overview">Overview</h2>
+<p>The AI Traffic Control API is a distributed, microservices-based system designed to provide real-time traffic signal control recommendations using trained Reinforcement Learning (RL) models.</p>
+<hr />
+<details open>
+  <summary>1. High-Level System Architecture</summary>
+
+
+<pre><code class="language-mermaid">graph TB
+    Client[&quot;🚗 Client Applications&lt;br/&gt;(SUMO Simulation&lt;br/&gt;External Systems&lt;br/&gt;Mobile Apps)&quot;]
+
+    subgraph Docker[&quot;🐳 Docker Container Network&quot;]
+        subgraph JavaService[&quot;Java API Gateway&lt;br/&gt;Spring Boot 3.2&lt;br/&gt;Port 8080&quot;]
+            Controller[&quot;TrafficController&lt;br/&gt;REST Endpoints&quot;]
+            ServiceClient[&quot;RlInferenceClient&lt;br/&gt;HTTP Client&quot;]
+        end
+
+        subgraph PythonService[&quot;Python FastAPI Service&lt;br/&gt;Port 8000&quot;]
+            API[&quot;FastAPI App&lt;br/&gt;uvicorn&quot;]
+            ModelLoader[&quot;Model Loader&lt;br/&gt;PPO Model&quot;]
+            Predictor[&quot;Predictor&lt;br/&gt;stable-baselines3&quot;]
+        end
+    end
+
+    ModelStorage[&quot;📦 Trained Models&lt;br/&gt;Results/sweeps/*&lt;br/&gt;model.zip&quot;]
+
+    Client --&gt;|HTTP:8080| Controller
+    Controller --&gt;|HTTP:8000| ServiceClient
+    ServiceClient --&gt;|HTTP Request| API
+    API --&gt; ModelLoader
+    ModelLoader --&gt;|Load| ModelStorage
+    ModelLoader --&gt; Predictor
+    Predictor --&gt;|Prediction| API
+    API --&gt;|JSON Response| ServiceClient
+    ServiceClient --&gt;|Response| Controller
+    Controller --&gt;|JSON Response| Client
+
+    style Docker fill:#e1f5ff
+    style JavaService fill:#fff3e0
+    style PythonService fill:#f3e5f5
+    style ModelStorage fill:#e8f5e9
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>2. Request-Response Flow Diagram</summary>
+
+### **GET /api/traffic/action** (Auto-generated observations)
+
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Client as External Client
+    participant JG as Java Gateway&lt;br/&gt;Port 8080
+    participant PS as Python Service&lt;br/&gt;Port 8000
+    participant Model as RL Model&lt;br/&gt;PPO
+
+    Client-&gt;&gt;JG: GET /api/traffic/action
+
+    Note over JG: Generate dummy&lt;br/&gt;observations (10 values)
+    JG-&gt;&gt;JG: Create random observation&lt;br/&gt;values [0-1]
+
+    JG-&gt;&gt;PS: POST /predict_action&lt;br/&gt;{&quot;obs_data&quot;: [0.1, 0.2, ...]}
+
+    Note over PS: Load model &amp; predict
+    PS-&gt;&gt;Model: Call model.predict()
+    Model--&gt;&gt;PS: Return action (0-3)
+
+    Note over PS: Format response
+    PS--&gt;&gt;JG: {&quot;action&quot;: 2}
+
+    Note over JG: Map action to signal
+    JG-&gt;&gt;JG: 2 → &quot;GREEN&quot;
+
+    JG--&gt;&gt;Client: {&lt;br/&gt;&quot;predictedAction&quot;: 2,&lt;br/&gt;&quot;signalState&quot;: &quot;GREEN&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...,&lt;br/&gt;&quot;status&quot;: &quot;success&quot;&lt;br/&gt;}
+</code></pre>
+
+
+### **POST /api/traffic/action** (Custom observations)
+
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Client as External Client
+    participant JG as Java Gateway&lt;br/&gt;Port 8080
+    participant Val as Validator
+    participant PS as Python Service&lt;br/&gt;Port 8000
+    participant Model as RL Model&lt;br/&gt;PPO
+
+    Client-&gt;&gt;JG: POST /api/traffic/action&lt;br/&gt;{&quot;observations&quot;: [0.1, 0.2, ...]}
+
+    JG-&gt;&gt;Val: Validate observations
+    alt Validation Success
+        Val--&gt;&gt;JG: ✓ Valid
+    else Validation Failed
+        Val--&gt;&gt;JG: ✗ Error: Empty/Null
+        JG--&gt;&gt;Client: 400 Bad Request
+    end
+
+    JG-&gt;&gt;PS: POST /predict_action&lt;br/&gt;{&quot;obs_data&quot;: [0.1, 0.2, ...]}
+
+    Note over PS: Process with model
+    PS-&gt;&gt;Model: Call model.predict()
+    Model--&gt;&gt;PS: Return action
+
+    PS--&gt;&gt;JG: {&quot;action&quot;: 1}
+
+    JG--&gt;&gt;Client: {&lt;br/&gt;&quot;predictedAction&quot;: 1,&lt;br/&gt;&quot;signalState&quot;: &quot;YELLOW&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...,&lt;br/&gt;&quot;status&quot;: &quot;success&quot;&lt;br/&gt;}
+</code></pre>
+
+
+### **GET /api/traffic/health** (Health Check)
+
+
+<pre><code class="language-mermaid">sequenceDiagram
+    participant Client as External Client
+    participant JG as Java Gateway&lt;br/&gt;Port 8080
+    participant HealthCheck as Health Checker
+    participant PS as Python Service&lt;br/&gt;Port 8000
+
+    Client-&gt;&gt;JG: GET /api/traffic/health
+
+    JG-&gt;&gt;HealthCheck: Check all services
+
+    HealthCheck-&gt;&gt;PS: GET /health
+
+    alt Python Service &quot;Up&quot;
+        PS--&gt;&gt;HealthCheck: {&quot;status&quot;: &quot;healthy&quot;}
+        HealthCheck--&gt;&gt;JG: ✓ All healthy
+    else Python Service &quot;Down&quot;
+        PS--xHealthCheck: Connection refused
+        HealthCheck--&gt;&gt;JG: ⚠️ Degraded
+    end
+
+    JG--&gt;&gt;Client: {&lt;br/&gt;&quot;status&quot;: &quot;healthy&quot;,&lt;br/&gt;&quot;inferenceService&quot;: &quot;up&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...&lt;br/&gt;}
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>3. System Component Architecture</summary>
+
+
+<pre><code class="language-mermaid">graph LR
+    subgraph External[&quot;External Systems&quot;]
+        SUMO[&quot;SUMO Simulation&quot;]
+        ExtApp[&quot;External Applications&quot;]
+        Mobile[&quot;Mobile/Web Clients&quot;]
+    end
+
+    subgraph Gateway[&quot;API Gateway Layer&quot;]
+        REST[&quot;REST Controller&quot;]
+        ErrorHandler[&quot;Error Handler&quot;]
+        Logger[&quot;Request Logger&quot;]
+    end
+
+    subgraph ServiceLayer[&quot;Service Layer&quot;]
+        Client[&quot;RL Inference Client&quot;]
+        HTTPClient[&quot;HTTP Client&quot;]
+    end
+
+    subgraph InferenceService[&quot;Inference Service&quot;]
+        FastAPI[&quot;FastAPI Application&quot;]
+        ModelMgmt[&quot;Model Manager&quot;]
+        PredictionEngine[&quot;Prediction Engine&quot;]
+    end
+
+    subgraph MLLayer[&quot;Machine Learning Layer&quot;]
+        PPOModel[&quot;PPO Model&lt;br/&gt;stable-baselines3&quot;]
+        NeuralNet[&quot;Neural Network&lt;br/&gt;Policy &amp; Value&quot;]
+    end
+
+    subgraph Storage[&quot;Storage &amp; Persistence&quot;]
+        ModelFiles[&quot;Model Files&lt;br/&gt;model.zip&quot;]
+        Logs[&quot;Application Logs&quot;]
+    end
+
+    External --&gt;|HTTP Request| Gateway
+    Gateway --&gt;|Validate/Log| REST
+    Gateway --&gt;|Handle Errors| ErrorHandler
+    REST --&gt;|Call Service| Client
+    Client --&gt;|Make HTTP Call| HTTPClient
+    HTTPClient --&gt;|POST| FastAPI
+    FastAPI --&gt;|Manage| ModelMgmt
+    FastAPI --&gt;|Execute| PredictionEngine
+    PredictionEngine --&gt;|Query| PPOModel
+    PPOModel --&gt;|Forward Pass| NeuralNet
+    ModelMgmt --&gt;|Load/Store| ModelFiles
+    Logger --&gt;|Persist| Logs
+
+    style External fill:#e3f2fd
+    style Gateway fill:#fff3e0
+    style ServiceLayer fill:#f3e5f5
+    style InferenceService fill:#e8f5e9
+    style MLLayer fill:#fce4ec
+    style Storage fill:#eceff1
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>4. Data Flow Through System</summary>
+
+
+<pre><code class="language-mermaid">graph TD
+    Start[&quot;User/SUMO&lt;br/&gt;Request Arrives&quot;]
+
+    Start --&gt;|HTTP Request| ParseReq[&quot;Parse Request&lt;br/&gt;Method: GET/POST&lt;br/&gt;Endpoint: /api/traffic/action&quot;]
+
+    ParseReq --&gt;|GET /action| AutoGen[&quot;Generate Dummy&lt;br/&gt;Observations&lt;br/&gt;10 random floats&quot;]
+    ParseReq --&gt;|POST /action| ValidateObs[&quot;Validate&lt;br/&gt;Custom Observations&lt;br/&gt;Must be 10 floats&quot;]
+
+    ValidateObs --&gt;|Invalid| ReturnError400[&quot;Return 400&lt;br/&gt;Bad Request&quot;]
+    ValidateObs --&gt;|Valid| FwdPython[&quot;Forward to&lt;br/&gt;Python Service&quot;]
+
+    AutoGen --&gt; CreatePayload[&quot;Create Payload&lt;br/&gt;{obs_data: [...]}&quot;]
+    CreatePayload --&gt; FwdPython
+
+    FwdPython --&gt;|HTTP POST| PythonReceive[&quot;Python Service&lt;br/&gt;Receives Request&quot;]
+
+    PythonReceive --&gt;|Check Model| ModelLoaded{&quot;Model&lt;br/&gt;Loaded?&quot;}
+
+    ModelLoaded --&gt;|No| LoadModel[&quot;Load PPO Model&lt;br/&gt;from model.zip&quot;]
+    ModelLoaded --&gt;|Yes| UseModel[&quot;Use Existing Model&quot;]
+
+    LoadModel --&gt; Predict
+    UseModel --&gt; Predict[&quot;Call Model&lt;br/&gt;model.predict&quot;]
+
+    Predict --&gt;|Process| Forward[&quot;Forward Pass&lt;br/&gt;Through Neural Network&quot;]
+    Forward --&gt; Output[&quot;Get Output&lt;br/&gt;Action: 0-3&quot;]
+
+    Output --&gt;|Return| ResponsePython[&quot;Python Response&lt;br/&gt;{action: n}&quot;]
+
+    ResponsePython --&gt;|HTTP Response| JavaGateway[&quot;Java Gateway&lt;br/&gt;Receives Response&quot;]
+
+    JavaGateway --&gt;|Map Action| MapSignal[&quot;Map Action to Signal&lt;br/&gt;0→RED, 1→YELLOW&lt;br/&gt;2→GREEN, 3→GREEN_EXTENDED&quot;]
+
+    MapSignal --&gt; BuildResp[&quot;Build JSON Response&lt;br/&gt;{predictedAction, signalState,&lt;br/&gt;timestamp, status}&quot;]
+
+    BuildResp --&gt; ReturnSuccess[&quot;Return 200&lt;br/&gt;Success Response&quot;]
+
+    ReturnSuccess --&gt; Client[&quot;Response to Client&quot;]
+    ReturnError400 --&gt; Client
+
+    style Start fill:#e3f2fd
+    style AutoGen fill:#fff3e0
+    style ValidateObs fill:#fff3e0
+    style FwdPython fill:#f3e5f5
+    style Forward fill:#fce4ec
+    style Output fill:#fce4ec
+    style MapSignal fill:#fff3e0
+    style Client fill:#e8f5e9
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>5. Deployment Architecture</summary>
+
+
+<pre><code class="language-mermaid">graph TB
+    Host[&quot;Host Machine&lt;br/&gt;Windows/Linux/Mac&quot;]
+
+    subgraph DockerEng[&quot;Docker Engine&quot;]
+        Network[&quot;traffic-network&lt;br/&gt;Bridge Network&quot;]
+
+        subgraph Container1[&quot;Java Gateway Container&quot;]
+            JG[&quot;Spring Boot App&quot;]
+            Config1[&quot;Port: 8080&lt;br/&gt;Memory: 512MB&lt;br/&gt;CPU: 1 core&quot;]
+        end
+
+        subgraph Container2[&quot;Python Service Container&quot;]
+            PS[&quot;FastAPI App&lt;br/&gt;uvicorn&quot;]
+            Config2[&quot;Port: 8000&lt;br/&gt;Memory: 1GB&lt;br/&gt;CPU: 2 cores&quot;]
+        end
+
+        subgraph Volume[&quot;Persistent Volume&quot;]
+            Models[&quot;trained_models/&lt;br/&gt;model.zip&quot;]
+        end
+    end
+
+    Host --&gt;|Docker Compose| DockerEng
+    Network --&gt;|Connect| Container1
+    Network --&gt;|Connect| Container2
+    Container1 --&gt;|Mount| Volume
+    Container2 --&gt;|Mount| Volume
+
+    Container1 --&gt;|Depends On| Container2
+
+    style Host fill:#eceff1
+    style DockerEng fill:#e1f5ff
+    style Container1 fill:#fff3e0
+    style Container2 fill:#f3e5f5
+    style Volume fill:#e8f5e9
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>6. Detailed Internal Flow - Action Prediction</summary>
+
+
+<pre><code class="language-mermaid">graph LR
+    subgraph Input[&quot;Input Stage&quot;]
+        Obs[&quot;Observation Vector&lt;br/&gt;10 float values&quot;]
+    end
+
+    subgraph Processing[&quot;Processing Stage&quot;]
+        Normalize[&quot;Normalize&lt;br/&gt;Convert to numpy array&lt;br/&gt;dtype: float32&quot;]
+        ModelInfer[&quot;Model Inference&lt;br/&gt;PPO.predict()&quot;]
+        Extract[&quot;Extract Action&lt;br/&gt;Convert to integer&lt;br/&gt;0, 1, 2, or 3&quot;]
+    end
+
+    subgraph Mapping[&quot;Mapping Stage&quot;]
+        Switch{&quot;Action&lt;br/&gt;Value?&quot;}
+        A0[&quot;0&quot;]
+        A1[&quot;1&quot;]
+        A2[&quot;2&quot;]
+        A3[&quot;3&quot;]
+        Default[&quot;Other&quot;]
+    end
+
+    subgraph Output[&quot;Output Stage&quot;]
+        Red[&quot;RED&lt;br/&gt;Stop traffic&quot;]
+        Yellow[&quot;YELLOW&lt;br/&gt;Caution&quot;]
+        Green[&quot;GREEN&lt;br/&gt;Allow flow&quot;]
+        Extended[&quot;GREEN_EXTENDED&lt;br/&gt;Extended green&quot;]
+        Unknown[&quot;UNKNOWN&lt;br/&gt;Error state&quot;]
+    end
+
+    Obs --&gt; Normalize
+    Normalize --&gt; ModelInfer
+    ModelInfer --&gt; Extract
+    Extract --&gt; Switch
+    Switch --&gt;|0| A0
+    Switch --&gt;|1| A1
+    Switch --&gt;|2| A2
+    Switch --&gt;|3| A3
+    Switch --&gt;|Other| Default
+    A0 --&gt; Red
+    A1 --&gt; Yellow
+    A2 --&gt; Green
+    A3 --&gt; Extended
+    Default --&gt; Unknown
+
+    style Obs fill:#e3f2fd
+    style Normalize fill:#fff3e0
+    style ModelInfer fill:#fce4ec
+    style Extract fill:#f3e5f5
+    style Red fill:#ffebee
+    style Yellow fill:#fff8e1
+    style Green fill:#e8f5e9
+    style Extended fill:#c8e6c9
+    style Unknown fill:#f5f5f5
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>7. Error Handling Flow</summary>
+
+
+<pre><code class="language-mermaid">graph TD
+    Request[&quot;Request&lt;br/&gt;Arrives&quot;]
+
+    Request --&gt;|Parse &amp; Validate| Validation{Input&lt;br/&gt;Valid?}
+
+    Validation --&gt;|No| BadReq[&quot;400&lt;br/&gt;Bad Request&lt;br/&gt;Invalid observations&quot;]
+
+    Validation --&gt;|Yes| CanConnect{Python Service&lt;br/&gt;Reachable?}
+
+    CanConnect --&gt;|No| Unavail[&quot;503&lt;br/&gt;Service Unavailable&lt;br/&gt;Inference service down&quot;]
+
+    CanConnect --&gt;|Yes| Predict{Prediction&lt;br/&gt;Success?}
+
+    Predict --&gt;|ValueError| BadVal[&quot;400&lt;br/&gt;Invalid observation data&quot;]
+
+    Predict --&gt;|Network Error| NetErr[&quot;503&lt;br/&gt;Service Unavailable&lt;br/&gt;Connection failed&quot;]
+
+    Predict --&gt;|Other Exception| ServerErr[&quot;500&lt;br/&gt;Internal Server Error&lt;br/&gt;Unexpected error&quot;]
+
+    Predict --&gt;|Success| Success[&quot;200&lt;br/&gt;OK&lt;br/&gt;Return prediction&quot;]
+
+    BadReq --&gt; Response[&quot;Send Error Response&lt;br/&gt;with status, message,&lt;br/&gt;timestamp&quot;]
+    Unavail --&gt; Response
+    BadVal --&gt; Response
+    NetErr --&gt; Response
+    ServerErr --&gt; Response
+    Success --&gt; Response
+    Response --&gt; Client[&quot;Client&lt;br/&gt;Receives Response&quot;]
+
+    style BadReq fill:#ffebee
+    style Unavail fill:#fff3e0
+    style BadVal fill:#ffebee
+    style NetErr fill:#fff3e0
+    style ServerErr fill:#ffcdd2
+    style Success fill:#e8f5e9
+    style Client fill:#eceff1
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>8. Inter-Service Communication Protocol</summary>
+
+
+<pre><code class="language-mermaid">graph LR
+    subgraph JavaGW[&quot;Java Gateway&lt;br/&gt;HTTP Client&quot;]
+        Create[&quot;Create Request&lt;br/&gt;{obs_data: [...]}&quot;]
+        Send[&quot;Send POST Request&lt;br/&gt;to http://python:8000&quot;]
+        Timeout[&quot;Set Timeout&lt;br/&gt;10 seconds&quot;]
+        Handle[&quot;Handle Response&quot;]
+    end
+
+    subgraph Network[&quot;Network Connection&lt;br/&gt;Docker Bridge&quot;]
+        HTTP[&quot;HTTP/1.1&lt;br/&gt;Content-Type: application/json&quot;]
+    end
+
+    subgraph PythonSVC[&quot;Python Service&lt;br/&gt;FastAPI&quot;]
+        Receive[&quot;Receive Request&quot;]
+        ValidateInput[&quot;Validate Input&lt;br/&gt;Check obs_data&quot;]
+        Predict[&quot;Call Model&quot;]
+        Format[&quot;Format Response&lt;br/&gt;{action: n}&quot;]
+        ReturnResp[&quot;Return JSON&lt;br/&gt;HTTP 200&quot;]
+    end
+
+    Create --&gt; HTTP
+    Send --&gt; HTTP
+    Timeout --&gt; HTTP
+    HTTP --&gt; Receive
+    Receive --&gt; ValidateInput
+    ValidateInput --&gt; Predict
+    Predict --&gt; Format
+    Format --&gt; HTTP
+    HTTP --&gt; Handle
+
+    style Create fill:#fff3e0
+    style HTTP fill:#b3e5fc
+    style Receive fill:#f3e5f5
+    style Predict fill:#fce4ec
+    style Handle fill:#fff3e0
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>9. Model Loading & Caching Strategy</summary>
+
+
+<pre><code class="language-mermaid">graph TD
+    Start[&quot;Python Service&lt;br/&gt;Starts&quot;]
+
+    Start --&gt;|startup event| Check{Model in&lt;br/&gt;Memory?}
+
+    Check --&gt;|Yes| Use[&quot;Use Cached Model&quot;]
+
+    Check --&gt;|No| LoadFile[&quot;Read Model File&lt;br/&gt;model.zip from disk&quot;]
+
+    LoadFile --&gt;|File exists?| Found{File&lt;br/&gt;Found?}
+
+    Found --&gt;|No| Error[&quot;Log Error&lt;br/&gt;Raise RuntimeError&lt;br/&gt;Startup Fails&quot;]
+
+    Found --&gt;|Yes| Parse[&quot;Parse ZIP&lt;br/&gt;Extract model data&quot;]
+
+    Parse --&gt;|Load via| StableBase[&quot;stable-baselines3&lt;br/&gt;PPO.load()&quot;]
+
+    StableBase --&gt;|Success| Cache[&quot;Cache in Memory&lt;br/&gt;Global variable&quot;]
+
+    Cache --&gt;|Ready| Ready[&quot;Model Ready&lt;br/&gt;for Predictions&quot;]
+
+    Use --&gt; Ready
+
+    Ready --&gt;|Request arrives| Predict[&quot;Call model.predict()&quot;]
+
+    Predict --&gt;|Return| Action[&quot;Action value&lt;br/&gt;0, 1, 2, or 3&quot;]
+
+    style Start fill:#e3f2fd
+    style Check fill:#fff3e0
+    style LoadFile fill:#fff3e0
+    style Cache fill:#e8f5e9
+    style Ready fill:#a5d6a7
+    style Predict fill:#fce4ec
+    style Action fill:#c8e6c9
+</code></pre>
+
+
+---
+
+</details>
+
+<details>
+  <summary>10. Complete End-to-End Workflow</summary>
+
+
+<pre><code class="language-mermaid">graph TB
+    Client[&quot;🚗 SUMO Simulation/&lt;br/&gt;External Client&quot;]
+
+    Step1[&quot;1️⃣ Read Traffic Metrics&lt;br/&gt;Queue lengths, waiting times,&lt;br/&gt;vehicle speeds, congestion&quot;]
+
+    Step2[&quot;2️⃣ Normalize Observations&lt;br/&gt;Convert to 10 feature values&lt;br/&gt;Scale to 0-1 range&quot;]
+
+    Step3[&quot;3️⃣ Send HTTP Request&lt;br/&gt;POST /api/traffic/action&lt;br/&gt;JSON body: observations&quot;]
+
+    Step4[&quot;4️⃣ Java Gateway Receives&lt;br/&gt;Validates input&lt;br/&gt;Creates service client&quot;]
+
+    Step5[&quot;5️⃣ Forward to Python Service&lt;br/&gt;HTTP POST to port 8000&lt;br/&gt;POST /predict_action&quot;]
+
+    Step6[&quot;6️⃣ Python Service Processes&lt;br/&gt;Loads PPO model if needed&lt;br/&gt;Converts observation to numpy&quot;]
+
+    Step7[&quot;7️⃣ Model Prediction&lt;br/&gt;Forward pass through neural network&lt;br/&gt;Returns action: 0, 1, 2, or 3&quot;]
+
+    Step8[&quot;8️⃣ Java Gateway Maps&lt;br/&gt;0→RED, 1→YELLOW&lt;br/&gt;2→GREEN, 3→GREEN_EXTENDED&quot;]
+
+    Step9[&quot;9️⃣ Format Response&lt;br/&gt;Add timestamp, status&lt;br/&gt;Convert to JSON&quot;]
+
+    Step10[&quot;🔟 Send Back to Client&lt;br/&gt;HTTP 200 OK&lt;br/&gt;Include signal state&quot;]
+
+    Step11[&quot;1️⃣1️⃣ Update Traffic Light&lt;br/&gt;Set signal to recommended state&lt;br/&gt;Simulate for next timestep&quot;]
+
+    Client --&gt; Step1
+    Step1 --&gt; Step2
+    Step2 --&gt; Step3
+    Step3 --&gt; Step4
+    Step4 --&gt; Step5
+    Step5 --&gt; Step6
+    Step6 --&gt; Step7
+    Step7 --&gt; Step8
+    Step8 --&gt; Step9
+    Step9 --&gt; Step10
+    Step10 --&gt; Step11
+    Step11 --&gt;|Next cycle| Step1
+
+    style Client fill:#e3f2fd
+    style Step1 fill:#fff3e0
+    style Step2 fill:#fff3e0
+    style Step3 fill:#e1f5fe
+    style Step4 fill:#fff3e0
+    style Step5 fill:#e1f5fe
+    style Step6 fill:#f3e5f5
+    style Step7 fill:#fce4ec
+    style Step8 fill:#fff3e0
+    style Step9 fill:#fff3e0
+    style Step10 fill:#e1f5fe
+    style Step11 fill:#e8f5e9
+</code></pre>
+
+
+---
+
+## Architecture Decision Rationale
+
+| Component | Choice | Rationale |
+|-----------|--------|-----------|
+| **Java Gateway** | Spring Boot | Enterprise-grade framework, excellent REST support, easy testing |
+| **Python Service** | FastAPI | High performance, automatic API documentation, great async support |
+| **ML Library** | stable-baselines3 | Industry standard for PPO, well-tested, robust |
+| **Containerization** | Docker | Consistent deployment, easy scaling, isolated environments |
+| **Communication** | REST/JSON | Universal, stateless, easy to monitor, language-agnostic |
+| **Data Format** | JSON | Human-readable, widely supported, easy serialization |
+
+---
+
+## Performance Characteristics
+
+### **Latency Breakdown** (typical)
+
+
+<pre><code>Total Request Time: ~100-200ms
+
+┌─────────────────────────────────────────────────────┐
+│ Total: ~150ms                                       │
+├─────────────────────────────────────────────────────┤
+│ ┌─────────────────────────────────────┐             │
+│ │ Java Gateway: ~20ms                 │             │
+│ │ - Parse request: 2ms                │             │
+│ │ - Validate data: 3ms                │             │
+│ │ - HTTP call: 10ms                   │             │
+│ │ - Response building: 5ms            │             │
+│ └─────────────────────────────────────┘             │
+│ ┌─────────────────────────────────────┐             │
+│ │ Network: ~10-30ms                   │             │
+│ │ - Request transmission: 5ms         │             │
+│ │ - Response transmission: 5ms        │             │
+│ │ - Latency: 0-20ms                   │             │
+│ └─────────────────────────────────────┘             │
+│ ┌─────────────────────────────────────┐             │
+│ │ Python Service: ~80-120ms           │             │
+│ │ - Request parsing: 5ms              │             │
+│ │ - Model prediction: 70-100ms        │             │
+│ │ - Response formatting: 5ms          │             │
+│ └─────────────────────────────────────┘             │
+└─────────────────────────────────────────────────────┘
+</code></pre>
+
+
+### **Throughput** (requests per second)
+
+- **Single instance:** 10-50 RPS (requests per second)
+- **With horizontal scaling:** Linear increase with load balancing
+- **Bottleneck:** Python model inference (70-100ms per prediction)
+
+### **Resource Usage**
+
+| Service | CPU | Memory | Disk |
+|---------|-----|--------|------|
+| Java Gateway | 0.1-0.2 cores | 512 MB | 100 MB |
+| Python Service | 0.5-1.0 cores | 1-2 GB | 200 MB + model size |
+| Model Storage | N/A | N/A | 50-500 MB per model |
+
+---
+
+## Scalability Considerations
+
+### **Horizontal Scaling**
+
+
+<pre><code class="language-mermaid">graph TB
+    LB[&quot;Load Balancer&lt;br/&gt;nginx/haproxy&quot;]
+
+    subgraph Gateway[&quot;Java Gateway Fleet&quot;]
+        JG1[&quot;Instance 1&quot;]
+        JG2[&quot;Instance 2&quot;]
+        JG3[&quot;Instance N&quot;]
+    end
+
+    subgraph Python[&quot;Python Service Fleet&quot;]
+        PS1[&quot;Instance 1&quot;]
+        PS2[&quot;Instance 2&quot;]
+        PS3[&quot;Instance N&quot;]
+    end
+
+    Cache[&quot;Model Cache&lt;br/&gt;Shared Volume&quot;]
+
+    LB --&gt;|Round Robin| JG1
+    LB --&gt;|Round Robin| JG2
+    LB --&gt;|Round Robin| JG3
+
+    JG1 --&gt;|Load Balanced| PS1
+    JG2 --&gt;|Load Balanced| PS2
+    JG3 --&gt;|Load Balanced| PS3
+
+    PS1 --&gt;|Read| Cache
+    PS2 --&gt;|Read| Cache
+    PS3 --&gt;|Read| Cache
+
+    style LB fill:#ffeb3b
+    style Cache fill:#e8f5e9
+</code></pre>
+
+
+### **Vertical Scaling**
+
+- Increase container memory (Python: 1GB → 4GB)
+- Increase CPU allocation (Java: 1 core → 4 cores)
+- Use GPU acceleration for Python service (CUDA-enabled Docker)
+
+---
+
+## Security Architecture
+
+
+<pre><code class="language-mermaid">graph TB
+    Client[&quot;External Client&quot;]
+    Firewall[&quot;Firewall&lt;br/&gt;Allow 8080&quot;]
+
+    subgraph DMZ[&quot;DMZ&quot;]
+        Gateway[&quot;Java Gateway&lt;br/&gt;8080 exposed&quot;]
+    end
+
+    subgraph Private[&quot;Private Network&quot;]
+        Python[&quot;Python Service&lt;br/&gt;8000 internal only&quot;]
+        Storage[&quot;Model Storage&lt;br/&gt;Internal access only&quot;]
+    end
+
+    Client --&gt;|Port 8080| Firewall
+    Firewall --&gt;|Allow| Gateway
+    Gateway --&gt;|Internal network| Python
+    Python --&gt;|Read only| Storage
+
+    style Firewall fill:#ffebee
+    style Gateway fill:#fff3e0
+    style Python fill:#f3e5f5
+    style Storage fill:#e8f5e9
+</code></pre>
+
+
+---
+
+## Monitoring & Observability Points
+
+
+<pre><code class="language-mermaid">graph LR
+    subgraph Metrics[&quot;Metrics&quot;]
+        RPS[&quot;Requests/sec&quot;]
+        Latency[&quot;Latency (ms)&quot;]
+        ErrorRate[&quot;Error Rate (%)&quot;]
+        Memory[&quot;Memory Usage&quot;]
+        CPU[&quot;CPU Usage&quot;]
+    end
+
+    subgraph Logs[&quot;Logs&quot;]
+        RequestLog[&quot;Request Logs&quot;]
+        ErrorLog[&quot;Error Logs&quot;]
+        ModelLog[&quot;Model Logs&quot;]
+        ServiceLog[&quot;Service Logs&quot;]
+    end
+
+    subgraph Health[&quot;Health Checks&quot;]
+        JavaHealth[&quot;Java Gateway&lt;br&gt;/api/traffic/health&quot;]
+        PythonHealth[&quot;Python Service&lt;br&gt;/health&quot;]
+        ModelHealth[&quot;Model Status&quot;]
+    end
+
+    subgraph Alerting[&quot;Alerts&quot;]
+        HighLatency[&quot;High Latency&quot;]
+        ServiceDown[&quot;Service Down&quot;]
+        ErrorSpike[&quot;Error Spike&quot;]
+        ResourceLow[&quot;Low Resources&quot;]
+    end
+
+    Metrics --&gt; Alerting
+    Logs --&gt; Alerting
+    Health --&gt; Alerting
+
+    style Metrics fill:#fff3e0
+    style Logs fill:#f3e5f5
+    style Health fill:#e8f5e9
+    style Alerting fill:#ffebee
+</code></pre>
+
+
+---
+
+## Deployment Patterns
+
+### **Development**
+
+<pre><code>Local Machine
+├── Java Gateway: localhost:8080
+└── Python Service: localhost:8000
+</code></pre>
+
+
+### **Testing**
+
+<pre><code>Docker Compose (Single Host)
+├── Java Gateway Container: 8080
+└── Python Service Container: 8000
+</code></pre>
+
+
+### **Production (Cloud)**
+
+<pre><code>Kubernetes Cluster
+├── Service Mesh (Istio)
+├── Load Balancer
+├── Java Gateway Pods (3+)
+├── Python Service Pods (2+)
+├── Model Persistent Volume
+└── Monitoring Stack
+</code></pre>
+
+
+---
+
+
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": [], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
