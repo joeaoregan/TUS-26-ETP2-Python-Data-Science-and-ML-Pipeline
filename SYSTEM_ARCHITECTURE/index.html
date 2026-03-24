@@ -76,7 +76,9 @@
     
       
 
-<header class="md-header" data-md-component="header">
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href=".." title="AI Traffic Optimisation System" class="md-header__button md-logo" aria-label="AI Traffic Optimisation System" data-md-component="logo">
       
@@ -153,14 +155,8 @@
     
   </nav>
   
-</header>
     
-    <div class="md-container" data-md-component="container">
       
-      
-        
-          
-            
 <nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
   <div class="md-grid">
     <ul class="md-tabs__list">
@@ -324,7 +320,13 @@
     </ul>
   </div>
 </nav>
-          
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
         
       
       <main class="md-main" data-md-component="main">
@@ -457,6 +459,327 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-high-level-system-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. High-Level System Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-request-response-flow-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Request-Response Flow Diagram
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Request-Response Flow Diagram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apitrafficaction-auto-generated-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/traffic/action (Auto-generated observations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apitrafficaction-custom-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        POST /api/traffic/action (Custom observations)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apitraffichealth-health-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /api/traffic/health (Health Check)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-system-component-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. System Component Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-flow-through-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Data Flow Through System
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-deployment-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Deployment Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-detailed-internal-flow-action-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Detailed Internal Flow - Action Prediction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-error-handling-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Error Handling Flow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-inter-service-communication-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Inter-Service Communication Protocol
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-model-loading-caching-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Model Loading &amp; Caching Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-complete-end-to-end-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Complete End-to-End Workflow
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-architecture-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Architecture Decision Rationale
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-performance-characteristics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Performance Characteristics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Performance Characteristics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#latency-breakdown-typical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Latency Breakdown (typical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#throughput-requests-per-second" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Throughput (requests per second)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Resource Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-scalability-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Scalability Considerations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Scalability Considerations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Horizontal Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vertical-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vertical Scaling
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-security-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. Security Architecture
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-monitoring-observability-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. Monitoring &amp; Observability Points
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-deployment-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16. Deployment Patterns
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Deployment Patterns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#development" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Development
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#production-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Production (Cloud)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -827,10 +1150,7 @@
 <h2 id="overview">Overview</h2>
 <p>The AI Traffic Control API is a distributed, microservices-based system designed to provide real-time traffic signal control recommendations using trained Reinforcement Learning (RL) models.</p>
 <hr />
-<details open>
-  <summary>1. High-Level System Architecture</summary>
-
-
+<h2 id="1-high-level-system-architecture">1. High-Level System Architecture</h2>
 <pre><code class="language-mermaid">graph TB
     Client[&quot;🚗 Client Applications&lt;br/&gt;(SUMO Simulation&lt;br/&gt;External Systems&lt;br/&gt;Mobile Apps)&quot;]
 
@@ -865,18 +1185,9 @@
     style PythonService fill:#f3e5f5
     style ModelStorage fill:#e8f5e9
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>2. Request-Response Flow Diagram</summary>
-
-### **GET /api/traffic/action** (Auto-generated observations)
-
-
+<hr />
+<h2 id="2-request-response-flow-diagram">2. Request-Response Flow Diagram</h2>
+<h3 id="get-apitrafficaction-auto-generated-observations"><strong>GET /api/traffic/action</strong> (Auto-generated observations)</h3>
 <pre><code class="language-mermaid">sequenceDiagram
     participant Client as External Client
     participant JG as Java Gateway&lt;br/&gt;Port 8080
@@ -902,11 +1213,7 @@
 
     JG--&gt;&gt;Client: {&lt;br/&gt;&quot;predictedAction&quot;: 2,&lt;br/&gt;&quot;signalState&quot;: &quot;GREEN&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...,&lt;br/&gt;&quot;status&quot;: &quot;success&quot;&lt;br/&gt;}
 </code></pre>
-
-
-### **POST /api/traffic/action** (Custom observations)
-
-
+<h3 id="post-apitrafficaction-custom-observations"><strong>POST /api/traffic/action</strong> (Custom observations)</h3>
 <pre><code class="language-mermaid">sequenceDiagram
     participant Client as External Client
     participant JG as Java Gateway&lt;br/&gt;Port 8080
@@ -934,11 +1241,7 @@
 
     JG--&gt;&gt;Client: {&lt;br/&gt;&quot;predictedAction&quot;: 1,&lt;br/&gt;&quot;signalState&quot;: &quot;YELLOW&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...,&lt;br/&gt;&quot;status&quot;: &quot;success&quot;&lt;br/&gt;}
 </code></pre>
-
-
-### **GET /api/traffic/health** (Health Check)
-
-
+<h3 id="get-apitraffichealth-health-check"><strong>GET /api/traffic/health</strong> (Health Check)</h3>
 <pre><code class="language-mermaid">sequenceDiagram
     participant Client as External Client
     participant JG as Java Gateway&lt;br/&gt;Port 8080
@@ -961,16 +1264,8 @@
 
     JG--&gt;&gt;Client: {&lt;br/&gt;&quot;status&quot;: &quot;healthy&quot;,&lt;br/&gt;&quot;inferenceService&quot;: &quot;up&quot;,&lt;br/&gt;&quot;timestamp&quot;: ...&lt;br/&gt;}
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>3. System Component Architecture</summary>
-
-
+<hr />
+<h2 id="3-system-component-architecture">3. System Component Architecture</h2>
 <pre><code class="language-mermaid">graph LR
     subgraph External[&quot;External Systems&quot;]
         SUMO[&quot;SUMO Simulation&quot;]
@@ -1025,16 +1320,8 @@
     style MLLayer fill:#fce4ec
     style Storage fill:#eceff1
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>4. Data Flow Through System</summary>
-
-
+<hr />
+<h2 id="4-data-flow-through-system">4. Data Flow Through System</h2>
 <pre><code class="language-mermaid">graph TD
     Start[&quot;User/SUMO&lt;br/&gt;Request Arrives&quot;]
 
@@ -1084,16 +1371,8 @@
     style MapSignal fill:#fff3e0
     style Client fill:#e8f5e9
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>5. Deployment Architecture</summary>
-
-
+<hr />
+<h2 id="5-deployment-architecture">5. Deployment Architecture</h2>
 <pre><code class="language-mermaid">graph TB
     Host[&quot;Host Machine&lt;br/&gt;Windows/Linux/Mac&quot;]
 
@@ -1129,16 +1408,8 @@
     style Container2 fill:#f3e5f5
     style Volume fill:#e8f5e9
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>6. Detailed Internal Flow - Action Prediction</summary>
-
-
+<hr />
+<h2 id="6-detailed-internal-flow-action-prediction">6. Detailed Internal Flow - Action Prediction</h2>
 <pre><code class="language-mermaid">graph LR
     subgraph Input[&quot;Input Stage&quot;]
         Obs[&quot;Observation Vector&lt;br/&gt;10 float values&quot;]
@@ -1192,16 +1463,8 @@
     style Extended fill:#c8e6c9
     style Unknown fill:#f5f5f5
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>7. Error Handling Flow</summary>
-
-
+<hr />
+<h2 id="7-error-handling-flow">7. Error Handling Flow</h2>
 <pre><code class="language-mermaid">graph TD
     Request[&quot;Request&lt;br/&gt;Arrives&quot;]
 
@@ -1239,16 +1502,8 @@
     style Success fill:#e8f5e9
     style Client fill:#eceff1
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>8. Inter-Service Communication Protocol</summary>
-
-
+<hr />
+<h2 id="8-inter-service-communication-protocol">8. Inter-Service Communication Protocol</h2>
 <pre><code class="language-mermaid">graph LR
     subgraph JavaGW[&quot;Java Gateway&lt;br/&gt;HTTP Client&quot;]
         Create[&quot;Create Request&lt;br/&gt;{obs_data: [...]}&quot;]
@@ -1285,16 +1540,8 @@
     style Predict fill:#fce4ec
     style Handle fill:#fff3e0
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>9. Model Loading & Caching Strategy</summary>
-
-
+<hr />
+<h2 id="9-model-loading-caching-strategy">9. Model Loading &amp; Caching Strategy</h2>
 <pre><code class="language-mermaid">graph TD
     Start[&quot;Python Service&lt;br/&gt;Starts&quot;]
 
@@ -1330,16 +1577,8 @@
     style Predict fill:#fce4ec
     style Action fill:#c8e6c9
 </code></pre>
-
-
----
-
-</details>
-
-<details>
-  <summary>10. Complete End-to-End Workflow</summary>
-
-
+<hr />
+<h2 id="10-complete-end-to-end-workflow">10. Complete End-to-End Workflow</h2>
 <pre><code class="language-mermaid">graph TB
     Client[&quot;🚗 SUMO Simulation/&lt;br/&gt;External Client&quot;]
 
@@ -1391,28 +1630,52 @@
     style Step10 fill:#e1f5fe
     style Step11 fill:#e8f5e9
 </code></pre>
-
-
----
-
-## Architecture Decision Rationale
-
-| Component | Choice | Rationale |
-|-----------|--------|-----------|
-| **Java Gateway** | Spring Boot | Enterprise-grade framework, excellent REST support, easy testing |
-| **Python Service** | FastAPI | High performance, automatic API documentation, great async support |
-| **ML Library** | stable-baselines3 | Industry standard for PPO, well-tested, robust |
-| **Containerization** | Docker | Consistent deployment, easy scaling, isolated environments |
-| **Communication** | REST/JSON | Universal, stateless, easy to monitor, language-agnostic |
-| **Data Format** | JSON | Human-readable, widely supported, easy serialization |
-
----
-
-## Performance Characteristics
-
-### **Latency Breakdown** (typical)
-
-
+<hr />
+<h2 id="11-architecture-decision-rationale">11. Architecture Decision Rationale</h2>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Choice</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Java Gateway</strong></td>
+<td>Spring Boot</td>
+<td>Enterprise-grade framework, excellent REST support, easy testing</td>
+</tr>
+<tr>
+<td><strong>Python Service</strong></td>
+<td>FastAPI</td>
+<td>High performance, automatic API documentation, great async support</td>
+</tr>
+<tr>
+<td><strong>ML Library</strong></td>
+<td>stable-baselines3</td>
+<td>Industry standard for PPO, well-tested, robust</td>
+</tr>
+<tr>
+<td><strong>Containerization</strong></td>
+<td>Docker</td>
+<td>Consistent deployment, easy scaling, isolated environments</td>
+</tr>
+<tr>
+<td><strong>Communication</strong></td>
+<td>REST/JSON</td>
+<td>Universal, stateless, easy to monitor, language-agnostic</td>
+</tr>
+<tr>
+<td><strong>Data Format</strong></td>
+<td>JSON</td>
+<td>Human-readable, widely supported, easy serialization</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="12-performance-characteristics">12. Performance Characteristics</h2>
+<h3 id="latency-breakdown-typical"><strong>Latency Breakdown</strong> (typical)</h3>
 <pre><code>Total Request Time: ~100-200ms
 
 ┌─────────────────────────────────────────────────────┐
@@ -1439,29 +1702,46 @@
 │ └─────────────────────────────────────┘             │
 └─────────────────────────────────────────────────────┘
 </code></pre>
-
-
-### **Throughput** (requests per second)
-
-- **Single instance:** 10-50 RPS (requests per second)
-- **With horizontal scaling:** Linear increase with load balancing
-- **Bottleneck:** Python model inference (70-100ms per prediction)
-
-### **Resource Usage**
-
-| Service | CPU | Memory | Disk |
-|---------|-----|--------|------|
-| Java Gateway | 0.1-0.2 cores | 512 MB | 100 MB |
-| Python Service | 0.5-1.0 cores | 1-2 GB | 200 MB + model size |
-| Model Storage | N/A | N/A | 50-500 MB per model |
-
----
-
-## Scalability Considerations
-
-### **Horizontal Scaling**
-
-
+<h3 id="throughput-requests-per-second"><strong>Throughput</strong> (requests per second)</h3>
+<ul>
+<li><strong>Single instance:</strong> 10-50 RPS (requests per second)</li>
+<li><strong>With horizontal scaling:</strong> Linear increase with load balancing</li>
+<li><strong>Bottleneck:</strong> Python model inference (70-100ms per prediction)</li>
+</ul>
+<h3 id="resource-usage"><strong>Resource Usage</strong></h3>
+<table>
+<thead>
+<tr>
+<th>Service</th>
+<th>CPU</th>
+<th>Memory</th>
+<th>Disk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java Gateway</td>
+<td>0.1-0.2 cores</td>
+<td>512 MB</td>
+<td>100 MB</td>
+</tr>
+<tr>
+<td>Python Service</td>
+<td>0.5-1.0 cores</td>
+<td>1-2 GB</td>
+<td>200 MB + model size</td>
+</tr>
+<tr>
+<td>Model Storage</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>50-500 MB per model</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-scalability-considerations">13. Scalability Considerations</h2>
+<h3 id="horizontal-scaling"><strong>Horizontal Scaling</strong></h3>
 <pre><code class="language-mermaid">graph TB
     LB[&quot;Load Balancer&lt;br/&gt;nginx/haproxy&quot;]
 
@@ -1494,19 +1774,14 @@
     style LB fill:#ffeb3b
     style Cache fill:#e8f5e9
 </code></pre>
-
-
-### **Vertical Scaling**
-
-- Increase container memory (Python: 1GB → 4GB)
-- Increase CPU allocation (Java: 1 core → 4 cores)
-- Use GPU acceleration for Python service (CUDA-enabled Docker)
-
----
-
-## Security Architecture
-
-
+<h3 id="vertical-scaling"><strong>Vertical Scaling</strong></h3>
+<ul>
+<li>Increase container memory (Python: 1GB → 4GB)</li>
+<li>Increase CPU allocation (Java: 1 core → 4 cores)</li>
+<li>Use GPU acceleration for Python service (CUDA-enabled Docker)</li>
+</ul>
+<hr />
+<h2 id="14-security-architecture">14. Security Architecture</h2>
 <pre><code class="language-mermaid">graph TB
     Client[&quot;External Client&quot;]
     Firewall[&quot;Firewall&lt;br/&gt;Allow 8080&quot;]
@@ -1530,13 +1805,8 @@
     style Python fill:#f3e5f5
     style Storage fill:#e8f5e9
 </code></pre>
-
-
----
-
-## Monitoring & Observability Points
-
-
+<hr />
+<h2 id="15-monitoring-observability-points">15. Monitoring &amp; Observability Points</h2>
 <pre><code class="language-mermaid">graph LR
     subgraph Metrics[&quot;Metrics&quot;]
         RPS[&quot;Requests/sec&quot;]
@@ -1575,30 +1845,19 @@
     style Health fill:#e8f5e9
     style Alerting fill:#ffebee
 </code></pre>
-
-
----
-
-## Deployment Patterns
-
-### **Development**
-
+<hr />
+<h2 id="16-deployment-patterns">16. Deployment Patterns</h2>
+<h3 id="development"><strong>Development</strong></h3>
 <pre><code>Local Machine
 ├── Java Gateway: localhost:8080
 └── Python Service: localhost:8000
 </code></pre>
-
-
-### **Testing**
-
+<h3 id="testing"><strong>Testing</strong></h3>
 <pre><code>Docker Compose (Single Host)
 ├── Java Gateway Container: 8080
 └── Python Service Container: 8000
 </code></pre>
-
-
-### **Production (Cloud)**
-
+<h3 id="production-cloud"><strong>Production (Cloud)</strong></h3>
 <pre><code>Kubernetes Cluster
 ├── Service Mesh (Istio)
 ├── Load Balancer
@@ -1607,12 +1866,7 @@
 ├── Model Persistent Volume
 └── Monitoring Stack
 </code></pre>
-
-
----
-
-
-</details>
+<hr />
 
 
 
@@ -1662,7 +1916,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "toc.integrate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
