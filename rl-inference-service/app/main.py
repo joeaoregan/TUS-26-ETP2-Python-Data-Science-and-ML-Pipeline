@@ -6,6 +6,7 @@ from typing import List, Optional
 
 import numpy as np
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import HTMLResponse
 from gymnasium import spaces
 from pydantic import BaseModel, ConfigDict
 from stable_baselines3 import PPO
@@ -281,7 +282,30 @@ async def get_model_info():
             status_code=500,
             detail=f"Error getting model info: {str(e)}"
         )
+    
 
+@app.get("/", response_class=HTMLResponse)
+async def read_root():
+    return """
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>AI Inference Service</title>
+            <script src="https://cdn.tailwindcss.com"></script>
+        </head>
+        
+        <body class="bg-slate-900 text-white flex items-center justify-center min-h-screen">
+            <div class="text-center p-8 bg-slate-800 rounded-3xl shadow-2xl border border-slate-700">
+                <h1 class="text-3xl font-bold mb-2">AI Traffic Inference Engine</h1>
+                <p class="text-slate-400 mb-6 font-mono text-sm">Status: Operational | Model: PPO v1</p>
+                <div class="flex flex-col gap-3">
+                    <a href="/docs" class="bg-indigo-600 hover:bg-indigo-500 py-3 px-6 rounded-xl font-bold transition">View API Documentation</a>
+                    <a href="/health" class="text-slate-400 hover:text-white text-sm transition">System Health Check</a>
+                </div>
+            </div>
+        </body>
+    </html>
+    """
 
 if __name__ == "__main__":
     import uvicorn
